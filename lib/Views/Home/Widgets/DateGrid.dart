@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'DateHead.dart';
 import 'item.dart';
 import 'common/line_space.dart';
-import 'Detail/record_list.dart';
+import 'Detail/total_info.dart';
 
 // 日期数据
 import 'date.dart';
@@ -33,7 +33,7 @@ class _DateGridState extends State<DateGrid> {
             DateHead(),
             Item(onClick: onClick),
             LineSpace(16.0),
-            RecordList()
+            TotalInfo()
           ],
         ));
   }

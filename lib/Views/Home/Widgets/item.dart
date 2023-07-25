@@ -25,6 +25,7 @@ class Item extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           width: itemHeight - 4,
+          height: itemHeight - 4,
           margin: EdgeInsets.all(2.0),
           padding: EdgeInsets.all(6.0),
           decoration: BoxDecoration(

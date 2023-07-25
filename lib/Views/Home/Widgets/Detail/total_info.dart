@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:flutter_vantui/flutter_vantui.dart";
+import 'package:tailstyle/tailstyle.dart';
 
 class TotalInfo extends StatelessWidget {
   const TotalInfo({
@@ -13,11 +14,26 @@ class TotalInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const VanCellGroup(children: [
-      VanCell(title: "今天", value: "62.65", label: "2023-07-25"),
-      VanCell(title: "本周", value: "125.3", label: "2023-07-24 ~ 2023-07-30"),
-      VanCell(title: "本月", value: "952", label: "2023-07"),
-      VanCell(title: "本年", value: "6598.54", label: "2023"),
+    return VanCellGroup(children: [
+      VanCell(
+          title: TailTypo().font_size(16.0).Text('今天'),
+          value:
+              TailTypo().font_size(16.0).text_color(Colors.red).Text("62.65"),
+          label: "2023年-07月-25日"),
+      VanCell(
+          title: TailTypo().font_size(16.0).Text("本周"),
+          value:
+              TailTypo().font_size(16.0).text_color(Colors.red).Text("125.3"),
+          label: "07月-24日 - 07月-30日"),
+      VanCell(
+          title: TailTypo().font_size(16.0).Text("本月"),
+          value: TailTypo().font_size(16.0).text_color(Colors.red).Text("952"),
+          label: "2023年-07月"),
+      VanCell(
+          title: TailTypo().font_size(16.0).Text("本年"),
+          value:
+              TailTypo().font_size(16.0).text_color(Colors.red).Text("6598.54"),
+          label: "2023年"),
     ]);
   }
 }

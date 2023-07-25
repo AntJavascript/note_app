@@ -26,15 +26,19 @@ class _DateGridState extends State<DateGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            DateHead(),
-            Item(onClick: onClick),
-            LineSpace(16.0),
-            TotalInfo()
-          ],
-        ));
+    return ListView(
+      children: [
+        Container(
+            margin: const EdgeInsets.only(top: 10),
+            child: Column(
+              children: [
+                DateHead(),
+                Item(onClick: onClick),
+                LineSpace(16.0),
+                TotalInfo()
+              ],
+            ))
+      ],
+    );
   }
 }

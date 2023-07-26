@@ -8,11 +8,11 @@ import 'package:note_app/router/routes.dart';
 import 'Home/home.dart';
 
 class App extends StatelessWidget {
-  const App({super.key}) {
+  App({super.key}) {
     final router = FluroRouter();
     Routes.configureRoutes(router);
     Application.router = router;
-  };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Home('随手记',),
+      home: Home(),
       onGenerateRoute: Application.router.generator,
     );
   }

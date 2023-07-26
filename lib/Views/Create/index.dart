@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Create extends StatelessWidget {
-
   const Create({super.key});
 
   @override
@@ -9,7 +8,7 @@ class Create extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title:'记一笔',
+        title: const Text('记一笔'),
         centerTitle: true,
         elevation: 0,
       ),
@@ -17,4 +16,3 @@ class Create extends StatelessWidget {
     );
   }
 }
-

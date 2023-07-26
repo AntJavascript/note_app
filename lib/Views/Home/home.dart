@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'Widgets/DateGrid.dart';
+import 'package:note_app/router/application.dart';
 
 class Home extends StatelessWidget {
-  final String title;
-
-  const Home(this.title, {super.key});
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(title),
+        title: Text('记事本'),
         centerTitle: true,
         elevation: 0,
       ),

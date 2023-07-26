@@ -11,11 +11,11 @@ import 'Views/app.dart';
 
 void main() {
   runApp(MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => UserInfo()),
-      ],
-      child: const App(),
-    ));
+    providers: [
+      ChangeNotifierProvider(create: (_) => UserInfo()),
+    ],
+    child: App(),
+  ));
 
   if (Platform.isAndroid) {
     // 设置沉浸式状态栏

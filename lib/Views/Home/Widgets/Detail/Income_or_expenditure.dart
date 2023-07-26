@@ -5,7 +5,7 @@ class IncomeOrExpenditure extends StatelessWidget {
   const IncomeOrExpenditure({
     super.key,
     this.value = '',
-    this.color = const Color.fromARGB(255, 238, 16, 0),
+    this.color = const Color.fromARGB(255, 241, 157, 157),
   });
 
   final String value;

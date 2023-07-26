@@ -24,12 +24,12 @@ class Item extends StatelessWidget {
         },
         child: Container(
           alignment: Alignment.center,
-          width: itemHeight - 4,
-          height: itemHeight - 4,
-          margin: EdgeInsets.all(2.0),
+          width: itemHeight - 2,
+          height: itemHeight - 2,
+          margin: EdgeInsets.all(1.0),
           padding: EdgeInsets.all(6.0),
           decoration: BoxDecoration(
-              color: isEmpty ? null : Color.fromARGB(255, 246, 238, 247),
+              color: isEmpty ? null : Color.fromARGB(240, 245, 245, 245),
               borderRadius: BorderRadius.all(Radius.circular(4))),
           child: Column(
             children: [

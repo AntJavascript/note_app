@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Application.router.navigateTo(context, "/demo/create");
+          Application.router.navigateTo(context, "/create");
         },
         child: Text(
           '记一笔',

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'Widgets/DateGrid.dart';
-import 'Widgets/Detail/add_expend_sheet.dart';
 
 class Home extends StatelessWidget {
   final String title;
@@ -18,12 +17,7 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showModalBottomSheet<void>(
-            context: context,
-            builder: (BuildContext context) {
-              return const AddExpendSheet();
-            },
-          );
+          Application.router.navigateTo(context, "/create");
         },
         child: Text(
           '记一笔',

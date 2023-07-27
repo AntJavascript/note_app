@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// 输入组件
+import 'amount_input.dart';
+
 class Create extends StatelessWidget {
   const Create({super.key});
 
@@ -12,7 +15,7 @@ class Create extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: const Text('记一笔'),
+      body: const Colum(children:[AmountInput()]),
     );
   }
 }

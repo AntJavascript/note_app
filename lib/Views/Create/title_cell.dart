@@ -4,7 +4,7 @@ import 'package:tailstyle/tailstyle.dart';
 class TitleCell extends StatelessWidget {
 
   final String title;
-  const TitleCell({Key? key, this.title}) : super(key: key);
+  const TitleCell(this.title, {Key key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {

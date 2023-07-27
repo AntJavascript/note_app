@@ -15,7 +15,6 @@ class Create extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('记一笔'),
-        centerTitle: true,
         elevation: 0,
       ),
       body: const Colum(children:[AmountInput(), DatePickerPopup(), GroupTag(), RemarkInput()]),

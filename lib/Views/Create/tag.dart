@@ -7,7 +7,7 @@ class Tag extends StatefulWidget {
   final String text;
   final bool? isActive;
 
-  this.Tag(text, {
+  const Tag(text, {
     this.isActive = false,
   })
 

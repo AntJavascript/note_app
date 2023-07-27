@@ -11,7 +11,7 @@ class TitleCell extends StatelessWidget {
     return Container(
       child: Row(
         children: [
-          TailBox().border(Colors.blue, 2).Container(),
+          TailBox().border(Colors.blue, 2).mx(6).Container(),
           TailTypo().text_color(Colors.black).Text(title)
         ]
       )

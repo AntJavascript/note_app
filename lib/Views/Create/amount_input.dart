@@ -23,7 +23,7 @@ class AmountInputState extends State<AmountInput>{
         controller: _amountController,
         keyboardType: TextInputType.phone,
         autofocus: true,
-        style: TailTypo().font_size(32.0).TextStyle()
+        style: TailTypo().font_size(32.0).text_color(const Color(0xFF707070)).TextStyle()
     ))
   }
 

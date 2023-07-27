@@ -32,12 +32,13 @@ class TagState extends State<Tag>{
     // 背景颜色
     Color bg_color = isActive ? Color.fromARGB(255, 120, 120, 120) : Color.fromARGB(255, 220, 220, 220);
 
-    return TailBox().border(border_color, 1).as((s) {
-      return s.bg(bg_color).rounded(30).as((s) {
-        return s.Container(
-          child:TailTypo().text_color(text_color).font_size(12.0).Text(text),
-        );
-      });
-    });
+    return TailBox()
+    .border(border_color, 1)
+    .px(2)
+    .py(4)
+    .m(8)
+    .rounded(30)
+    .bg(bg_color)
+    .Container(child: TailTypo().text_color(text_color).font_size(12.0).Text(text));
   }
 }

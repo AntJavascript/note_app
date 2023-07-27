@@ -1,5 +1,8 @@
-class DatePickerPopup extends StatefulWidget {
+import 'package:flutter/material.dart';
+import "package:flutter_vantui/flutter_vantui.dart";
+import 'package:note_app/Views/Home/Widgets/common/with_value.dart';
 
+class DatePickerPopup extends StatefulWidget {
   final Function? onClick;
 
   const DatePickerPopup({Key? key, this.onClick}) : super(key: key);
@@ -8,11 +11,10 @@ class DatePickerPopup extends StatefulWidget {
   State<StatefulWidget> createState() => DatePickerPopupState();
 }
 
-class DatePickerPopupState extends State<DatePickerPopup>{
-
+class DatePickerPopupState extends State<DatePickerPopup> {
   final _show = ValueNotifier(false);
-  final DateTime now = DateTime.now();
-  String values = '${now.year}, ${now.month}, ${now.day}';
+  String values =
+      '${DateTime.now().year}, ${DateTime.now().month}, ${DateTime.now().day}';
 
   @override
   void initState() {
@@ -32,30 +34,29 @@ class DatePickerPopupState extends State<DatePickerPopup>{
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children:[
-        Cell(
-          title: values,
-          clickable: true,
-          onTap: () => _show.value = true,
-        ),
-        Popup(
-          show: show,
-          position: PopupPosition.bottom,
-          round: true,
-          child: _show
+    return Column(children: [
+      VanCell(
+        title: values,
+        clickable: true,
+        onTap: () => _show.value = true,
+      ),
+      VanPopup(
+        show: _show.value,
+        position: VanPopupPosition.bottom,
+        round: true,
+        child: _show.value
             ? WithModel(
-              [now.year, now.month, now.day],
-              (model) {
-              return VanDatePicker(
-                value: model.value,
-                onChange: (value) => model.value = value,
-                onConfirm: (val) => confirm(val),
-                onCancel: (val) => cancel(val),
-              );
-            })
-          : nil,
-      )]
-    ),
+                [DateTime.now().year, DateTime.now().month, DateTime.now().day],
+                (model) {
+                return VanDatePicker(
+                  value: model.value,
+                  onChange: (value) => model.value = value,
+                  onConfirm: (val) => confirm(val),
+                  onCancel: (val) => cancel(val),
+                );
+              })
+            : nil,
+      )
+    ]);
   }
 }

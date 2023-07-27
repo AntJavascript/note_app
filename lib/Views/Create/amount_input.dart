@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:tailstyle/tailstyle.dart';
 
 class AmountInput extends StatefulWidget {
-    @override
+  const AmountInput({Key? key}) : super(key: key);
+
+  @override
   State<StatefulWidget> createState() => AmountInputState();
 }
 
-class AmountInputState extends State<AmountInput>{
-
+class AmountInputState extends State<AmountInput> {
   @override
   void initState() {
     super.initState();
-    _amountController.text = '0.0';
+    _controller.text = '0.0';
   }
 
   //文本编辑控制器
-  TextEditingController _amountController = TextEditingController();
+  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child:TextField(
-        controller: _amountController,
-        keyboardType: TextInputType.phone,
-        autofocus: true,
-        style: TailTypo().font_size(32.0).text_color(const Color(0xFF707070)).TextStyle()
-    ))
+    return TailBox().border_b(Color(0xFFFB923C), 0.5).Container(
+        child: TextField(
+            controller: _controller,
+            cursorWidth: 1,
+            cursorColor: Color(0xFFFB923C),
+            keyboardType: TextInputType.phone,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+            ),
+            autofocus: true,
+            style: TextStyle(fontSize: 42.0, color: Color(0xFFFB923C))));
   }
-
 }

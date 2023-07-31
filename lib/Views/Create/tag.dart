@@ -43,7 +43,6 @@ class TagState extends State<Tag> {
         .border(borderColor, 1)
         .px(14)
         .py(6)
-        .m(4)
         .rounded(30)
         .bg(bgColor)
         .Container(

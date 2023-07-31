@@ -22,7 +22,12 @@ class RemarkInputState extends State<RemarkInput> {
     return Container(
         child: TextField(
             controller: _controller,
-            decoration: InputDecoration(hintText: '说点什么...'),
+            maxLines: 3,
+            decoration: InputDecoration(
+                hintStyle: TextStyle(color: Color.fromARGB(255, 200, 200, 200)),
+                hintText: '说说用途...',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(4.0)))),
             style: TailTypo().font_size(14.0).TextStyle()));
   }
 }

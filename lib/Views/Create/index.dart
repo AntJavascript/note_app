@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
+import "package:flutter_vantui/flutter_vantui.dart";
 
 // 自定义组件
 import 'amount_input.dart';
@@ -13,6 +14,8 @@ class Create extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const spacing = 40.0;
+    const line = 20.0;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -22,12 +25,22 @@ class Create extends StatelessWidget {
       body: TailBox().px(16).Container(
               child: Column(children: [
             AmountInput(),
-            TitleCell('支出日期：'),
-            DatePickerPopup(),
-            TitleCell('支出类型：'),
+            SizedBox(height: spacing),
+            TitleCell('消费类型'),
+            SizedBox(height: line),
             GroupTag(),
-            TitleCell('备注：'),
-            RemarkInput()
+            SizedBox(height: spacing),
+            TitleCell('备注'),
+            SizedBox(height: line),
+            RemarkInput(),
+            SizedBox(height: spacing),
+            VanBtn(
+              text: "确定",
+              type: VanBtnType.primary,
+              round: true,
+              size: VanBtnSize.large,
+              block: true,
+            ),
           ])),
     );
   }

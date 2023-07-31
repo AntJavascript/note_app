@@ -12,7 +12,7 @@ class DatePickerPopup extends StatefulWidget {
 }
 
 class DatePickerPopupState extends State<DatePickerPopup> {
-  final _show = ValueNotifier(false);
+  bool _show = false;
   String values =
       '${DateTime.now().year}, ${DateTime.now().month}, ${DateTime.now().day}';
 
@@ -23,40 +23,27 @@ class DatePickerPopupState extends State<DatePickerPopup> {
 
   // 确认回调
   confirm(val) {
-    _show.value = false;
+    _show = false;
     setState(() => values = val);
   }
 
   // 取消回调
   cancel(val) {
-    _show.value = false;
+    _show = false;
+  }
+
+  showPopup() {
+    setState(() => _show = true);
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       VanCell(
-        title: values,
+        title: "展示弹出层",
         clickable: true,
-        onTap: () => _show.value = true,
+        onTap: showPopup,
       ),
-      VanPopup(
-        show: _show.value,
-        position: VanPopupPosition.bottom,
-        round: true,
-        child: _show.value
-            ? WithModel(
-                [DateTime.now().year, DateTime.now().month, DateTime.now().day],
-                (model) {
-                return VanDatePicker(
-                  value: model.value,
-                  onChange: (value) => model.value = value,
-                  onConfirm: (val) => confirm(val),
-                  onCancel: (val) => cancel(val),
-                );
-              })
-            : nil,
-      )
     ]);
   }
 }

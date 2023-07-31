@@ -11,7 +11,7 @@ class GroupTag extends StatefulWidget {
 }
 
 class GroupTagState extends State<GroupTag> {
-  List<String> tags = ['吃饭', '网购', '超市', '交通', '房租', '电话', '医药', '人情', '其他'];
+  List<String> tags = ['吃饭', '网购', '超市', '交通', '娱乐', '人情', '其他'];
 
   @override
   void initState() {
@@ -21,8 +21,10 @@ class GroupTagState extends State<GroupTag> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
+        spacing: 10,
+        runSpacing: 16,
         children: tags.map((e) {
-      return Tag(e);
-    }).toList());
+          return Tag(e);
+        }).toList());
   }
 }

@@ -11,7 +11,7 @@ class GroupTag extends StatefulWidget {
 }
 
 class GroupTagState extends State<GroupTag> {
-  List<String> tags = ['吃饭', '网购', '超市', '交通', '娱乐', '人情', '其他'];
+  List<String> tags = ['吃饭', '网购', '超市', '房租', '通讯', '交通', '娱乐', '人情', '其他'];
 
   @override
   void initState() {

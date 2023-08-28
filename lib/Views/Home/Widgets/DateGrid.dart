@@ -16,11 +16,12 @@ class DateGrid extends StatefulWidget {
 }
 
 class _DateGridState extends State<DateGrid> {
-  String dateStr = dateFn(DateTime.now())['dateStr']; // r默认当天
+  String dateStr = dateFn(DateTime.now())['dateStr']; // 默认当天
 
   void onClick(String value) {
     setState(() {
       dateStr = value;
+      print(dateStr);
     });
   }
 
@@ -33,9 +34,8 @@ class _DateGridState extends State<DateGrid> {
             child: Column(
               children: [
                 DateHead(),
-                Item(onClick: onClick),
+                Item(onClick: onClick, dateStr: dateStr),
                 LineSpace(16.0),
-                TotalInfo()
               ],
             ))
       ],

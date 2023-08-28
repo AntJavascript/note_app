@@ -8,13 +8,14 @@ import 'Detail/Income_or_expenditure.dart';
 
 class Item extends StatelessWidget {
   final Function? onClick;
-  const Item({Key? key, this.onClick}) : super(key: key);
+  final String dateStr;
+  const Item({Key? key, this.onClick, required this.dateStr}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // 每个item的宽高保持一致
     final double itemHeight = MediaQuery.of(context).size.width / 7;
-
+    print("========================${dateStr}");
     return Wrap(
         children: renderData(DateTime.now()).map((e) {
       bool isEmpty = e['day'] == null;
@@ -28,14 +29,13 @@ class Item extends StatelessWidget {
           height: itemHeight - 2,
           margin: EdgeInsets.all(1.0),
           padding: EdgeInsets.all(6.0),
-          decoration: BoxDecoration(
-              color: isEmpty ? null : Color.fromARGB(240, 245, 245, 245),
-              borderRadius: BorderRadius.all(Radius.circular(4))),
           child: Column(
             children: [
               Text(
                 isEmpty ? '' : e['day'].toString(),
-                style: const TextStyle(fontSize: 14.0),
+                style: dateStr == e['str']
+                    ? const TextStyle(fontSize: 14.0, color: Colors.blue)
+                    : const TextStyle(fontSize: 14.0, color: Colors.black),
               ),
               IncomeOrExpenditure(value: isEmpty ? '' : '122.2'),
             ],

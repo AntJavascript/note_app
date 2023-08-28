@@ -16,11 +16,6 @@ class TotalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return VanCellGroup(children: [
       VanCell(
-          title: TailTypo().font_size(16.0).Text('今天'),
-          value:
-              TailTypo().font_size(16.0).text_color(Colors.red).Text("62.65"),
-          label: "2023年-07月-25日"),
-      VanCell(
           title: TailTypo().font_size(16.0).Text("本周"),
           value:
               TailTypo().font_size(16.0).text_color(Colors.red).Text("125.3"),

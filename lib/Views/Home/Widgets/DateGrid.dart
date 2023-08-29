@@ -5,6 +5,7 @@ import './Week.dart';
 import './item.dart';
 import './common/line_space.dart';
 import './Detail/total_info.dart';
+import './record_list.dart';
 
 // 日期数据函数
 import './date.dart';
@@ -30,12 +31,14 @@ class _DateGridState extends State<DateGrid> {
     return ListView(
       children: [
         Container(
+            color: Colors.white,
             margin: const EdgeInsets.only(top: 10),
             child: Column(
               children: [
                 Week(),
                 Item(onClick: onClick, dateStr: dateStr),
-                LineSpace(16.0),
+                LineSpace(10.0),
+                RecordList(),
               ],
             ))
       ],

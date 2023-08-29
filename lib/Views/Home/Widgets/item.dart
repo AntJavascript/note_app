@@ -15,28 +15,29 @@ class Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("========================${dateStr}");
-    return GridView.count(
-      crossAxisCount: 7,
-      childAspectRatio: 1.0,
+    // 每个item的宽高保持一致
+    final double itemHeight = MediaQuery.of(context).size.width / 7;
+    return Wrap(
         children: renderData(DateTime.now()).map((e) {
       bool isEmpty = e['day'] == null;
-      bool isActivity  = (!isEmpty && dateStr == e['str']);
+      bool isActivity = (!isEmpty && dateStr == e['str']);
       return GestureDetector(
         onTap: () {
           onClick!(e['str']); // 传值父组件
         },
         child: Container(
           alignment: Alignment.center,
+          width: itemHeight,
+          height: itemHeight,
           padding: EdgeInsets.all(6.0),
-          child: Column(
-            children: [
-              TailTypo()
-                .text_color(isActivity ? Colors.blue : Colors.black)
-                .font_size(14)
-                .Text(isEmpty ? '' : e['day'].toString()),
-              IncomeOrExpenditure(value: isEmpty ? '' : '122.2'),
-            ],
-          ),
+          decoration: BoxDecoration(
+              color: isActivity ? Colors.orange : Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(itemHeight))),
+          child: Center(
+              child: TailTypo()
+                  .text_color(isActivity ? Colors.white : Colors.black)
+                  .font_size(14)
+                  .Text(isEmpty ? '' : e['day'].toString())),
         ),
       );
     }).toList());

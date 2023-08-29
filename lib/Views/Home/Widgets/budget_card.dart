@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
+// 全局配置
+import 'note_app/config/them.dart';
+
 class BudgetCard extends StatefulWidget {
   const BudgetCard({Key? key}) : super(key: key);
   @override

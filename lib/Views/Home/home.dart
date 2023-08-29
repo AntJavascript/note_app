@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'Widgets/DateGrid.dart';
-import 'package:note_app/router/application.dart';
 
-// 日期数据
+// UI内容组件
+import 'package:note_app/Views/Home/Widgets/DateGrid.dart';
+
+// 路由配置
+import 'package:note_app/router/application.dart';
+// 日期处理函数
 import 'package:note_app/Views/Home/Widgets/date.dart';
 
 class Home extends StatelessWidget {

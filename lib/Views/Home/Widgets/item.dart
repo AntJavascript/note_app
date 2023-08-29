@@ -14,10 +14,10 @@ class Item extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 每个item的宽高保持一致
-    final double itemHeight = MediaQuery.of(context).size.width / 7;
     print("========================${dateStr}");
-    return Wrap(
+    return GridView.count(
+      crossAxisCount: 7,
+      childAspectRatio: 1.0,
         children: renderData(DateTime.now()).map((e) {
       bool isEmpty = e['day'] == null;
       return GestureDetector(
@@ -26,9 +26,6 @@ class Item extends StatelessWidget {
         },
         child: Container(
           alignment: Alignment.center,
-          width: itemHeight - 2,
-          height: itemHeight - 2,
-          margin: EdgeInsets.all(1.0),
           padding: EdgeInsets.all(6.0),
           child: Column(
             children: [

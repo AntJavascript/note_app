@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 // 自定义组件
-import 'DateHead.dart';
-import 'item.dart';
-import 'common/line_space.dart';
-import 'Detail/total_info.dart';
+import './DateHead.dart';
+import './item.dart';
+import './common/line_space.dart';
+import './Detail/total_info.dart';
 
-// 日期数据
-import 'date.dart';
+// 日期数据函数
+import './date.dart';
 
 class DateGrid extends StatefulWidget {
   const DateGrid({Key? key}) : super(key: key);

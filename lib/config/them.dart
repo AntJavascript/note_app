@@ -1,3 +1,7 @@
 import 'package:flutter/material.dart';
 
-const Color ThemeColor = Colors.yellow;
+const Map<String, dynamic> AppThem = {};
+
+AppThem['ThemColor'] = Colors.yellow;
+AppThem['ButtonBgColor'] = Colors.yellow;
+AppThem['ButtonDisableColor'] = Colors.gray;

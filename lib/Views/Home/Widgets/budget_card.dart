@@ -7,7 +7,7 @@ import 'note_app/config/them.dart';
 class BudgetCard extends StatefulWidget {
   const BudgetCard({Key? key}) : super(key: key);
   @override
-  State<BudgetCard> createState() => _BudgetCardState();
+  State<StatefulWidget> createState() => _BudgetCardState();
 }
 
 class _BudgetCardState extends State<BudgetCard> {

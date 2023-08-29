@@ -16,6 +16,11 @@ class _BudgetCardState extends State<BudgetCard> {
   initState() {
     super.initState();
   }
+
+  @override
+  dispose() {
+    super.dispose();
+  }
   
   @override
   Widget build(BuildContext context) {

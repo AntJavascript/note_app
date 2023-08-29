@@ -20,6 +20,7 @@ class Item extends StatelessWidget {
       childAspectRatio: 1.0,
         children: renderData(DateTime.now()).map((e) {
       bool isEmpty = e['day'] == null;
+      bool isActivity  = (!isEmpty && dateStr == e['str']);
       return GestureDetector(
         onTap: () {
           onClick!(e['str']); // 传值父组件
@@ -30,7 +31,7 @@ class Item extends StatelessWidget {
           child: Column(
             children: [
               TailTypo()
-                .text_color(dateStr == e['str'] ? Colors.blue : Colors.black)
+                .text_color(isActivity ? Colors.blue : Colors.black)
                 .font_size(14)
                 .Text(isEmpty ? '' : e['day'].toString()),
               IncomeOrExpenditure(value: isEmpty ? '' : '122.2'),

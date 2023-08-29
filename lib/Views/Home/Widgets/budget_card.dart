@@ -11,6 +11,12 @@ class BudgetCard extends StatefulWidget {
 }
 
 class _BudgetCardState extends State<BudgetCard> {
+
+  @override
+  initState() {
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return TailBox().px(16).rounded(30).bg(AppThem.ThemColor).Container(

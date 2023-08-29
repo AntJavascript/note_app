@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class DateHead extends StatelessWidget {
+class Week extends StatelessWidget {
   final List<String> _list = ['一', '二', '三', '四', '五', '六', '日'];
 
-  DateHead({super.key});
+  Week({super.key});
 
   @override
   Widget build(BuildContext context) {

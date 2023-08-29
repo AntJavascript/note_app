@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tailstyle/tailstyle.dart';
 
-// 日期数据
+// 日期数据函数
 import 'date.dart';
 
 // 支出、收入显示组件
@@ -31,12 +32,10 @@ class Item extends StatelessWidget {
           padding: EdgeInsets.all(6.0),
           child: Column(
             children: [
-              Text(
-                isEmpty ? '' : e['day'].toString(),
-                style: dateStr == e['str']
-                    ? const TextStyle(fontSize: 14.0, color: Colors.blue)
-                    : const TextStyle(fontSize: 14.0, color: Colors.black),
-              ),
+              TailTypo()
+                .text_color(dateStr == e['str'] ? Colors.blue : Colors.black)
+                .font_size(14)
+                .Text(isEmpty ? '' : e['day'].toString()),
               IncomeOrExpenditure(value: isEmpty ? '' : '122.2'),
             ],
           ),

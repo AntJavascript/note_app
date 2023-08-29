@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tailstyle/tailstyle.dart';
 
 // UI内容组件
 import 'package:note_app/Views/Home/Widgets/DateGrid.dart';
@@ -24,12 +25,9 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Application.router.navigateTo(context, "/create");
+          Application.router.navigateTo(context, "/create"); // 跳转创建界面
         },
-        child: Text(
-          '记一笔',
-          style: TextStyle(fontSize: 12.0),
-        ),
+        child: TailTypo().font_size(12).Text("记一笔"),
       ),
       body: const DateGrid(),
     );

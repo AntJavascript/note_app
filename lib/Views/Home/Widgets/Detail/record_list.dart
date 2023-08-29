@@ -30,7 +30,7 @@ Widget Item(item) {
           Remark(item.remark),
         ]
       ),
-      Expanded(child: Amount(item.amount, item.type))
+      Expanded(child: Amount(item.amount, {type: item.type}))
     ]
   )
 }
@@ -52,6 +52,6 @@ Widget Remark(String text) {
   return TailTypo().font_size(12.0).text_color(Colors.gray).Text(text);
 }
 
-Widget Amount(String text, String type) {
+Widget Amount(String text, {String type = 'income'}) {
   return TailTypo().font_size(16.0).text_color(type == 'income' ? AppThem["Income"] : AppThem["expend"]).Text(text);
 }

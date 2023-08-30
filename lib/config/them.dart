@@ -19,6 +19,6 @@ class AppConfig() {
   static Color iconDisableBgColor = Color.fromRGBO(42, 42, 42, 1);
 
   // text
-  static Color expend = Color.fromRGBO(255, 0, 0, 1);
-  static Color Income = Color.fromRGBO(0, 255, 0, 1);
+  static Color expendTextColor = Color.fromRGBO(255, 0, 0, 1);
+  static Color IncomeTextColor = Color.fromRGBO(0, 255, 0, 1);
 }

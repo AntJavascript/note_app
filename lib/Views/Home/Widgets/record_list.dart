@@ -4,8 +4,6 @@ import 'package:tailstyle/tailstyle.dart';
 // 全局配置
 import 'package:note_app/config/them.dart';
 
-Map<String, dynamic> config = appConfig();
-
 class RecordList extends StatelessWidget {
   RecordList({Key? key}) : super(key: key);
 

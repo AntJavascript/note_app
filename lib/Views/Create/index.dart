@@ -22,7 +22,8 @@ class Create extends StatelessWidget {
         title: const Text('记一笔'),
         elevation: 0,
       ),
-      body: TailBox().px(16).Container(
+      body: ListView(
+        child: TailBox().px(16).Container(
               child: Column(children: [
             AmountInput(),
             SizedBox(height: spacing),
@@ -41,7 +42,8 @@ class Create extends StatelessWidget {
               size: VanBtnSize.large,
               block: true,
             ),
-          ])),
+          ]))
+      ),
     );
   }
 }

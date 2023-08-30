@@ -50,6 +50,6 @@ Widget Amount(String text, {String type = 'income'}) {
   bool isIncome = type =='income';
   return TailTypo()
       .font_size(16.0)
-      .text_color(isIncome' ? AppColorConfig.IncomeTextColor : AppColorConfig.expendTextColor)
+      .text_color(isIncome' ? AppColorConfig.incomeTextColor : AppColorConfig.expendTextColor)
       .Text("${isIncome ? "-" : "+"}${text}");
 }

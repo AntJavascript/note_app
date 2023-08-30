@@ -34,10 +34,12 @@ class _DateGridState extends State<DateGrid> {
             color: Colors.white,
             margin: const EdgeInsets.only(top: 10),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Week(),
                 Item(onClick: onClick, dateStr: dateStr),
                 LineSpace(10.0),
+                Text(dateStr),
                 RecordList(),
               ],
             ))

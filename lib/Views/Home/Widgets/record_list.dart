@@ -10,7 +10,9 @@ class RecordList extends StatelessWidget {
   RecordList({Key? key}) : super(key: key);
 
   List<Map<String, dynamic>> list = [
-    {"tag": "日常餐饮", "remark": "食堂吃的烧鸭", "amount": "18", "type": "income"}
+    {"tag": "日常餐饮", "remark": "食堂吃的烧鸭", "amount": "18", "type": "income"},
+    {"tag": "日常餐饮", "remark": "晚餐麻辣烫", "amount": "20.8", "type": "income"},
+    {"tag": "稿费", "remark": "简书日常作品", "amount": "20.8", "type": "expend"}
   ];
 
   @override
@@ -23,13 +25,21 @@ class RecordList extends StatelessWidget {
 }
 
 Widget CusItem(item) {
-  return Row(children: [
-    Column(children: [
-      Title("日常餐饮"),
-      Remark("食堂吃的烧鸭"),
+  return Container(
+    margin: EdgeInsets.all(10.0),
+    padding: EdgeInsets.only(bottom: 10.0),
+    decoration: BoxDecoration(
+        border: Border(
+            bottom: BorderSide(
+                color: Color.fromARGB(255, 240, 239, 239), width: 1.0))),
+    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Title(item["tag"]),
+        Remark(item["remark"]),
+      ]),
+      Container(child: Amount(item["amount"], type: item["type"]))
     ]),
-    Expanded(child: Amount("18"))
-  ]);
+  );
 }
 
 Widget CusIcon(String value) {

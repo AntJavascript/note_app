@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tailstyle/tailstyle.dart';
 
 class Week extends StatelessWidget {
   final List<String> _list = ['一', '二', '三', '四', '五', '六', '日'];
@@ -14,10 +15,8 @@ class Week extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 7,
               alignment: Alignment.center,
               padding: const EdgeInsets.only(bottom: 20.0),
-              child: Text(
-                s,
-                style: const TextStyle(fontSize: 16),
-              ));
+              child: TailTypo().font_size(16).Text(s),
+          );
         }).toList());
   }
 }

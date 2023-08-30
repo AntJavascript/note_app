@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // 自定义组件
-import './Week.dart';
+import './week.dart';
 import './item.dart';
 import './common/line_space.dart';
 import './Detail/total_info.dart';

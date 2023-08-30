@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 
-Map<String, dynamic> appConfig() {
-  Map<String, dynamic> config = {};
-
-  config["ThemColor"] = Colors.yellow;
-
-  config["ButtonBgColor"] = Colors.yellow;
-  config["ButtonDisableColor"] = Colors.grey;
-
-  config["LineSpaceColor"] = Colors.grey;
-
-  config["iconColor"] = Colors.white;
-  config["iconDisableColor"] = Colors.grey;
-  config["iconBgColor"] = Colors.yellow;
-  config["iconDisableBgColor"] = Colors.grey;
-
-  config["Income"] = Colors.red;
-  config["expend"] = Colors.green;
-
-  return config;
+class AppConfig() {
+  static Color themColor = Colors.yellow;
+  static Color buttonBgColor = Colors.yellow;
+  static Color buttonDisableColor = Colors.grey;
+  static Color lineSpaceColor = Colors.grey;
+  static Color iconColor = Colors.white;
+  static Color iconDisableColor = Colors.grey;
+  static Color iconBgColor = Colors.yellow;
+  static Color iconDisableBgColor = Colors.grey;
+  static Color expend = Colors.red;
+  static Color Income = Colors.green;
 }

@@ -49,8 +49,9 @@ Widget Remark(String text) {
 }
 
 Widget Amount(String text, {String type = 'income'}) {
+  bool isIncome = type =='income';
   return TailTypo()
       .font_size(16.0)
-      .text_color(type == 'income' ? config["Income"] : config["expend"])
-      .Text(text);
+      .text_color(isIncome' ? config["Income"] : config["expend"])
+      .Text("${isIncome ? "-" : "+"}${text}");
 }

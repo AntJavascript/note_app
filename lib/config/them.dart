@@ -30,6 +30,7 @@ class AppFontSizeConfig() {
   static double bigTitle = 24.0;
   static double title = 16.0;
   static double labelTitle = 14.0;
+  static double content = 14.0;
   static double subTitle = 12.0;
   static int fontPercent = 1;
 }

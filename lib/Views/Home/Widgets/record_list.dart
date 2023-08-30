@@ -41,25 +41,30 @@ Widget CusItem(item) {
 }
 
 Widget CusIcon(String value) {
-  return TailBox()
-      .px(8)
-      .rounded(30)
-      .bg(AppColorConfig.iconBgColor)
-      .Container(child: Icon(Icons.abc, size: 16, color: AppColorConfig.iconColor));
+  return TailBox().px(8).rounded(30).bg(AppColorConfig.iconBgColor).Container(
+      child: Icon(Icons.abc, size: 16, color: AppColorConfig.iconColor));
 }
 
 Widget Title(String text) {
-  return TailTypo().font_size(16.0).text_color(AppColorConfig.titleColor).Text(text);
+  return TailTypo()
+      .font_size(16.0)
+      .text_color(AppColorConfig.titleColor)
+      .Text(text);
 }
 
 Widget Remark(String text) {
-  return TailTypo().font_size(12.0).text_color(AppColorConfig.labelColor).Text(text);
+  return TailTypo()
+      .font_size(12.0)
+      .text_color(AppColorConfig.labelColor)
+      .Text(text);
 }
 
 Widget Amount(String text, {String type = 'income'}) {
-  bool isIncome = type =='income';
+  bool isIncome = type == 'income';
   return TailTypo()
       .font_size(16.0)
-      .text_color(isIncome' ? AppColorConfig.incomeTextColor : AppColorConfig.expendTextColor)
+      .text_color(isIncome
+          ? AppColorConfig.incomeTextColor
+          : AppColorConfig.expendTextColor)
       .Text("${isIncome ? "-" : "+"}${text}");
 }

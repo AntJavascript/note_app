@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
+// 全局配置
+import 'package:note_app/config/them.dart';
+
 // 日期数据函数
 import 'date.dart';
 
@@ -28,15 +31,14 @@ class Item extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           width: itemHeight,
-          height: itemHeight,
-          padding: EdgeInsets.all(6.0),
+          height: 50,
           decoration: BoxDecoration(
-              color: isActivity ? Colors.orange : Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(itemHeight))),
+            color: isActivity ? AppColorConfig.themColor : Colors.white,
+          ),
           child: Center(
               child: TailTypo()
                   .text_color(isActivity ? Colors.white : Colors.black)
-                  .font_size(14)
+                  .font_size(16)
                   .Text(isEmpty ? '' : e['day'].toString())),
         ),
       );

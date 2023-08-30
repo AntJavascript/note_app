@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 // 颜色相关
-class AppColorConfig() {
-  static Color themColor = Color.fromRGBO(247, 202, 0, 1);
-  
+class AppColorConfig {
+  static MaterialColor themColor = Colors.yellow;
+
   // botton
   static Color buttonBgColor = Color.fromRGBO(247, 202, 0, 1);
   static Color buttonDisableColor = Color.fromRGBO(236, 236, 236, 1);
@@ -20,15 +20,15 @@ class AppColorConfig() {
   static Color iconDisableBgColor = Color.fromRGBO(42, 42, 42, 1);
 
   // text
-  static Color expendTextColor = Color.fromRGBO(255, 0, 0, 1);
-  static Color incomeTextColor = Color.fromRGBO(0, 255, 0, 1);
-  static Color titleColor = Color.fromRGBO(0, 255, 0, 1);
-  static Color contentColor = Color.fromRGBO(0, 255, 0, 1);
-  static Color labelColor = Color.fromRGBO(0, 255, 0, 1);
+  static Color expendTextColor = Color.fromRGBO(53, 209, 53, 1);
+  static Color incomeTextColor = Color.fromRGBO(255, 0, 0, 1);
+  static Color titleColor = Color.fromRGBO(29, 29, 29, 1);
+  static Color contentColor = Color.fromRGBO(29, 29, 29, 1);
+  static Color labelColor = Color.fromRGBO(156, 156, 156, 1);
 }
 
 // 字体相关
-class AppFontSizeConfig() {
+class AppFontSizeConfig {
   static double amountInput = 42.0;
   static double bigTitle = 24.0;
   static double title = 16.0;
@@ -37,4 +37,3 @@ class AppFontSizeConfig() {
   static double subTitle = 12.0;
   static int fontPercent = 1;
 }
-

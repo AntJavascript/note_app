@@ -18,31 +18,34 @@ class Create extends StatelessWidget {
     const line = 20.0;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('记一笔'),
         elevation: 0,
       ),
       body: ListView(
-        child: TailBox().px(16).Container(
-              child: Column(children: [
-            AmountInput(),
-            SizedBox(height: spacing),
-            TitleCell('消费类型'),
-            SizedBox(height: line),
-            GroupTag(),
-            SizedBox(height: spacing),
-            TitleCell('备注'),
-            SizedBox(height: line),
-            RemarkInput(),
-            SizedBox(height: spacing),
-            VanBtn(
-              text: "确定",
-              type: VanBtnType.primary,
-              round: true,
-              size: VanBtnSize.large,
-              block: true,
-            ),
-          ]))
+        children: [
+          Container(
+            margin: EdgeInsets.all(16),
+            child: Column(children: [
+              AmountInput(),
+              SizedBox(height: spacing),
+              TitleCell('消费类型'),
+              SizedBox(height: line),
+              GroupTag(),
+              SizedBox(height: spacing),
+              TitleCell('备注'),
+              SizedBox(height: line),
+              RemarkInput(),
+              SizedBox(height: spacing),
+              VanBtn(
+                text: "确定",
+                type: VanBtnType.primary,
+                round: true,
+                size: VanBtnSize.large,
+                block: true,
+              ),
+            ]),
+          )
+        ],
       ),
     );
   }

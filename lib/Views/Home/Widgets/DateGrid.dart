@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
 // 自定义组件
-import './week.dart';
-import './item.dart';
-import './common/line_space.dart';
-import './Detail/total_info.dart';
-import './record_list.dart';
+import 'package:note_app/Views/Home/Widgets/week.dart';
+import 'package:note_app/Views/Home/Widgets/item.dart';
+import 'package:note_app/Views/Home/Widgets/line_space.dart';
+import 'package:note_app/Views/Home/Widgets/record_list.dart';
+import 'package:note_app/Views/Home/Widgets/budget_card.dart';
 
 // 日期数据函数
 import './date.dart';
@@ -33,14 +33,17 @@ class _DateGridState extends State<DateGrid> {
       children: [
         Container(
             color: Colors.white,
-            margin: const EdgeInsets.only(top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                BudgetCard(),
+                LineSpace(
+                  height: 20,
+                  color: Colors.white,
+                ),
                 Week(),
                 Item(onClick: onClick, dateStr: dateStr),
-                LineSpace(10.0),
-                Text(dateStr),
+                LineSpace(height: 10),
                 RecordList(),
               ],
             ))

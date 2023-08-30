@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tailstyle/tailstyle.dart';
 
 // 自定义组件
 import './week.dart';
@@ -44,4 +45,8 @@ class _DateGridState extends State<DateGrid> {
       ],
     );
   }
+}
+
+Widget currentDateWidget(String text) {
+  return TailTypo().Text(text)
 }

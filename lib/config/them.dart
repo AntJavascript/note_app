@@ -21,7 +21,10 @@ class AppColorConfig() {
 
   // text
   static Color expendTextColor = Color.fromRGBO(255, 0, 0, 1);
-  static Color IncomeTextColor = Color.fromRGBO(0, 255, 0, 1);
+  static Color incomeTextColor = Color.fromRGBO(0, 255, 0, 1);
+  static Color titleColor = Color.fromRGBO(0, 255, 0, 1);
+  static Color contentColor = Color.fromRGBO(0, 255, 0, 1);
+  static Color labelColor = Color.fromRGBO(0, 255, 0, 1);
 }
 
 // 字体相关

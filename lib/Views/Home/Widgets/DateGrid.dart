@@ -48,5 +48,5 @@ class _DateGridState extends State<DateGrid> {
 }
 
 Widget currentDateWidget(String text) {
-  return TailTypo().Text(text)
+  return TailTypo().Text(text);
 }

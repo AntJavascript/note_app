@@ -4,8 +4,6 @@ import 'package:tailstyle/tailstyle.dart';
 // 全局配置
 import 'package:note_app/config/them.dart';
 
-Map<String, dynamic> config = appConfig();
-
 class RecordList extends StatelessWidget {
   RecordList({Key? key}) : super(key: key);
 
@@ -46,21 +44,22 @@ Widget CusIcon(String value) {
   return TailBox()
       .px(8)
       .rounded(30)
-      .bg(config["iconBgColor"])
-      .Container(child: Icon(Icons.abc, size: 16, color: config["iconColor"]));
+      .bg(AppColorConfig.iconBgColor)
+      .Container(child: Icon(Icons.abc, size: 16, color: AppColorConfig.iconColor));
 }
 
 Widget Title(String text) {
-  return TailTypo().font_size(16.0).text_color(Colors.black).Text(text);
+  return TailTypo().font_size(16.0).text_color(AppColorConfig.titleColor).Text(text);
 }
 
 Widget Remark(String text) {
-  return TailTypo().font_size(12.0).text_color(Colors.grey).Text(text);
+  return TailTypo().font_size(12.0).text_color(AppColorConfig.labelColor).Text(text);
 }
 
 Widget Amount(String text, {String type = 'income'}) {
+  bool isIncome = type =='income';
   return TailTypo()
       .font_size(16.0)
-      .text_color(type == 'income' ? config["Income"] : config["expend"])
-      .Text(text);
+      .text_color(isIncome' ? AppColorConfig.incomeTextColor : AppColorConfig.expendTextColor)
+      .Text("${isIncome ? "-" : "+"}${text}");
 }

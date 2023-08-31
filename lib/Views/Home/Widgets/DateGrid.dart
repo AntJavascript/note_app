@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
+// 全局配置
+import 'package:note_app/config/them.dart';
+
 // 自定义组件
 import 'package:note_app/Views/Home/Widgets/week.dart';
 import 'package:note_app/Views/Home/Widgets/item.dart';
@@ -36,6 +39,7 @@ class _DateGridState extends State<DateGrid> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                currentDateWidget(),
                 BudgetCard(),
                 LineSpace(
                   height: 20,
@@ -52,6 +56,13 @@ class _DateGridState extends State<DateGrid> {
   }
 }
 
-Widget currentDateWidget(String text) {
-  return TailTypo().Text(text);
+Widget currentDateWidget(String dateStr) {
+  return Row(children: [
+      TailBox().bg(AppColorConfig.themColor).Container(
+        width: 2,
+        height: 20,
+        margin: EdgeInsets.only(right: 8.0),
+      ),
+      TailTypo().text_color(Colors.black).Text(title)
+    ])
 }

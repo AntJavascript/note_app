@@ -28,6 +28,7 @@ class _BudgetCardState extends State<BudgetCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Title("本月支出"),
             Amount("1595.65"),
             Row(
               children: [
@@ -43,7 +44,7 @@ class _BudgetCardState extends State<BudgetCard> {
 Widget Title(String text) {
   return TailTypo()
       .font_size(14.0)
-      .text_color(Color.fromARGB(255, 161, 124, 2))
+      .text_color(Colors.black)
       .Text(text);
 }
 

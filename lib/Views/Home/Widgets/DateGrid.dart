@@ -41,31 +41,12 @@ class _DateGridState extends State<DateGrid> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BudgetCard(),
-                LineSpace(
-                  height: 10,
-                  color: Colors.white,
-                ),
-                LineSpace(height: 10),
-                currentDateWidget(dateStr),
+                LineSpace(),
+                TitleCe("收支明细"),
                 RecordList(),
               ],
             ))
       ],
     );
   }
-}
-
-Widget currentDateWidget(String dateStr) {
-  return Row(children: [
-    Container(
-      width: 4,
-      height: 14,
-      color: AppColorConfig.themColor,
-      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
-    ),
-    TailTypo()
-        .font_size(16)
-        .text_color(const Color.fromARGB(255, 92, 92, 92))
-        .Text("收支明细"),
-  ]);
 }

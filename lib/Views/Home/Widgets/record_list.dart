@@ -39,7 +39,7 @@ class RecordList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: TitleCell("收支明细"), ListWrapper(list)]
+        children: [TitleCell("收支明细"), ListWrapper(list)]
     );
   }
 }

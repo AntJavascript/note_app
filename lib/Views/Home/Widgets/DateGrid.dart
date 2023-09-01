@@ -10,9 +10,10 @@ import 'package:note_app/Views/Home/Widgets/item.dart';
 import 'package:note_app/Views/Home/Widgets/line_space.dart';
 import 'package:note_app/Views/Home/Widgets/record_list.dart';
 import 'package:note_app/Views/Home/Widgets/budget_card.dart';
+import 'package:note_app/Views/Component/title_cell.dart';
 
 // 日期数据函数
-import './date.dart';
+import 'package:note_app/tools/date.dart';
 
 class DateGrid extends StatefulWidget {
   const DateGrid({Key? key}) : super(key: key);

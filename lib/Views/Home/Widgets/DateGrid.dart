@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
-// 全局配置
-import 'package:note_app/config/them.dart';
-
 // 自定义组件
-import 'package:note_app/Views/Home/Widgets/week.dart';
-import 'package:note_app/Views/Home/Widgets/item.dart';
 import 'package:note_app/Views/Home/Widgets/line_space.dart';
 import 'package:note_app/Views/Home/Widgets/record_list.dart';
 import 'package:note_app/Views/Home/Widgets/budget_card.dart';
-import 'package:note_app/Views/Component/title_cell.dart';
 
 // 日期数据函数
 import 'package:note_app/tools/date.dart';
@@ -42,7 +36,6 @@ class _DateGridState extends State<DateGrid> {
               children: [
                 BudgetCard(),
                 LineSpace(),
-                TitleCe("收支明细"),
                 RecordList(),
               ],
             ))

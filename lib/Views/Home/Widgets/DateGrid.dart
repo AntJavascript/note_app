@@ -71,6 +71,6 @@ Widget currentDateWidget(String dateStr) {
     TailTypo()
         .font_size(16)
         .text_color(const Color.fromARGB(255, 92, 92, 92))
-        .Text("${dateStr} 收支明细"),
+        .Text("收支明细"),
   ]);
 }

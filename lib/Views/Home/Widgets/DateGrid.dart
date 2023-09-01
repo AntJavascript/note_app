@@ -39,17 +39,11 @@ class _DateGridState extends State<DateGrid> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                LineSpace(
-                  height: 0.5,
-                  color: Colors.white,
-                ),
                 BudgetCard(),
                 LineSpace(
                   height: 10,
                   color: Colors.white,
                 ),
-                Week(),
-                Item(onClick: onClick, dateStr: dateStr),
                 LineSpace(height: 10),
                 currentDateWidget(dateStr),
                 RecordList(),

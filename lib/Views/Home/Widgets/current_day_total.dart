@@ -22,7 +22,7 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [TitleCell("${dateStr} 收支统计")]
+        children: [TitleCell("${widget.dateStr} 收支统计")]
     );
   }
   

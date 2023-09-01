@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
+// 自定义组件
+import 'package:note_app/Views/Component/title_cell.dart';
+
 // 全局配置
 import 'package:note_app/config/them.dart';
 // 全局字体配置
@@ -36,10 +39,15 @@ class RecordList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: list.map((item) {
-      return CusItem(item);
-    }).toList());
+        children: TitleCell("收支明细"), ListWrapper(list)]
+    );
   }
+}
+
+List<Widget> ListWrapper(List<Map<String, dynamic>> list){
+  return list.map((item) {
+      return CusItem(item);
+    }).toList();
 }
 
 Widget CusItem(item) {

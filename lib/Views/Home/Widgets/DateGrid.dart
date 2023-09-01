@@ -5,6 +5,7 @@ import 'package:tailstyle/tailstyle.dart';
 import 'package:note_app/Views/Home/Widgets/line_space.dart';
 import 'package:note_app/Views/Home/Widgets/record_list.dart';
 import 'package:note_app/Views/Home/Widgets/budget_card.dart';
+import 'package:note_app/Views/Home/Widgets/current_day_total.dart';
 
 // 日期数据函数
 import 'package:note_app/tools/date.dart';
@@ -29,6 +30,7 @@ class _DateGridState extends State<DateGrid> {
               children: [
                 BudgetCard(),
                 LineSpace(),
+                CurrentDayTotal(dateStr),
                 RecordList(),
               ],
             ))

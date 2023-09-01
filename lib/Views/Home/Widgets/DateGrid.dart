@@ -18,13 +18,6 @@ class DateGrid extends StatefulWidget {
 class _DateGridState extends State<DateGrid> {
   String dateStr = dateFn(DateTime.now())['dateStr']; // 默认当天
 
-  void onClick(String value) {
-    setState(() {
-      dateStr = value;
-      print(dateStr);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListView(

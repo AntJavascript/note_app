@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
+// 全局配置
+import 'package:note_app/config/them.dart';
+
 class TitleCell extends StatelessWidget {
   const TitleCell({super.key, this.title = ""});
 
@@ -18,7 +21,7 @@ class TitleCell extends StatelessWidget {
       TailTypo()
           .font_size(16)
           .text_color(const Color.fromARGB(255, 92, 92, 92))
-          .Text(title),
+          .Text(title!),
     ]);
   }
 }

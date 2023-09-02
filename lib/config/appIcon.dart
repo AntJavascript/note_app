@@ -4,7 +4,7 @@ class AppIconData extends IconData {
   const AppIconData(int code) : super(code, fontFamily: "Schyler");
 }
 
-class AppIcons {
+class CusIcons {
   static const aliPay = AppIconData(0xe900);
   static const car = AppIconData(0xe901);
   static const card = AppIconData(0xe902);
@@ -29,3 +29,35 @@ class AppIcons {
   static const warn = AppIconData(0xe91c);
   static const weChart = AppIconData(0xe91d);
 }
+
+Map<String, dynamic> _appIcons() {
+  Map<String, dynamic> data = {};
+
+  data["aliPay"] = CusIcons.aliPay;
+  data["car"] = CusIcons.car;
+  data["card"] = CusIcons.card;
+  data["communicate"] = CusIcons.communicate;
+  data["iconDate"] = CusIcons.iconDate;
+  data["ecommerce"] = CusIcons.ecommerce;
+  data["education"] = CusIcons.education;
+  data["find"] = CusIcons.find;
+  data["gift"] = CusIcons.gift;
+  data["holiday"] = CusIcons.holiday;
+  data["housing"] = CusIcons.housing;
+  data["hydropower"] = CusIcons.hydropower;
+  data["medical"] = CusIcons.medical;
+  data["necessities"] = CusIcons.necessities;
+  data["other"] = CusIcons.other;
+  data["redEnvelope"] = CusIcons.redEnvelope;
+  data["restaurant"] = CusIcons.restaurant;
+  data["smoke"] = CusIcons.smoke;
+  data["taix"] = CusIcons.taix;
+  data["transfer"] = CusIcons.transfer;
+  data["travel"] = CusIcons.travel;
+  data["warn"] = CusIcons.warn;
+  data["weChart"] = CusIcons.weChart;
+
+  return data;
+}
+
+final appIcons = _appIcons();

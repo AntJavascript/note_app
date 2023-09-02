@@ -3,6 +3,7 @@ import 'package:tailstyle/tailstyle.dart';
 
 // 自定义组件
 import 'package:note_app/Views/Component/title_cell.dart';
+import 'package:note_app/Views/Home/Widgets/line_space.dart';
 
 // 全局配置
 import 'package:note_app/config/them.dart';
@@ -18,36 +19,38 @@ class RecordList extends StatelessWidget {
       "remark": "食堂吃的烧鸭",
       "amount": "18",
       "type": "income",
-      "icon": AppIcons.car
+      "icon": "car"
     },
     {
       "tag": "日常餐饮",
       "remark": "晚餐麻辣烫",
       "amount": "20.8",
       "type": "income",
-      "icon": AppIcons.card
+      "icon": "card"
     },
     {
       "tag": "稿费",
       "remark": "简书日常作品",
       "amount": "20.8",
       "type": "expend",
-      "icon": AppIcons.communicate
+      "icon": "education"
     }
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: [TitleCell("收支明细"), ListWrapper(list)]
-    );
+    return Column(children: ListWrapper(list));
   }
 }
 
-List<Widget> ListWrapper(List<Map<String, dynamic>> list){
-  return list.map((item) {
-      return CusItem(item);
-    }).toList();
+List<Widget> ListWrapper(List<Map<String, dynamic>> list) {
+  List<Widget> arr = [];
+  arr.add(TitleCell(title: "收支明细"));
+  arr.addAll(list.map((item) {
+    return CusItem(item);
+  }).toList());
+
+  return arr;
 }
 
 Widget CusItem(item) {
@@ -62,11 +65,14 @@ Widget CusItem(item) {
       Row(
         children: [
           Container(
-            child: CusIcon(item["icon"]),
+            child: CusIcon(appIcons[item["icon"]]),
             margin: EdgeInsets.only(right: 10),
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Title(item["tag"]),
+            Container(
+              height: 5,
+            ),
             Remark(item["remark"]),
           ])
         ],
@@ -76,9 +82,12 @@ Widget CusItem(item) {
   );
 }
 
-Widget CusIcon(IconData iconData) {
-  return TailBox().p(10).rounded(30).bg(AppColorConfig.iconBgColor).Container(
-      child: Icon(iconData, size: 22, color: AppColorConfig.iconColor));
+Widget CusIcon(IconData icon) {
+  return TailBox()
+      .p(10)
+      .rounded(30)
+      .bg(AppColorConfig.iconBgColor)
+      .Container(child: Icon(icon, size: 22, color: AppColorConfig.iconColor));
 }
 
 Widget Title(String text) {

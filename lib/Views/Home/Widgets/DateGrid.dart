@@ -30,7 +30,7 @@ class _DateGridState extends State<DateGrid> {
               children: [
                 BudgetCard(),
                 LineSpace(),
-                CurrentDayTotal(dateStr),
+                CurrentDayTotal(),
                 LineSpace(),
                 RecordList(),
               ],

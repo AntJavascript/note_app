@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期数据
-    String title = "${dateStr["year"]}年${dateStr["month"]}月";
+    String title = "${dateStr["year"]}年${dateStr["month"]}月${dateStr["day"]}日";
 
     return Scaffold(
       appBar: AppBar(

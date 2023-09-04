@@ -68,13 +68,14 @@ Widget CusItem(item) {
             child: CusIcon(appIcons[item["icon"]]),
             margin: EdgeInsets.only(right: 10),
           ),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(child:  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Title(item["tag"]),
             Container(
               height: 5,
             ),
             Remark(item["remark"]),
-          ])
+          ]))
+         
         ],
       ),
       Container(child: Amount(item["amount"], type: item["type"]))

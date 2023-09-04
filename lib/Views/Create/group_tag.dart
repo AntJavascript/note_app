@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+// 全局配置
+import 'package:note_app/config/them.dart';
+
+// 全局字体配置
+import 'package:note_app/config/appIcon.dart';
+
 // tag 组件
 import 'tag.dart';
 
@@ -11,11 +17,71 @@ class GroupTag extends StatefulWidget {
 }
 
 class GroupTagState extends State<GroupTag> {
-  List<String> tags = ['日常餐饮', '网购', '日用品', '烟酒', '住房', '水电煤气', '通讯', '交通', '医疗', '数码产品', '娱乐', '人情', '教育', '转账', '支付宝', '微信', '信用卡', '其他'];
+  List<Map<String, String>> tags = [
+    {
+      "icon": "restaurant",
+      "text": '餐饮',
+    },
+    {
+      "icon": "ecommerce",
+      "text": '网购',
+    },
+    {
+      "icon": "necessities",
+      "text": '超市',
+    },
+    {
+      "icon": "smoke",
+      "text": '烟酒',
+    },
+    {
+      "icon": "housing",
+      "text": '住房',
+    },
+    {
+      "icon": "communicate",
+      "text": '通讯',
+    },
+    {
+      "icon": "car",
+      "text": '交通',
+    },
+    {
+      "icon": "medical",
+      "text": '医疗',
+    },
+    {
+      "icon": "holiday",
+      "text": '娱乐',
+    },
+    {
+      "icon": "redEnvelope",
+      "text": '人情',
+    },
+    {
+      "icon": "education",
+      "text": '教育',
+    },
+    {
+      "icon": "other",
+      "text": '其他',
+    }
+  ];
+
+  String current = "";
 
   @override
   void initState() {
     super.initState();
+  }
+
+  get getValue => current;
+
+  void onClick(String value) {
+    setState(() {
+      current = value;
+      print(value);
+    });
   }
 
   @override
@@ -24,7 +90,15 @@ class GroupTagState extends State<GroupTag> {
         spacing: 10,
         runSpacing: 16,
         children: tags.map((e) {
-          return Tag(e);
+          return Container(
+            width: 80,
+            child: Tag(
+              text: e["text"],
+              icon: e["icon"],
+              onClick: onClick,
+              isActive: current == e["icon"],
+            ),
+          );
         }).toList());
   }
 }

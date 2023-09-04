@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
 class AmountInput extends StatefulWidget {
-  const AmountInput({Key? key}) : super(key: key);
+  const AmountInput({super.key});
 
   @override
   State<StatefulWidget> createState() => AmountInputState();
@@ -20,7 +20,7 @@ class AmountInputState extends State<AmountInput> {
 
   @override
   Widget build(BuildContext context) {
-    return TailBox().border_b(Color(0xFFFB923C), 0.5).Container(
+    return TailBox().border_b(Colors.red, 0.5).Container(
         child: TextField(
             controller: _controller,
             cursorWidth: 1,

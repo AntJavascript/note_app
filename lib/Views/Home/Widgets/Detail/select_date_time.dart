@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import "package:flutter_vantui/flutter_vantui.dart";
-import '../common/with_value.dart';
+import 'package:note_app/Views/Component/with_value.dart';
+import 'package:note_app/Views/Component/Popup.dart';
 
 import 'package:flutter/widgets.dart';
 
 class SelectDateTime extends StatefulWidget {
-  const SelectDateTime({super.key});
+  final String value;
+
+  const SelectDateTime(this.value);
 
   @override
   State<StatefulWidget> createState() {
@@ -43,28 +46,31 @@ class SelectDateTimeState extends State<SelectDateTime> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       GestureDetector(
-        child: const Text("点击"),
+        child: Text(widget.value),
         onTap: () {
           show();
         },
       ),
-      _show
-          ? WithModel(
-              [DateTime.now().year, DateTime.now().month, DateTime.now().day],
-              (model) {
-              return Column(children: [
-                Text("${model.value}"),
-                VanDatePicker(
-                  value: model.value,
-                  onChange: (value) => model.value = value,
-                  onConfirm: (val) => confirm(val),
-                  onCancel: (val) => cancel(val),
-                ),
-              ]);
-            })
-          : nil
+      _show ? Content(_show) : nil
     ]);
   }
+}
+
+Widget Content(bool show) {
+  return show
+      ? WithModel(
+          [DateTime.now().year, DateTime.now().month, DateTime.now().day],
+          (model) {
+          return Column(children: [
+            VanDatePicker(
+                value: model.value,
+                onChange: (value) => model.value = value,
+                onConfirm: (val) => null, // confirm(val),
+                onCancel: (val) => null // cancel(val),
+                ),
+          ]);
+        })
+      : nil;
 }

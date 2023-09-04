@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:tailstyle/tailstyle.dart';
-import "package:flutter_vantui/flutter_vantui.dart";
+
+// 公共组件
+import 'package:note_app/Views/Component/title_cell.dart';
 
 // 自定义组件
-import 'amount_input.dart';
-import 'date_picker_popup.dart';
-import 'group_tag.dart';
-import 'remark.dart';
-import 'title_cell.dart';
+import 'package:note_app/Views/Create/amount_input.dart';
+import 'package:note_app/Views/Create/group_tag.dart';
+import 'package:note_app/Views/Create/remark.dart';
+import 'package:note_app/Views/Create/button.dart';
+import 'package:note_app/Views/Create/date_picker_popup.dart';
 
 class Create extends StatelessWidget {
   const Create({super.key});
 
+  void submit() {
+    print("你点击了确定按钮");
+  }
+
   @override
   Widget build(BuildContext context) {
-    const spacing = 40.0;
-    const line = 20.0;
+    const spacing = 10.0;
     return Scaffold(
       appBar: AppBar(
         title: const Text('记一笔'),
@@ -25,24 +29,20 @@ class Create extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.all(16),
-            child: Column(children: [
-              AmountInput(),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              DatePickerPopup(),
+              // AmountInput(),
               SizedBox(height: spacing),
-              TitleCell('消费类型'),
-              SizedBox(height: line),
+              TitleCell(title: "消费类型"),
+              SizedBox(height: spacing),
               GroupTag(),
               SizedBox(height: spacing),
-              TitleCell('备注'),
-              SizedBox(height: line),
+              TitleCell(title: "备注"),
+              SizedBox(height: spacing),
               RemarkInput(),
               SizedBox(height: spacing),
-              VanBtn(
-                text: "确定",
-                type: VanBtnType.primary,
-                round: true,
-                size: VanBtnSize.large,
-                block: true,
-              ),
+              CreateButton(submit: submit, text: "确定")
             ]),
           )
         ],

@@ -34,7 +34,7 @@ class RecordList extends StatelessWidget {
       "amount": "20.8",
       "type": "expend",
       "icon": "education"
-    }
+    },
   ];
 
   @override

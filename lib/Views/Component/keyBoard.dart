@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:note_app/config/appIcon.dart';
 
 class KeyBoard extends StatefulWidget {
-  const KeyBoard({Key? key, required this.onKeyClick, required this.onConfirm}) : super(key: key);
+  const KeyBoard({Key? key, required this.onKeyClick, required this.onConfirm, required this.onDelete}) : super(key: key);
 
   final Function(String value) onKeyClick;
   final Function onConfirm;

@@ -17,6 +17,10 @@ class Create extends StatelessWidget {
   void submit() {
     print("你点击了确定按钮");
   }
+  GlobalKey dateKey  = GlobalKey();
+  GlobalKey amountKey  = GlobalKey();
+  GlobalKey tagKey  = GlobalKey();
+  GlobalKey remarkKey  = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +36,16 @@ class Create extends StatelessWidget {
             margin: EdgeInsets.all(16),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              DatePickerPopup(),
-              // AmountInput(),
+              DatePickerPopup(key:dateKey),
+              AmountInput(key:amountKey),
               SizedBox(height: spacing),
               TitleCell(title: "消费类型"),
               SizedBox(height: spacing),
-              GroupTag(),
+              GroupTag(key:tagKey),
               SizedBox(height: spacing),
               TitleCell(title: "备注"),
               SizedBox(height: spacing),
-              RemarkInput(),
+              RemarkInput(key:remarkKey),
               SizedBox(height: spacing),
               CreateButton(submit: submit, text: "确定")
             ]),

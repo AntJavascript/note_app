@@ -11,7 +11,24 @@ class AmountInput extends StatefulWidget {
 }
 
 class AmountInputState extends State<AmountInput> {
-  String amount = "0.0";
+  String amount = "";
+
+  get getValue => amount;
+  
+   // 数字按钮点击
+   void onKeyClick(String value) {
+    setState(() {
+      amount += value;
+    });
+  }
+
+  // 确定按钮点击
+   void onConfirm() {
+  }
+
+  // 删除按钮点击
+   void onDelete() {
+  }
   
   @override
   void initState() {
@@ -40,6 +57,10 @@ Widget showModal(){
   return showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
-          return KeyBoard();
+          return KeyBoard(
+            onKeyClick: onKeyClick,
+            onConfirm: onConfirm,
+            onDelete: onDelete
+          );
         });
 }

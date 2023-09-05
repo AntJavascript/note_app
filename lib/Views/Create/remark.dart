@@ -12,6 +12,8 @@ class RemarkInputState extends State<RemarkInput> {
   //文本编辑控制器
   TextEditingController _controller = TextEditingController();
 
+  get getValue => _controller.text;
+
   @override
   void initState() {
     super.initState();

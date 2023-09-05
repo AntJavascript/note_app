@@ -25,6 +25,8 @@ class DatePickerPopupState extends State<DatePickerPopup> {
     super.initState();
   }
 
+  get getValue => values;
+
   // 确认回调
   confirm(val) {
     String year = val[0].toString();

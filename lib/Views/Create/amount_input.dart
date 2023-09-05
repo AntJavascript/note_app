@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
+import 'package:note_app/Views/Component/keyBoard.dart';
+
 class AmountInput extends StatefulWidget {
   const AmountInput({super.key});
 
@@ -9,27 +11,35 @@ class AmountInput extends StatefulWidget {
 }
 
 class AmountInputState extends State<AmountInput> {
+  String amount = "0.0";
+  
   @override
   void initState() {
     super.initState();
-    _controller.text = '0.0';
+    showModal();
   }
-
-  //文本编辑控制器
-  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return TailBox().border_b(Colors.red, 0.5).Container(
-        child: TextField(
-            controller: _controller,
-            cursorWidth: 1,
-            cursorColor: Color(0xFFFB923C),
-            keyboardType: TextInputType.phone,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-            ),
-            autofocus: true,
-            style: TextStyle(fontSize: 42.0, color: Color(0xFFFB923C))));
+    return GestureDetector(
+      onTap: () {
+        showModal();
+      },
+      child:TailBox().border_b(Colors.red, 0.5).Container(
+        child: Text(
+            amount,
+            style: TextStyle(fontSize: 42.0, color: Color.red)
+        )
+      )
+    );
   }
+}
+
+// 显示弹窗键盘
+Widget showModal(){
+  return showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return KeyBoard();
+        });
 }

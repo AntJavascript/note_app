@@ -14,14 +14,14 @@ import 'package:note_app/Views/Create/date_picker_popup.dart';
 class Create extends StatelessWidget {
   Create({super.key});
 
-  void submit() {
-    print("你点击了确定按钮");
-  }
-
   GlobalKey dateKey = GlobalKey();
   GlobalKey amountKey = GlobalKey();
   GlobalKey tagKey = GlobalKey();
   GlobalKey remarkKey = GlobalKey();
+
+  void submit() {
+    print(dateKey.currentState.getvalue());
+  }
 
   @override
   Widget build(BuildContext context) {

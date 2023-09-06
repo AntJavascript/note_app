@@ -14,53 +14,40 @@ class AmountInputState extends State<AmountInput> {
   String amount = "";
 
   get getValue => amount;
-  
-   // 数字按钮点击
-   void onKeyClick(String value) {
+
+  // 数字按钮点击
+  void onKeyClick(String value) {
     setState(() {
       amount += value;
     });
   }
 
   // 确定按钮点击
-   void onConfirm() {
-  }
+  void onConfirm() {}
 
   // 删除按钮点击
-   void onDelete() {
-  }
-  
+  void onDelete() {}
+
   @override
   void initState() {
     super.initState();
-    showModal();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        showModal();
-      },
-      child:TailBox().border_b(Colors.red, 0.5).Container(
-        child: Text(
-            amount,
-            style: TextStyle(fontSize: 42.0, color: Color.red)
-        )
-      )
-    );
+        onTap: () {
+          showModalBottomSheet<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return KeyBoard(
+                    onKeyClick: onKeyClick,
+                    onConfirm: onConfirm,
+                    onDelete: onDelete);
+              });
+        },
+        child: TailBox().border_b(Colors.red, 0.5).Container(
+            child: Text(amount,
+                style: TextStyle(fontSize: 42.0, color: Colors.red))));
   }
-}
-
-// 显示弹窗键盘
-Widget showModal(){
-  return showModalBottomSheet<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return KeyBoard(
-            onKeyClick: onKeyClick,
-            onConfirm: onConfirm,
-            onDelete: onDelete
-          );
-        });
 }

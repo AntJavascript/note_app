@@ -43,8 +43,6 @@ class DatePickerPopupState extends State<DatePickerPopup> {
     Navigator.of(context).pop();
   }
 
-  String get getValue => "";
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

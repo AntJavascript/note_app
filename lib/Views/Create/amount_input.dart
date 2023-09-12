@@ -11,14 +11,15 @@ class AmountInput extends StatefulWidget {
 }
 
 class AmountInputState extends State<AmountInput> {
-  String amount = "";
+  String amount = "0.0";
 
   get getValue => amount;
 
   // 数字按钮点击
   void onKeyClick(String value) {
+    print(value);
     setState(() {
-      amount += value;
+      amount = amount + "" + value;
     });
   }
 
@@ -46,7 +47,12 @@ class AmountInputState extends State<AmountInput> {
                     onDelete: onDelete);
               });
         },
-        child: TailBox().border_b(Colors.red, 0.5).Container(
+        child: Container(
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.symmetric(vertical: 20),
+            decoration: BoxDecoration(
+                border:
+                    Border(bottom: BorderSide(color: Colors.red, width: 0.5))),
             child: Text(amount,
                 style: TextStyle(fontSize: 42.0, color: Colors.red))));
   }

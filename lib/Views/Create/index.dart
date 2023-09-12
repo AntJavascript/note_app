@@ -20,7 +20,7 @@ class Create extends StatelessWidget {
   GlobalKey remarkKey = GlobalKey();
 
   void submit() {
-    print(dateKey.currentState.getvalue());
+    print(dateKey.currentState);
   }
 
   @override

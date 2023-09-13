@@ -10,10 +10,16 @@ import 'package:note_app/config/them.dart';
 // 全局字体配置
 import 'package:note_app/config/appIcon.dart';
 
-class RecordList extends StatelessWidget {
+class RecordList extends StatefulWidget {
   RecordList({Key? key}) : super(key: key);
 
-  List<Map<String, dynamic>> list = [
+   @override
+  State<StatefulWidget> createState() => _RecordListState();
+}
+
+class _RecordListState extends State<RecordList> {
+
+    List<Map<String, dynamic>> list = [
     {
       "tag": "日常餐饮",
       "remark": "食堂吃的烧鸭",
@@ -37,10 +43,16 @@ class RecordList extends StatelessWidget {
     },
   ];
 
-  @override
+@override
+  initState() {
+    super.initState();
+  }
+
+@override
   Widget build(BuildContext context) {
     return Column(children: ListWrapper(list));
   }
+
 }
 
 List<Widget> ListWrapper(List<Map<String, dynamic>> list) {

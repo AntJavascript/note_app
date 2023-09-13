@@ -20,7 +20,8 @@ class Create extends StatelessWidget {
   GlobalKey remarkKey = GlobalKey();
 
   void submit() {
-    print(dateKey.currentState);
+    var  DatePickerWidget = dateKey.currentState as DatePickerPopupState
+    print(DatePickerWidget.values);
   }
 
   @override

@@ -75,8 +75,6 @@ class GroupTagState extends State<GroupTag> {
     super.initState();
   }
 
-  get getValue => current;
-
   void onClick(String value) {
     setState(() {
       current = value;

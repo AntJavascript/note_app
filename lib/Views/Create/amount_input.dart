@@ -13,8 +13,6 @@ class AmountInput extends StatefulWidget {
 class AmountInputState extends State<AmountInput> {
   String amount = "0.0";
 
-  get getValue => amount;
-
   // 数字按钮点击
   void onKeyClick(String value) {
     print(value);

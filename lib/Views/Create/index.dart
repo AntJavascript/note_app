@@ -20,8 +20,20 @@ class Create extends StatelessWidget {
   GlobalKey remarkKey = GlobalKey();
 
   void submit() {
-    var  DatePickerWidget = dateKey.currentState as DatePickerPopupState
-    print(DatePickerWidget.values);
+    Map<String, dynamic> data = {};
+
+    var datePickerWidget = dateKey.currentState as DatePickerPopupState; // 日期
+    var amountWidget = amountKey.currentState as AmountInputState; // 金额
+    var tagWidget = tagKey.currentState as GroupTagState; // 消费类型
+    var remark = remarkKey.currentState as RemarkInputState; // 备注
+
+    data["record_date"] = datePickerWidget.values;
+    data["amount"] = amountWidget.amount;
+    data["type"] = "expend";
+    data["record_type"] = tagWidget.current;
+    data["remark"] = remark.controller.text;
+
+    print(data);
   }
 
   @override

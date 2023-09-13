@@ -10,9 +10,7 @@ class RemarkInput extends StatefulWidget {
 
 class RemarkInputState extends State<RemarkInput> {
   //文本编辑控制器
-  TextEditingController _controller = TextEditingController();
-
-  get getValue => _controller.text;
+  TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
@@ -23,7 +21,7 @@ class RemarkInputState extends State<RemarkInput> {
   Widget build(BuildContext context) {
     return Container(
         child: TextField(
-            controller: _controller,
+            controller: controller,
             decoration: InputDecoration(
                 hintStyle: TextStyle(color: Color.fromARGB(255, 200, 200, 200)),
                 hintText: '说说用途吧...',

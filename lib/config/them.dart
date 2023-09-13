@@ -16,7 +16,7 @@ class AppColorConfig {
   // icon
   static const Color iconColor = Color.fromRGBO(255, 255, 255, 1);
   static const Color iconDisableColor = Color.fromRGBO(42, 42, 42, 1);
-  static const Color iconBgColor = Color.fromRGBO(247, 202, 0, 1);
+  static const Color iconBgColor = Color.fromRGBO(247, 222, 82, 1);
   static const Color iconDisableBgColor = Color.fromRGBO(42, 42, 42, 1);
 
   // text

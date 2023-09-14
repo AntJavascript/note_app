@@ -11,21 +11,49 @@ class AmountInput extends StatefulWidget {
 }
 
 class AmountInputState extends State<AmountInput> {
-  String amount = "0.0";
+  String amount = "0.0"; // 默认显示值
+  bool init = true; // 是否第一次点击
 
   // 数字按钮点击
   void onKeyClick(String value) {
-    print(value);
+    String newVal = ''; // 新值
+    if (init) {
+      newVal = value;
+      if (value == "." || value == "0") {
+        newVal = "0.";
+      }
+    } else {
+      // 已经存在一个小数点
+      if (amount.contains(".") && value == ".") {
+        newVal = "";
+      }
+      newVal = amount + "" + value;
+    }
+
+    // 渲染UI
     setState(() {
-      amount = amount + "" + value;
+      amount = newVal;
     });
+    init = false
   }
 
   // 确定按钮点击
-  void onConfirm() {}
+  void onConfirm() {
+    Navigator.of(context).pop();
+  }
 
   // 删除按钮点击
-  void onDelete() {}
+  void onDelete() {
+    int len = amount.length; // 字符长度
+    String newVal = amount.substring(0, len - 1); // 生成新的字符
+    if(newVal.isEmpty) {
+      newVal = "0.0";
+    }
+    // 渲染UI
+    setState(() {
+      amount = newVal;
+    });
+  }
 
   @override
   void initState() {
@@ -39,6 +67,7 @@ class AmountInputState extends State<AmountInput> {
           showModalBottomSheet<void>(
               context: context,
               builder: (BuildContext context) {
+                // 自定义点击键盘
                 return KeyBoard(
                     onKeyClick: onKeyClick,
                     onConfirm: onConfirm,

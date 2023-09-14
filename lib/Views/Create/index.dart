@@ -28,7 +28,7 @@ class Create extends StatelessWidget {
     var remark = remarkKey.currentState as RemarkInputState; // 备注
 
     data["record_date"] = datePickerWidget.values;
-    data["amount"] = amountWidget.amount;
+    data["amount"] = double.parse(amountWidget.amount);
     data["type"] = "expend";
     data["record_type"] = tagWidget.current;
     data["remark"] = remark.controller.text;

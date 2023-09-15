@@ -4,10 +4,6 @@ import 'package:dio/dio.dart';
 enum DioMethod {
   get,
   post,
-  put,
-  delete,
-  patch,
-  head,
 }
 
 class DioUtil {
@@ -29,7 +25,7 @@ class DioUtil {
   DioUtil._internal() {
     // 初始化基本选项
     BaseOptions options = BaseOptions(
-        baseUrl: 'http://127.0.0.1:7001/app/',
+        baseUrl: 'http://127.0.0.1:7001/',
         connectTimeout: connectTimeout,
         receiveTimeout: receiveTimeout);
     _instance = this;
@@ -53,7 +49,7 @@ class DioUtil {
     // super.onRequest(options, handler);
   }
 
-  /// 相应拦截器
+  /// 响应拦截器
   void _onResponse(
       Response response, ResponseInterceptorHandler handler) async {
     // 请求成功是对数据做基本处理
@@ -87,10 +83,6 @@ class DioUtil {
     const _methodValues = {
       DioMethod.get: 'get',
       DioMethod.post: 'post',
-      DioMethod.put: 'put',
-      DioMethod.delete: 'delete',
-      DioMethod.patch: 'patch',
-      DioMethod.head: 'head'
     };
     options ??= Options(method: _methodValues[method]);
     try {

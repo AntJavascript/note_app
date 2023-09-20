@@ -38,18 +38,18 @@ class _BottomBarState extends State<BottomBar> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            buildBotomItem(itemClick, 0, Icons.home, "首页"),
-            buildBotomItem(itemClick, 1, IconData(0xe901, fontFamily: 'Schyler'), "统计"),
+            buildBotomItem(itemClick, 0, appIcons["home"], "首页"),
+            buildBotomItem(itemClick, 1, appIcons["total"], "统计"),
             buildBotomItem(itemClick, -1, null, ""),
-            buildBotomItem(itemClick, 2, IconData(0xe908, fontFamily: 'Schyler'), "预算"),
-            buildBotomItem(itemClick, 3, Icons.person, "换肤"),
+            buildBotomItem(itemClick, 2, appIcons["budget"], "预算"),
+            buildBotomItem(itemClick, 3, appIcons["skin"], "换肤"),
           ],
         ),
       );
   }
 }
 
-Widget buildBotomItem(Function onClick, int index, IconData iconData, String title) {
+Widget buildBotomItem(Function onClick, int index, String icon, String title) {
     //未选中状态的样式
     TextStyle textStyle = TextStyle(fontSize: 12.0, color: Colors.grey);
     Color iconColor = Colors.grey;
@@ -72,7 +72,7 @@ Widget buildBotomItem(Function onClick, int index, IconData iconData, String tit
             child: Column(
               children: <Widget>[
                 Icon(
-                  iconData,
+                  icon,
                   color: iconColor,
                   size: iconSize,
                 ),
@@ -102,3 +102,4 @@ Widget buildBotomItem(Function onClick, int index, IconData iconData, String tit
     );
     return item;
   }
+

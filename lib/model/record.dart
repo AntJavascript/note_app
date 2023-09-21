@@ -1,4 +1,4 @@
-class RecordEntity {
+class RecordEntityData {
 /*
 {
   "id": 1,
@@ -21,7 +21,7 @@ class RecordEntity {
   String? remark;
   String? account;
 
-  RecordEntity({
+  RecordEntityData({
     this.id,
     this.type,
     this.recordDate,
@@ -31,7 +31,7 @@ class RecordEntity {
     this.remark,
     this.account,
   });
-  RecordEntity.fromJson(Map<String, dynamic> json) {
+  RecordEntityData.fromJson(Map<String, dynamic> json) {
     id = json['id']?.toInt();
     type = json['type']?.toString();
     recordDate = json['record_date']?.toString();
@@ -51,6 +51,63 @@ class RecordEntity {
     data['record_type'] = recordType;
     data['remark'] = remark;
     data['account'] = account;
+    return data;
+  }
+}
+
+class RecordEntity {
+/*
+{
+  "data": [
+    {
+      "id": 1,
+      "type": "expend",
+      "record_date": "2023-09-12",
+      "record_date_unix": 1695259929,
+      "amount": 15.26,
+      "record_type": "alipay",
+      "remark": "备注",
+      "account": "15888888888"
+    }
+  ],
+  "msg": "ok",
+  "code": "200"
+} 
+*/
+
+  List<RecordEntityData?>? data;
+  String? msg;
+  String? code;
+
+  RecordEntity({
+    this.data,
+    this.msg,
+    this.code,
+  });
+  RecordEntity.fromJson(Map<String, dynamic> json) {
+  if (json['data'] != null) {
+  final v = json['data'];
+  final arr0 = <RecordEntityData>[];
+  v.forEach((v) {
+  arr0.add(RecordEntityData.fromJson(v));
+  });
+    this.data = arr0;
+    }
+    msg = json['msg']?.toString();
+    code = json['code']?.toString();
+  }
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    if (this.data != null) {
+      final v = this.data;
+      final arr0 = [];
+  v!.forEach((v) {
+  arr0.add(v!.toJson());
+  });
+      data['data'] = arr0;
+    }
+    data['msg'] = msg;
+    data['code'] = code;
     return data;
   }
 }

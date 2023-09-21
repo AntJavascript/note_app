@@ -25,7 +25,7 @@ class DioUtil {
   DioUtil._internal() {
     // 初始化基本选项
     BaseOptions options = BaseOptions(
-        baseUrl: 'https://101.42.156.245:8080/',
+        baseUrl: 'https://101.42.156.245:8080',
         connectTimeout: connectTimeout,
         receiveTimeout: receiveTimeout);
     _instance = this;
@@ -38,29 +38,15 @@ class DioUtil {
 
   /// 请求拦截器
   void _onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // 对非open的接口的请求参数全部增加userId
-    if (!options.path.contains("open")) {
-      options.queryParameters["userId"] = "xxx";
-    }
     // 头部添加token
     options.headers["token"] = "xxx";
     // 更多业务需求
     handler.next(options);
-    // super.onRequest(options, handler);
   }
 
   /// 响应拦截器
   void _onResponse(
       Response response, ResponseInterceptorHandler handler) async {
-    // 请求成功是对数据做基本处理
-    if (response.statusCode == 200) {
-      // ....
-    } else {
-      // ....
-    }
-    if (response.requestOptions.baseUrl.contains("???????")) {
-      // 对某些单独的url返回数据做特殊处理
-    }
     handler.next(response);
   }
   

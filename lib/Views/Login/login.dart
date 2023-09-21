@@ -8,13 +8,10 @@ class Login extends StatelessWidget {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void login() {
-   
-  }
+  void login() {}
 
   @override
   Widget build(BuildContext context) {
-    const spacing = 10.0;
     return Scaffold(
       appBar: AppBar(
         title: const Text('登录'),
@@ -26,9 +23,11 @@ class Login extends StatelessWidget {
             margin: EdgeInsets.all(16),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  FormInput(phoneController, false, "手机号码"),
-                  FormInput(passwordController, true, "密码"),
-                  SubmitBtn(onClick: login)
+              FormInput(
+                  controller: phoneController, isPwd: false, hintText: "手机号码"),
+              FormInput(
+                  controller: passwordController, isPwd: true, hintText: "密码"),
+              SubmitBtn(onClick: login)
             ]),
           )
         ],

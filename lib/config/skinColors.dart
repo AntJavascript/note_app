@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final List<Colors> listColor = [
+final List<MaterialColor> listColor = [
   Colors.red,
   Colors.pink,
   Colors.purple,

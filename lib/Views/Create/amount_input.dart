@@ -34,7 +34,7 @@ class AmountInputState extends State<AmountInput> {
     setState(() {
       amount = newVal;
     });
-    init = false
+    init = false;
   }
 
   // 确定按钮点击
@@ -46,7 +46,7 @@ class AmountInputState extends State<AmountInput> {
   void onDelete() {
     int len = amount.length; // 字符长度
     String newVal = amount.substring(0, len - 1); // 生成新的字符
-    if(newVal.isEmpty) {
+    if (newVal.isEmpty) {
       newVal = "0.0";
     }
     // 渲染UI

@@ -7,6 +7,7 @@ class Register extends StatelessWidget {
 
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   void register() {
    
@@ -27,7 +28,7 @@ class Register extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   FormInput(phoneController, false, "手机号码"),
-                  FormInput(passwordController, true, "邮箱"),
+                  FormInput(emailController, true, "邮箱"),
                   FormInput(passwordController, true, "密码"),
                   SubmitBtn(onClick: register)
             ]),

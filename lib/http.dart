@@ -25,7 +25,7 @@ class DioUtil {
   DioUtil._internal() {
     // 初始化基本选项
     BaseOptions options = BaseOptions(
-        baseUrl: 'http://127.0.0.1:7001/',
+        baseUrl: 'https://101.42.156.245:8080/',
         connectTimeout: connectTimeout,
         receiveTimeout: receiveTimeout);
     _instance = this;

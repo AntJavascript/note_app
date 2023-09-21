@@ -12,14 +12,14 @@ class RecordEntity {
 } 
 */
 
-  int id;
-  String type;
-  String recordDate;
-  int recordDateUnix;
-  double amount;
-  String recordType;
-  String remark;
-  String account;
+  int? id;
+  String? type;
+  String? recordDate;
+  int? recordDateUnix;
+  double? amount;
+  String? recordType;
+  String? remark;
+  String? account;
 
   RecordEntity({
     this.id,

@@ -29,4 +29,14 @@ class RecordService {
     return data.data;
   }
 
+  // 新增
+  add(Map<String dynamic> data) async {
+    // 开启日志打印
+    DioUtil.instance?.openLog();
+    
+    var res = await DioUtil().request('/record/add', method: DioMethod.post, data: data);
+    RecordEntity data = RecordEntity.fromJson(res);
+    return data.data;
+  }
+
 }

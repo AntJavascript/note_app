@@ -7,7 +7,7 @@ class CommonEntity {
 } 
 */
 
-  String? data;
+  dynamic? data;
   String? msg;
   String? code;
 

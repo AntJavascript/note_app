@@ -10,6 +10,9 @@ import 'package:note_app/config/them.dart';
 // 全局字体配置
 import 'package:note_app/config/appIcon.dart';
 
+// service
+import 'package:note_app/service/record_service.dart';
+
 class RecordList extends StatefulWidget {
   RecordList({Key? key}) : super(key: key);
 
@@ -46,6 +49,10 @@ class _RecordListState extends State<RecordList> {
 @override
   initState() {
     super.initState();
+    // 获取列表数据
+    RecordService.getList().then(data => {
+      print(data)
+    });
   }
 
 @override

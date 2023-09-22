@@ -3,7 +3,7 @@ import 'package:note_app/model/record.dart';
 
 class RecordService {
   // 根据日期查询列表
-  getList() async {
+  static getList() async {
     // 开启日志打印
     DioUtil.instance?.openLog();
     
@@ -20,7 +20,7 @@ class RecordService {
   }
 
   // 查询详情
-  getDetail(int id) async {
+  static getDetail(int id) async {
     // 开启日志打印
     DioUtil.instance?.openLog();
     

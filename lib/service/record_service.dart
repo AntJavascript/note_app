@@ -7,8 +7,8 @@ class RecordService {
     // 开启日志打印
     DioUtil.instance?.openLog();
     
-    var res = await DioUtil().request('/record/list');
-    RecordEntity listData = RecordEntity.fromJson(res);
+    var response = await DioUtil().request('/record/list');
+    RecordEntity listData = RecordEntity.fromJson(response);
     List<RecordEntity> list = [];
 
     if (listData.data.length > 0) {
@@ -24,9 +24,9 @@ class RecordService {
     // 开启日志打印
     DioUtil.instance?.openLog();
     
-    var res = await DioUtil().request('/record/detail${id}');
-    RecordEntity data = RecordEntity.fromJson(res);
-    return data.data;
+    var response = await DioUtil().request('/record/detail${id}');
+    RecordEntity result = RecordEntity.fromJson(response);
+    return result;
   }
 
   // 新增
@@ -34,9 +34,9 @@ class RecordService {
     // 开启日志打印
     DioUtil.instance?.openLog();
     
-    var res = await DioUtil().request('/record/add', method: DioMethod.post, data: data);
-    RecordEntity data = RecordEntity.fromJson(res);
-    return data.data;
+    var response = await DioUtil().request('/record/add', method: DioMethod.post, data: data);
+    RecordEntity result = RecordEntity.fromJson(response);
+    return result;
   }
 
 }

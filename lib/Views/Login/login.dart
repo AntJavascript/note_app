@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:note_app/model/login.dart';
 
 // 路由配置
 import 'package:note_app/router/application.dart';
@@ -18,7 +19,7 @@ class Login extends StatelessWidget {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  // 弹窗提示 
+  // 弹窗提示
   void _showSnackBar(BuildContext context, String content) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -28,7 +29,6 @@ class Login extends StatelessWidget {
 
   // 验证登录
   void loginAction(BuildContext context) async {
-    
     String phone = phoneController.text;
     String password = passwordController.text;
     SharedPreferences prefer = await SharedPreferences.getInstance();
@@ -43,22 +43,10 @@ class Login extends StatelessWidget {
       _showSnackBar(context, "密码必须6-10位");
       return;
     }
-    LoginService.login({
-      "phone": phone,
-      "password": password
-    }).then(data => {
+    LoginService.login({"phone": phone, "password": password}).then((data) {
       print(data);
-      if (data.data == "200") {
-        // 保存token
-        prefer.setString("access_token", data.access_token);
-        prefer.setString("refresh_token", data.refresh_token);
-        prefer.setString("phone", phone);
-        Application.router.navigateTo(context, "/"); // 跳转首页
-      } else {
-        _showSnackBar(context, "登录失败");
-      }
-    })
-  } 
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,15 +62,17 @@ class Login extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               FormInput(
-                  controller: phoneController, isPwd: false, hintText: "手机号码", maxLength: 11),
+                  controller: phoneController,
+                  isPwd: false,
+                  hintText: "手机号码",
+                  maxLength: 11),
               FormInput(
                   controller: passwordController, isPwd: true, hintText: "密码"),
               InkWell(
-                onTap: () {
-                  loginAction(context);
-                },
-                child: SubmitBtn()
-              )
+                  onTap: () {
+                    loginAction(context);
+                  },
+                  child: SubmitBtn())
             ]),
           )
         ],

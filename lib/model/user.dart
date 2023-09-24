@@ -9,11 +9,11 @@ class UsertEntity {
 } 
 */
 
-  int id;
-  String userName;
-  String email;
-  String phone;
-  int status;
+  int? id;
+  String? userName;
+  String? email;
+  String? phone;
+  int? status;
 
   UsertEntity({
     this.id,

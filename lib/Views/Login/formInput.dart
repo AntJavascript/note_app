@@ -13,16 +13,20 @@ class FormInput extends StatelessWidget {
   final TextEditingController? controller;
   final bool isPwd;
   final String? hintText;
-  final int? maxLength
+  final int? maxLength;
 
   const FormInput(
-      {required this.controller, this.maxLength, this.isPwd = false, this.hintText, super.key});
+      {required this.controller,
+      this.maxLength,
+      this.isPwd = false,
+      this.hintText,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      maxLength: maxLength
+      maxLength: maxLength,
       obscureText: isPwd,
       decoration: InputDecoration(
           hintText: hintText,

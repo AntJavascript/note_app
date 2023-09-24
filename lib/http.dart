@@ -25,7 +25,7 @@ class DioUtil {
   DioUtil._internal() {
     // 初始化基本选项
     BaseOptions options = BaseOptions(
-        baseUrl: 'https://101.42.156.245:8080',
+        baseUrl: 'http://101.42.156.245:8080',
         connectTimeout: connectTimeout,
         receiveTimeout: receiveTimeout);
     _instance = this;
@@ -49,7 +49,7 @@ class DioUtil {
       Response response, ResponseInterceptorHandler handler) async {
     handler.next(response);
   }
-  
+
   /// 错误处理
   void _onError(DioError error, ErrorInterceptorHandler handler) {
     handler.next(error);

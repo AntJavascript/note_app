@@ -9,7 +9,7 @@ class Register extends StatelessWidget {
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
-  void register() {}
+  void registerAction(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,11 @@ class Register extends StatelessWidget {
                   controller: emailController, isPwd: true, hintText: "邮箱"),
               FormInput(
                   controller: passwordController, isPwd: true, hintText: "密码"),
-              SubmitBtn(onClick: register)
+              InkWell(
+                  onTap: () {
+                    registerAction(context);
+                  },
+                  child: SubmitBtn())
             ]),
           )
         ],

@@ -16,13 +16,12 @@ import 'package:note_app/service/record_service.dart';
 class RecordList extends StatefulWidget {
   RecordList({Key? key}) : super(key: key);
 
-   @override
+  @override
   State<StatefulWidget> createState() => _RecordListState();
 }
 
 class _RecordListState extends State<RecordList> {
-
-    List<Map<String, dynamic>> list = [
+  List<Map<String, dynamic>> list = [
     {
       "tag": "日常餐饮",
       "remark": "食堂吃的烧鸭",
@@ -46,20 +45,18 @@ class _RecordListState extends State<RecordList> {
     },
   ];
 
-@override
+  @override
   initState() {
     super.initState();
     // 获取列表数据
-    RecordService.getList().then(data => {
-      print(data)
-    });
+    RecordService.getList().then((data) =>
+        {print("111111111111111111111111111111111111111111111111111")});
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Column(children: ListWrapper(list));
   }
-
 }
 
 List<Widget> ListWrapper(List<Map<String, dynamic>> list) {

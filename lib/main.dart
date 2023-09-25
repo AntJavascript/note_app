@@ -1,11 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
-// 路由配置
-import 'package:note_app/router/application.dart';
 
 // 用户信息
 import 'package:note_app/provider/user_model.dart';

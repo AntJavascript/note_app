@@ -1,5 +1,5 @@
 import 'package:note_app/http.dart';
-import 'package:note_app/model/record.dart';
+import 'package:note_app/model/record_model.dart';
 
 class RecordService {
   // 根据日期查询列表
@@ -8,13 +8,8 @@ class RecordService {
     DioUtil.instance?.openLog();
 
     var response = await DioUtil().request('/record/list');
-    // RecordEntity listData = RecordEntity.fromJson(response);
-    // List<RecordEntity> list = [];
-
-    // listData.data!.map((item) {
-    //   list.add(item as RecordEntity);
-    // }).toList();
-    return response;
+    record_model result = record_model.fromJson(response);
+    return result;
   }
 
   // 查询详情
@@ -23,7 +18,7 @@ class RecordService {
     DioUtil.instance?.openLog();
 
     var response = await DioUtil().request('/record/detail${id}');
-    RecordEntity result = RecordEntity.fromJson(response);
+    record_model result = record_model.fromJson(response);
     return result;
   }
 
@@ -34,7 +29,7 @@ class RecordService {
 
     var response = await DioUtil()
         .request('/record/add', method: DioMethod.post, data: data);
-    RecordEntity result = RecordEntity.fromJson(response);
+    record_model result = record_model.fromJson(response);
     return result;
   }
 }

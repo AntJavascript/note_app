@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// 请求方法
 enum DioMethod {
@@ -37,9 +38,15 @@ class DioUtil {
   }
 
   /// 请求拦截器
-  void _onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  void _onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    SharedPreferences prefer = await SharedPreferences.getInstance();
+
+    var access_token = prefer.getString("access_token");
+    var refresh_token = prefer.getString("refresh_token");
     // 头部添加token
-    options.headers["token"] = "xxx";
+    options.headers["access_token"] = access_token;
+    options.headers["refresh_token"] = refresh_token;
     // 更多业务需求
     handler.next(options);
   }

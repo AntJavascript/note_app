@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:note_app/http.dart';
 import 'package:note_app/model/common.dart';
-import 'package:note_app/model/login.dart';
+import 'package:note_app/model/login_model.dart';
 
 class LoginService {
   // 登录
@@ -12,12 +12,7 @@ class LoginService {
 
     var response = await DioUtil()
         .request('/user/login', method: DioMethod.post, data: data);
-
-    var obj = LoginEntity.fromJson(jsonDecode(response));
-    String encodedJson = jsonEncode(obj.toJson());
-    print(encodedJson);
-
-    LoginEntity result = LoginEntity.fromJson(response);
+    login_model result = login_model.fromJson(response);
     return result;
   }
 

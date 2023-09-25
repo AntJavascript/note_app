@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
+import 'package:note_app/model/record_model.dart';
 
 // 自定义组件
 import 'package:note_app/Views/Component/title_cell.dart';
@@ -21,36 +22,17 @@ class RecordList extends StatefulWidget {
 }
 
 class _RecordListState extends State<RecordList> {
-  List<Map<String, dynamic>> list = [
-    {
-      "tag": "日常餐饮",
-      "remark": "食堂吃的烧鸭",
-      "amount": "18",
-      "type": "income",
-      "icon": "car"
-    },
-    {
-      "tag": "日常餐饮",
-      "remark": "晚餐麻辣烫",
-      "amount": "20.8",
-      "type": "income",
-      "icon": "card"
-    },
-    {
-      "tag": "稿费",
-      "remark": "简书日常作品",
-      "amount": "20.8",
-      "type": "expend",
-      "icon": "education"
-    },
-  ];
+  List<Data> list = [];
 
   @override
   initState() {
     super.initState();
     // 获取列表数据
-    RecordService.getList().then((data) =>
-        {print("111111111111111111111111111111111111111111111111111")});
+    RecordService.getList().then((data) => {
+          setState(() {
+            list = data.data;
+          })
+        });
   }
 
   @override
@@ -59,7 +41,7 @@ class _RecordListState extends State<RecordList> {
   }
 }
 
-List<Widget> ListWrapper(List<Map<String, dynamic>> list) {
+List<Widget> ListWrapper(List<Data> list) {
   List<Widget> arr = [];
   arr.add(TitleCell(title: "收支明细"));
   arr.addAll(list.map((item) {
@@ -81,19 +63,19 @@ Widget CusItem(item) {
       Row(
         children: [
           Container(
-            child: CusIcon(appIcons[item["icon"]]),
+            child: CusIcon(appIcons["${item.recordType}"]),
             margin: EdgeInsets.only(right: 10),
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Title(item["tag"]),
+            Title("============"),
             Container(
               height: 5,
             ),
-            Remark(item["remark"]),
+            Remark(item.remark),
           ])
         ],
       ),
-      Container(child: Amount(item["amount"], type: item["type"]))
+      Container(child: Amount(item.amount.toString(), type: item.type))
     ]),
   );
 }

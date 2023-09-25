@@ -12,29 +12,27 @@ class AmountInput extends StatefulWidget {
 
 class AmountInputState extends State<AmountInput> {
   String amount = "0.0"; // 最终确认金额
-  String tempAmount = "0.0"; // 键盘输入金额
 
   bool init = true; // 是否第一次点击
 
   // 数字按钮点击
   void onKeyClick(String value) {
-    String newVal = ''; // 新值
+    String newVal = value; // 新值
     if (init) {
-      newVal = value;
       if (value == "." || value == "0") {
         newVal = "0.";
       }
     } else {
       // 已经存在一个小数点
-      if (tempAmount.contains(".") && value == ".") {
+      if (amount.contains(".") && value == ".") {
         newVal = "";
       }
-      newVal = tempAmount + "" + newVal;
+      newVal = amount + "" + newVal;
     }
 
     // 渲染UI
     setState(() {
-      tempAmount = newVal;
+      amount = newVal;
     });
     init = false;
   }
@@ -42,21 +40,18 @@ class AmountInputState extends State<AmountInput> {
   // 确定按钮点击
   void onConfirm() {
     Navigator.of(context).pop();
-    setState(() {
-      amount = tempAmount;
-    });
   }
 
   // 删除按钮点击
   void onDelete() {
-    int len = tempAmount.length; // 字符长度
-    String newVal = tempAmount.substring(0, len - 1); // 生成新的字符
+    int len = amount.length; // 字符长度
+    String newVal = amount.substring(0, len - 1); // 生成新的字符
     if (newVal.isEmpty) {
       newVal = "0.0";
     }
     // 渲染UI
     setState(() {
-      tempAmount = newVal;
+      amount = newVal;
     });
   }
 
@@ -73,31 +68,19 @@ class AmountInputState extends State<AmountInput> {
               context: context,
               builder: (BuildContext context) {
                 // 自定义点击键盘
-                return Column(children: [
-                  Container(
-                    height: 42,
-                    alignment: Alignment.center,
-                    child: Text("设置金额", style: TextStyle(fontSize: 42.0)),
-                  ),
-                  amountContainer(tempAmount),
-                  KeyBoard(onKeyClick: onKeyClick,
+                return KeyBoard(
+                    onKeyClick: onKeyClick,
                     onConfirm: onConfirm,
-                    onDelete: onDelete)
-                ]);
+                    onDelete: onDelete);
               });
         },
-        child: amountContainer(amount));
+        child: Container(
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.symmetric(vertical: 20),
+            decoration: BoxDecoration(
+                border:
+                    Border(bottom: BorderSide(color: Colors.red, width: 0.5))),
+            child: Text(amount,
+                style: TextStyle(fontSize: 42.0, color: Colors.red))));
   }
 }
-
-// 显示金额组件
- Widget amountContainer(String value) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    margin: EdgeInsets.symmetric(vertical: 20),
-    decoration: BoxDecoration(
-        border:
-            Border(bottom: BorderSide(color: Colors.red, width: 0.5))),
-    child: Text(value,
-        style: TextStyle(fontSize: 42.0, color: Colors.red)));
- }

@@ -9,6 +9,10 @@ import 'package:note_app/Views/Component/with_value.dart';
 // 全局字体配置
 import 'package:note_app/config/appIcon.dart';
 
+String year = DateTime.now().year.toString();
+String month = DateTime.now().month.toString();
+String day = DateTime.now().day.toString();
+
 class DatePickerPopup extends StatefulWidget {
   const DatePickerPopup({Key? key}) : super(key: key);
 
@@ -18,7 +22,7 @@ class DatePickerPopup extends StatefulWidget {
 
 class DatePickerPopupState extends State<DatePickerPopup> {
   String values =
-      '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+      "${year}-${month.length == 1 ? "0${month}" : month}-${day.length == 1 ? "0${day}" : day}";
 
   @override
   void initState() {
@@ -33,7 +37,8 @@ class DatePickerPopupState extends State<DatePickerPopup> {
     String month = val[1].toString();
     String day = val[2].toString();
     setState(() {
-      values = "${year}-${month}-${day}";
+      values =
+          "${year}-${month.length == 1 ? "0${month}" : month}-${day.length == 1 ? "0${day}" : day}";
     });
     Navigator.of(context).pop();
   }

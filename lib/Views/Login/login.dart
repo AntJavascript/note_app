@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:common_utils/common_utils.dart';
-import 'package:note_app/model/login.dart';
+import 'package:note_app/model/login_model.dart';
 
 // 路由配置
 import 'package:note_app/router/application.dart';
@@ -43,8 +43,11 @@ class Login extends StatelessWidget {
       _showSnackBar(context, "密码必须6-10位");
       return;
     }
-    LoginService.login({"phone": phone, "password": password}).then((data) {
-      print(data);
+    LoginService.login({"phone": phone, "password": password})
+        .then((data) async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('access_token', data.accessToken);
+      await prefs.setString('refresh_token', data.refreshToken);
     });
   }
 
@@ -68,6 +71,9 @@ class Login extends StatelessWidget {
                   maxLength: 11),
               FormInput(
                   controller: passwordController, isPwd: true, hintText: "密码"),
+              SizedBox(
+                height: 50,
+              ),
               InkWell(
                   onTap: () {
                     loginAction(context);

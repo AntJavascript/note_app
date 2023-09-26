@@ -7,14 +7,14 @@ part of 'record_model.dart';
 // **************************************************************************
 
 record_model _$record_modelFromJson(Map<String, dynamic> json) => record_model(
-      json['access_token'] as dynamic,
+      json['access_token'],
       json['code'] as int,
       json['count'] as int,
       (json['data'] as List<dynamic>)
           .map((e) => Data.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['msg'] as String,
-      json['refresh_token'] as dynamic,
+      json['refresh_token'],
     );
 
 Map<String, dynamic> _$record_modelToJson(record_model instance) =>

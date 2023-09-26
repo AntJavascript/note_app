@@ -9,7 +9,10 @@ import 'package:note_app/Views/Component/title_cell.dart';
 import 'package:note_app/Views/Home/Widgets/line_space.dart';
 
 // service
-import 'package:note_app/service/record_service.dart';
+import 'package:note_app/service/total_service.dart';
+
+// model
+import 'package:note_app/model/total_model.dart';
 
 class CurrentDayTotal extends StatefulWidget {
   const CurrentDayTotal({Key? key}) : super(key: key);
@@ -19,14 +22,19 @@ class CurrentDayTotal extends StatefulWidget {
 }
 
 class _CurrentDayTotalState extends State<CurrentDayTotal> {
-  double income = 0.0;
-  double expend = 0.0;
+  String income = "0.0";
+  String expend = "0.0";
 
   @override
   initState() {
     super.initState();
     // 获取列表数据
-    RecordService.getList().then((data) => {});
+    TotalService.getTotalDay().then((data) => {
+          setState(() {
+            income = data.incomeCount.toString();
+            expend = data.expendCount.toString();
+          })
+        });
   }
 
   @override
@@ -45,7 +53,7 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
             LineSpace(
               color: Colors.white,
             ),
-            Amount(expend.toString(), type: "expend"),
+            Amount(expend, type: "expend"),
             LineSpace(
               height: 20,
               color: Colors.white,
@@ -59,7 +67,7 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
             LineSpace(
               color: Colors.white,
             ),
-            Amount(expend.toString(), type: "income"),
+            Amount(income, type: "income"),
             LineSpace(
               height: 20,
               color: Colors.white,

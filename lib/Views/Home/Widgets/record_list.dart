@@ -4,7 +4,6 @@ import 'package:note_app/model/record_model.dart';
 
 // 自定义组件
 import 'package:note_app/Views/Component/title_cell.dart';
-import 'package:note_app/Views/Home/Widgets/line_space.dart';
 
 // 全局配置
 import 'package:note_app/config/them.dart';
@@ -67,7 +66,7 @@ Widget CusItem(item) {
             margin: EdgeInsets.only(right: 10),
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Title("============"),
+            Title(item.recordTypeName),
             Container(
               height: 5,
             ),
@@ -80,6 +79,7 @@ Widget CusItem(item) {
   );
 }
 
+// 显示图标
 Widget CusIcon(IconData icon) {
   return TailBox()
       .p(10)
@@ -88,6 +88,7 @@ Widget CusIcon(IconData icon) {
       .Container(child: Icon(icon, size: 22, color: AppColorConfig.iconColor));
 }
 
+// 显示类型
 Widget Title(String text) {
   return TailTypo()
       .font_size(16.0)
@@ -95,6 +96,7 @@ Widget Title(String text) {
       .Text(text);
 }
 
+// 显示备注
 Widget Remark(String text) {
   return TailTypo()
       .font_size(12.0)
@@ -102,12 +104,13 @@ Widget Remark(String text) {
       .Text(text);
 }
 
+// 显示金额
 Widget Amount(String text, {String type = 'income'}) {
   bool isIncome = type == 'income';
   return TailTypo()
       .font_size(16.0)
       .text_color(isIncome
-          ? AppColorConfig.incomeTextColor
-          : AppColorConfig.expendTextColor)
-      .Text("${isIncome ? "-" : "+"}${text}");
+          ? AppColorConfig.expendTextColor
+          : AppColorConfig.incomeTextColor)
+      .Text("${isIncome ? "+" : "-"}${text}");
 }

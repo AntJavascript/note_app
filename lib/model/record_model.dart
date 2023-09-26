@@ -5,7 +5,7 @@ part 'record_model.g.dart';
 @JsonSerializable()
 class record_model extends Object {
   @JsonKey(name: 'access_token')
-  String accessToken;
+  dynamic accessToken;
 
   @JsonKey(name: 'code')
   int code;
@@ -20,7 +20,7 @@ class record_model extends Object {
   String msg;
 
   @JsonKey(name: 'refresh_token')
-  String refreshToken;
+  dynamic refreshToken;
 
   record_model(
     this.accessToken,
@@ -57,6 +57,9 @@ class Data extends Object {
   @JsonKey(name: 'record_type')
   String recordType;
 
+  @JsonKey(name: 'record_type_name')
+  String recordTypeName;
+
   @JsonKey(name: 'remark')
   String remark;
 
@@ -70,6 +73,7 @@ class Data extends Object {
     this.recordDateUnix,
     this.amount,
     this.recordType,
+    this.recordTypeName,
     this.remark,
     this.account,
   );

@@ -8,6 +8,9 @@ import 'package:note_app/config/them.dart';
 import 'package:note_app/Views/Component/title_cell.dart';
 import 'package:note_app/Views/Home/Widgets/line_space.dart';
 
+// service
+import 'package:note_app/service/record_service.dart';
+
 class CurrentDayTotal extends StatefulWidget {
   const CurrentDayTotal({Key? key}) : super(key: key);
 
@@ -16,9 +19,14 @@ class CurrentDayTotal extends StatefulWidget {
 }
 
 class _CurrentDayTotalState extends State<CurrentDayTotal> {
+  double income = 0.0;
+  double expend = 0.0;
+
   @override
   initState() {
     super.initState();
+    // 获取列表数据
+    RecordService.getList().then((data) => {});
   }
 
   @override
@@ -33,11 +41,11 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
         Expanded(
             child: Column(
           children: [
-            Income("今日支出", type: "income"),
+            Income("今日支出", type: "expend"),
             LineSpace(
               color: Colors.white,
             ),
-            Amount("123.89", type: "income"),
+            Amount(expend.toString(), type: "expend"),
             LineSpace(
               height: 20,
               color: Colors.white,
@@ -47,11 +55,11 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
         Expanded(
             child: Column(
           children: [
-            Income("今日收入", type: "expend"),
+            Income("今日收入", type: "income"),
             LineSpace(
               color: Colors.white,
             ),
-            Amount("0", type: "expend"),
+            Amount(expend.toString(), type: "income"),
             LineSpace(
               height: 20,
               color: Colors.white,
@@ -67,8 +75,8 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
     return TailTypo()
         .font_size(16.0)
         .text_color(isIncome
-            ? AppColorConfig.incomeTextColor
-            : AppColorConfig.expendTextColor)
+            ? AppColorConfig.expendTextColor
+            : AppColorConfig.incomeTextColor)
         .Text(text);
   }
 
@@ -77,8 +85,8 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
     return TailTypo()
         .font_size(24.0)
         .text_color(isIncome
-            ? AppColorConfig.incomeTextColor
-            : AppColorConfig.expendTextColor)
-        .Text(isIncome ? "-${text}" : "+${text}");
+            ? AppColorConfig.expendTextColor
+            : AppColorConfig.incomeTextColor)
+        .Text(isIncome ? "+${text}" : "-${text}");
   }
 }

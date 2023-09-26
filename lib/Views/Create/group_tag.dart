@@ -69,15 +69,17 @@ class GroupTagState extends State<GroupTag> {
   ];
 
   String current = "restaurant";
+  String currentText = "餐饮";
 
   @override
   void initState() {
     super.initState();
   }
 
-  void onClick(String value) {
+  void onClick(String value, String text) {
     setState(() {
       current = value;
+      currentText = text;
       print(value);
     });
   }

@@ -11,6 +11,9 @@ import 'package:note_app/Views/Create/remark.dart';
 import 'package:note_app/Views/Create/button.dart';
 import 'package:note_app/Views/Create/date_picker_popup.dart';
 
+// service
+import 'package:note_app/service/record_service.dart';
+
 class Create extends StatelessWidget {
   Create({super.key});
 
@@ -31,7 +34,12 @@ class Create extends StatelessWidget {
     data["amount"] = double.parse(amountWidget.amount);
     data["type"] = "expend";
     data["record_type"] = tagWidget.current;
+    data["record_type_name"] = tagWidget.currentText;
     data["remark"] = remark.controller.text;
+    data["account"] = "15817351609";
+
+    // 获取列表数据
+    RecordService.add(data).then((data) => {print(data)});
 
     print(data);
   }

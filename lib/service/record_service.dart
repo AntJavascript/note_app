@@ -1,5 +1,6 @@
 import 'package:note_app/http.dart';
 import 'package:note_app/model/record_model.dart';
+import 'package:note_app/model/common.dart';
 
 class RecordService {
   // 根据日期查询列表
@@ -29,7 +30,7 @@ class RecordService {
 
     var response = await DioUtil()
         .request('/record/add', method: DioMethod.post, data: data);
-    record_model result = record_model.fromJson(response);
+    CommonEntity result = CommonEntity.fromJson(response);
     return result;
   }
 }

@@ -43,7 +43,7 @@ class TagState extends State<Tag> {
 
     return GestureDetector(
       onTap: () {
-        widget.onClick!(widget.icon); // 传值父组件
+        widget.onClick!(widget.icon, widget.text); // 传值父组件
       },
       child: TailBox().px(10).py(6).rounded(30).bg(bgColor).Container(
               child: Row(

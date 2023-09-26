@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
           ? const DateGrid()
           : Center(
               child: ElevatedButton(
-                  child: const Text("去登录22"),
+                  child: const Text("去登录"),
                   onPressed: () {
                     Application.router.navigateTo(context, "/login");
                   }),

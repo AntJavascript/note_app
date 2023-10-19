@@ -11,10 +11,10 @@ class total_model extends Object {
   String data;
 
   @JsonKey(name: 'expendCount')
-  int expendCount;
+  num expendCount;
 
   @JsonKey(name: 'incomeCount')
-  int incomeCount;
+  num incomeCount;
 
   @JsonKey(name: 'msg')
   String msg;

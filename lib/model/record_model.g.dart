@@ -32,7 +32,7 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       json['type'] as String,
       json['record_date'] as String,
       json['record_date_unix'] as int,
-      json['amount'] as int,
+      json['amount'] as num,
       json['record_type'] as String,
       json['record_type_name'] as String,
       json['remark'] as String,

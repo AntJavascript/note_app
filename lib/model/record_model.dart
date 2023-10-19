@@ -52,7 +52,7 @@ class Data extends Object {
   int recordDateUnix;
 
   @JsonKey(name: 'amount')
-  int amount;
+  num amount;
 
   @JsonKey(name: 'record_type')
   String recordType;

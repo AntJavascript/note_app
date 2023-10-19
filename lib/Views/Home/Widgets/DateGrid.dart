@@ -21,21 +21,29 @@ class _DateGridState extends State<DateGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Container(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BudgetCard(),
-                LineSpace(),
-                CurrentDayTotal(),
-                LineSpace(),
-                RecordList(),
-              ],
-            ))
-      ],
+    return RefreshIndicator(
+      onRefresh:() async {
+        //模拟网络请求
+        await Future.delayed(Duration(milliseconds: 2000));
+        //结束刷新
+        return Future.value(true);
+      },
+      child:ListView(
+        children: [
+          Container(
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BudgetCard(),
+                  LineSpace(),
+                  CurrentDayTotal(),
+                  LineSpace(),
+                  RecordList(),
+                ],
+              ))
+        ],
+      )
     );
   }
 }

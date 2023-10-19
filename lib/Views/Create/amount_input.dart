@@ -47,6 +47,7 @@ class AmountInputState extends State<AmountInput> {
     int len = amount.length; // 字符长度
     String newVal = amount.substring(0, len - 1); // 生成新的字符
     if (newVal.isEmpty) {
+      init = true;
       newVal = "0.0";
     }
     // 渲染UI

@@ -3,6 +3,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:note_app/model/login_model.dart';
 
+// 工具类
+import 'package:note_app/tools/show_snack.dart';
+
 // 路由配置
 import 'package:note_app/router/application.dart';
 
@@ -19,14 +22,6 @@ class Login extends StatelessWidget {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  // 弹窗提示
-  void _showSnackBar(BuildContext context, String content) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(content),
-    ));
-  }
-
   // 验证登录
   void loginAction(BuildContext context) async {
     String phone = phoneController.text;
@@ -35,12 +30,12 @@ class Login extends StatelessWidget {
 
     // 验证手机号码
     if (!RegexUtil.isMobileExact(phone)) {
-      _showSnackBar(context, "手机号码不合法");
+      showSnackBar(context, "手机号码不合法");
       return;
     }
     // 密码必须6-10位
     if (password.length < 6 || password.length > 10) {
-      _showSnackBar(context, "密码必须6-10位");
+      showSnackBar(context, "密码必须6-10位");
       return;
     }
     LoginService.login({"phone": phone, "password": password})
@@ -48,6 +43,11 @@ class Login extends StatelessWidget {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('access_token', data.accessToken);
       await prefs.setString('refresh_token', data.refreshToken);
+      if (data.code === 200) {
+        Application.router.pop();
+      } else {
+        showSnackBar(context, data.msg);
+      }
     });
   }
 

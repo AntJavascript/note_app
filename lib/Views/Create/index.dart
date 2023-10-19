@@ -14,8 +14,16 @@ import 'package:note_app/Views/Create/date_picker_popup.dart';
 // service
 import 'package:note_app/service/record_service.dart';
 
-class Create extends StatelessWidget {
+// 工具类
+import 'package:note_app/tools/show_snack.dart';
+
+class Create extends StatefulWidget {
   Create({super.key});
+  @override
+  State<Create> createState() => _CreateState();
+}
+
+class _CreateState extends State<Create> {
 
   GlobalKey dateKey = GlobalKey();
   GlobalKey amountKey = GlobalKey();
@@ -39,9 +47,14 @@ class Create extends StatelessWidget {
     data["account"] = "15817351609";
 
     // 获取列表数据
-    RecordService.add(data).then((data) => {print(data)});
+    RecordService.add(data).then((data) => {
+      if (data.code === 200) {
+        Application.router.pop();
+      } else {
+        showSnackBar(context, data.msg);
+      }
+    });
 
-    print(data);
   }
 
   @override
@@ -58,16 +71,16 @@ class Create extends StatelessWidget {
             margin: EdgeInsets.all(16),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              DatePickerPopup(key: dateKey),
-              AmountInput(key: amountKey),
+              DatePickerPopup(key: dateKey), // 日期
+              AmountInput(key: amountKey), // 金额
               SizedBox(height: spacing),
               TitleCell(title: "消费类型"),
               SizedBox(height: spacing),
-              GroupTag(key: tagKey),
+              GroupTag(key: tagKey), // 分类
               SizedBox(height: spacing),
               TitleCell(title: "备注"),
               SizedBox(height: spacing),
-              RemarkInput(key: remarkKey),
+              RemarkInput(key: remarkKey), // 备注
               SizedBox(height: spacing),
               CreateButton(submit: submit, text: "确定")
             ]),

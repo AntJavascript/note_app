@@ -15,13 +15,17 @@ import 'package:note_app/Views/Total/total.dart';
 import 'package:note_app/Views/Budget/budget.dart';
 import 'package:note_app/Views/Skin/skin.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   App({super.key}) {
     final router = FluroRouter();
     Routes.configureRoutes(router);
     Application.router = router;
   }
+  @override
+  State<StatefulWidget> createState() => _AppState();
+}
 
+class _AppState extends State<App> {
   final _pageController = PageController();
   int currentIndex = 0;
 

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 import 'package:note_app/model/record_model.dart';
 
+// EventBus
+import 'package:note_app/event/bus.dart';
+
 // 自定义组件
 import 'package:note_app/Views/Component/title_cell.dart';
 
@@ -23,15 +26,24 @@ class RecordList extends StatefulWidget {
 class _RecordListState extends State<RecordList> {
   List<Data> list = [];
 
+  getData() {
+    RecordService.getList().then((data) => {
+      setState(() {
+        list = data.data;
+      })
+    });
+  }
+
   @override
   initState() {
     super.initState();
     // 获取列表数据
-    RecordService.getList().then((data) => {
-          setState(() {
-            list = data.data;
-          })
-        });
+    getData()
+    Future<void> _listen() async {
+      Bus.eventBus.on<UpdateRecordEvent>().listen((event) {
+        getData();
+      });
+    }
   }
 
   @override

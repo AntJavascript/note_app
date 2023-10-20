@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // UI内容组件
 import 'package:note_app/Views/Home/Widgets/DateGrid.dart';
+import 'package:note_app/Views/Component/bootom_bar.dart';
+import 'package:note_app/Views/Component/login_dialog.dart';
 
 // 路由配置
 import 'package:note_app/router/application.dart';
@@ -39,6 +41,10 @@ class _HomeState extends State<Home> {
     autoLogin();
   }
 
+   void bottomNavBarClick (int index) {
+
+   }
+
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期数据
@@ -50,6 +56,7 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         elevation: 0,
       ),
+      bottomNavigationBar: BottomBar(onClick: bottomNavBarClick),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Application.router.navigateTo(context, "/create"); // 跳转创建界面
@@ -59,11 +66,7 @@ class _HomeState extends State<Home> {
       body: isLogin
           ? const DateGrid()
           : Center(
-              child: ElevatedButton(
-                  child: const Text("去登录"),
-                  onPressed: () {
-                    Application.router.navigateTo(context, "/login");
-                  }),
+              child: LoginDialog(),
             ),
     );
   }

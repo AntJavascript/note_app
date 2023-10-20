@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+// EventBus
+import 'package:note_app/event/bus.dart';
 
 // 公共组件
 import 'package:note_app/Views/Component/title_cell.dart';
@@ -30,7 +32,7 @@ class _CreateState extends State<Create> {
   GlobalKey tagKey = GlobalKey();
   GlobalKey remarkKey = GlobalKey();
 
-  void submit() {
+  void submit(BuildContext context) {
     Map<String, dynamic> data = {};
 
     var datePickerWidget = dateKey.currentState as DatePickerPopupState; // 日期
@@ -49,7 +51,9 @@ class _CreateState extends State<Create> {
     // 获取列表数据
     RecordService.add(data).then((data) => {
       if (data.code === 200) {
-        Application.router.pop();
+        Bus.eventBus.fire(const UpdateRecordEvent('record'));
+        Application.router.pop(context);
+        // Navigator.of(context).pop();
       } else {
         showSnackBar(context, data.msg);
       }
@@ -82,7 +86,9 @@ class _CreateState extends State<Create> {
               SizedBox(height: spacing),
               RemarkInput(key: remarkKey), // 备注
               SizedBox(height: spacing),
-              CreateButton(submit: submit, text: "确定")
+              CreateButton(submit: () {
+                submit(context)
+              }, text: "确定")
             ]),
           )
         ],

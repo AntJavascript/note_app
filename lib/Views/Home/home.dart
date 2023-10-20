@@ -1,73 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-// UI内容组件
-import 'package:note_app/Views/Home/Widgets/DateGrid.dart';
-import 'package:note_app/Views/Component/bootom_bar.dart';
-import 'package:note_app/Views/Component/login_dialog.dart';
+// 自定义组件
+import 'package:note_app/Views/Home/Widgets/line_space.dart';
+import 'package:note_app/Views/Home/Widgets/record_list.dart';
+import 'package:note_app/Views/Home/Widgets/budget_card.dart';
+import 'package:note_app/Views/Home/Widgets/current_day_total.dart';
 
-// 路由配置
-import 'package:note_app/router/application.dart';
-// 日期处理函数
-import 'package:note_app/Views/Home/Widgets/date.dart';
+// 日期数据函数
+import 'package:note_app/tools/date.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
   @override
-  State<StatefulWidget> createState() => _HomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
-  bool isLogin = false;
-// 是否登录过
-  void autoLogin() async {
-    SharedPreferences prefer = await SharedPreferences.getInstance();
-    var access_token = prefer.getString("access_token");
-    var refresh_token = prefer.getString("refresh_token");
-
-    // 存在token,
-    if (access_token != null && refresh_token != null) {
-      setState(() {
-        isLogin = true;
-      });
-    }
-  }
-
-  @override
-  initState() {
-    super.initState();
-    autoLogin();
-  }
-
-   void bottomNavBarClick (int index) {
-
-   }
+class _HomePageState extends State<HomePage> {
+  String dateStr = dateFn(DateTime.now())['dateStr']; // 默认当天
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期数据
-    String title = "${dateStr["year"]}年${dateStr["month"]}月${dateStr["day"]}日";
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      bottomNavigationBar: BottomBar(onClick: bottomNavBarClick),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Application.router.navigateTo(context, "/create"); // 跳转创建界面
-        },
-        child: TailTypo().font_size(12).Text("记一笔"),
-      ),
-      body: isLogin
-          ? const DateGrid()
-          : Center(
-              child: LoginDialog(),
-            ),
+    return RefreshIndicator(
+      onRefresh:() async {
+        //模拟网络请求
+        await Future.delayed(Duration(milliseconds: 2000));
+        //结束刷新
+        return Future.value(true);
+      },
+      child:ListView(
+        children: [
+          Container(
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BudgetCard(),
+                  LineSpace(),
+                  CurrentDayTotal(),
+                  LineSpace(),
+                  RecordList(),
+                ],
+              ))
+        ],
+      )
     );
   }
 }

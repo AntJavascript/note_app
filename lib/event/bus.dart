@@ -7,3 +7,13 @@ class Bus {
     Bus.eventBus = EventBus();
   }
 }
+// 更新记录
+class UpdateRecordEvent {
+  final String type;
+  const UpdateRecordEvent(this.type);
+}
+// 更新首页统计
+class UpdateTotalEvent {
+  final String type;
+  const UpdateTotalEvent(this.type);
+}

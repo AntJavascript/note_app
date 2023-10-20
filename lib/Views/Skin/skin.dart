@@ -5,18 +5,18 @@ import 'package:provider/provider.dart';
 import 'package:note_app/provider/skin_model.dart';
 import 'package:note_app/config/skinColors.dart';
 
-class SkinList extends StatefulWidget {
-  const SkinList({
+class SkinPage extends StatefulWidget {
+  const SkinPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _SkinListState();
+  State<StatefulWidget> createState() => _SkinPageState();
 
   void change() {}
 }
 
-class _SkinListState extends State<SkinList> {
+class _SkinPageState extends State<SkinPage> {
   @override
   initState() {
     super.initState();

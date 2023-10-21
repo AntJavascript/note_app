@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vantui/flutter_vantui.dart';
+import 'package:provider/provider.dart';
 
 // 全局字体配置
 import 'package:note_app/config/appIcon.dart';
 // 全局配置
 import 'package:note_app/config/them.dart';
+import 'package:note_app/provider/skin_model.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({
@@ -88,18 +89,20 @@ class _BottomBarState extends State<BottomBar> {
     }
 
     return BottomAppBar(
-      color: Colors.black, //底部工具栏的颜色。
+      color: Provider.of<AppSkin>(context).color, //底部工具栏的颜色。
       shape: CircularNotchedRectangle(),
       notchMargin: 6.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          buildBotomItem(itemClick, 0, appIcons["home"], "首页", currentIndex),
-          buildBotomItem(itemClick, 1, appIcons["total"], "统计", currentIndex),
-          buildBotomItem(itemClick, -1, null as IconData, "", currentIndex),
-          buildBotomItem(itemClick, 2, appIcons["budget"], "预算", currentIndex),
-          buildBotomItem(itemClick, 3, appIcons["skin"], "换肤", currentIndex),
+          buildBotomItem(itemClick, 0, appIcons["housing"], "首页", currentIndex),
+          buildBotomItem(
+              itemClick, 1, appIcons["transfer"], "统计", currentIndex),
+          buildBotomItem(itemClick, -1, appIcons["housing"], "", currentIndex),
+          buildBotomItem(
+              itemClick, 2, appIcons["transfer"], "预算", currentIndex),
+          buildBotomItem(itemClick, 3, appIcons["other"], "换肤", currentIndex),
         ],
       ),
     );

@@ -7,6 +7,9 @@ import 'package:note_app/config/them.dart';
 // service
 import 'package:note_app/service/total_service.dart';
 
+// 日期数据函数
+import 'package:note_app/tools/date.dart';
+
 class BudgetCard extends StatefulWidget {
   const BudgetCard({Key? key}) : super(key: key);
   @override
@@ -14,20 +17,23 @@ class BudgetCard extends StatefulWidget {
 }
 
 class _BudgetCardState extends State<BudgetCard> {
-
   String income = "0.0";
   String expend = "0.0";
 
   @override
   initState() {
     super.initState();
+
+    Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期
+
     // 获取数据
-    TotalService.getTotalMonth().then((data) => {
-      setState(() {
-        income = data.incomeCount.toString();
-        expend = data.expendCount.toString();
-      })
-    });
+    TotalService.getTotalMonth(dateStr["year"], dateStr["month"])
+        .then((data) => {
+              setState(() {
+                income = data.incomeCount.toString();
+                expend = data.expendCount.toString();
+              })
+            });
   }
 
   @override
@@ -56,10 +62,7 @@ class _BudgetCardState extends State<BudgetCard> {
 }
 
 Widget Title(String text) {
-  return TailTypo()
-      .font_size(14.0)
-      .text_color(Colors.black)
-      .Text(text);
+  return TailTypo().font_size(14.0).text_color(Colors.black).Text(text);
 }
 
 Widget Amount(String text) {

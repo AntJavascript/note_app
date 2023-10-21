@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:common_utils/common_utils.dart';
-import 'package:note_app/model/login_model.dart';
 
 // 工具类
 import 'package:note_app/tools/show_snack.dart';
-
-// 路由配置
-import 'package:note_app/router/application.dart';
 
 // widget
 import './formInput.dart'; // 输入框

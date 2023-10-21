@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tailstyle/tailstyle.dart';
 
 // 自定义组件
 import 'package:note_app/Views/Home/Widgets/line_space.dart';
@@ -22,28 +21,27 @@ class _DateGridState extends State<DateGrid> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh:() async {
-        //模拟网络请求
-        await Future.delayed(Duration(milliseconds: 2000));
-        //结束刷新
-        return Future.value(true);
-      },
-      child:ListView(
-        children: [
-          Container(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BudgetCard(),
-                  LineSpace(),
-                  CurrentDayTotal(),
-                  LineSpace(),
-                  RecordList(),
-                ],
-              ))
-        ],
-      )
-    );
+        onRefresh: () async {
+          //模拟网络请求
+          await Future.delayed(Duration(milliseconds: 2000));
+          //结束刷新
+          return Future.value(true);
+        },
+        child: ListView(
+          children: [
+            Container(
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BudgetCard(),
+                    LineSpace(),
+                    CurrentDayTotal(),
+                    LineSpace(),
+                    RecordList(),
+                  ],
+                ))
+          ],
+        ));
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class BudgetPage extends StatefulWidget {
-  const SkinPage({
+  const BudgetPage({
     Key? key,
   }) : super(key: key);
 

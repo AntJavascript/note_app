@@ -10,7 +10,7 @@ import 'package:note_app/Views/Login/login.dart';
 
 var rootHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-  return Home();
+  return const HomePage();
 });
 
 var createRouteHandler = Handler(

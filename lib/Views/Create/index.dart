@@ -27,6 +27,15 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
+  @override
+  initState() {
+    super.initState();
+    // 获取列表数据
+    Bus.eventBus.on<UpdateTotalEvent>().listen((event) {
+      print('======================================================');
+    });
+  }
+
   GlobalKey dateKey = GlobalKey();
   GlobalKey amountKey = GlobalKey();
   GlobalKey tagKey = GlobalKey();
@@ -52,7 +61,7 @@ class _CreateState extends State<Create> {
     RecordService.add(data).then((data) => {
           if (data.code == 200)
             {
-              Bus.eventBus.fire(const UpdateRecordEvent('record')),
+              Bus.eventBus.fire(const UpdateTotalEvent('record')),
               Application.router.pop(context)
               // Navigator.of(context).pop();
             }

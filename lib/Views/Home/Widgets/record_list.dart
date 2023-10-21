@@ -28,19 +28,21 @@ class _RecordListState extends State<RecordList> {
 
   getData() {
     RecordService.getList().then((data) => {
-      setState(() {
-        list = data.data;
-      })
-    });
+          print("获取列表数据"),
+          setState(() {
+            list = data.data;
+          })
+        });
   }
 
   @override
   initState() {
     super.initState();
     // 获取列表数据
-    getData()
+    getData();
     Future<void> _listen() async {
       Bus.eventBus.on<UpdateRecordEvent>().listen((event) {
+        print(event.type);
         getData();
       });
     }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
+// EventBus
+import 'package:note_app/event/bus.dart';
+
 // 全局配置
 import 'package:note_app/config/them.dart';
 
@@ -25,16 +28,26 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
   String income = "0.0";
   String expend = "0.0";
 
-  @override
-  initState() {
-    super.initState();
-    // 获取列表数据
+  getData() {
     TotalService.getTotalDay().then((data) => {
+          print("当日统计数据"),
           setState(() {
             income = data.incomeCount.toString();
             expend = data.expendCount.toString();
           })
         });
+  }
+
+  @override
+  initState() {
+    super.initState();
+    // 获取列表数据
+    getData();
+    Bus.eventBus.on<UpdateTotalEvent>().listen((event) {
+      print('======================================================');
+      print(event.type);
+      getData();
+    });
   }
 
   @override

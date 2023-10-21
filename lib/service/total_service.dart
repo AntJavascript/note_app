@@ -13,11 +13,11 @@ class TotalService {
   }
 
   // 查询月份数据统计
-  static getTotalMonth(int id) async {
+  static getTotalMonth(int year, int month) async {
     // 开启日志打印
     DioUtil.instance?.openLog();
 
-    var response = await DioUtil().request('/total/month');
+    var response = await DioUtil().request("/total/month?year=${year}&month=${month}");
     total_model result = total_model.fromJson(response);
     return result;
   }

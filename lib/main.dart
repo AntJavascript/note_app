@@ -8,11 +8,14 @@ import 'package:provider/provider.dart';
 import 'package:note_app/provider/user_model.dart';
 // app主题颜色
 import 'package:note_app/provider/skin_model.dart';
+// EventBus
+import 'package:note_app/event/bus.dart';
 
 // 自定义组件
 import 'Views/app.dart';
 
 void main() {
+  Bus.init();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => UserInfo()),

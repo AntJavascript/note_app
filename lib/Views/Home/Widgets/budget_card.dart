@@ -4,6 +4,9 @@ import 'package:tailstyle/tailstyle.dart';
 // 全局配置
 import 'package:note_app/config/them.dart';
 
+// service
+import 'package:note_app/service/total_service.dart';
+
 class BudgetCard extends StatefulWidget {
   const BudgetCard({Key? key}) : super(key: key);
   @override
@@ -11,9 +14,20 @@ class BudgetCard extends StatefulWidget {
 }
 
 class _BudgetCardState extends State<BudgetCard> {
+
+  String income = "0.0";
+  String expend = "0.0";
+
   @override
   initState() {
     super.initState();
+    // 获取数据
+    TotalService.getTotalMonth().then((data) => {
+      setState(() {
+        income = data.incomeCount.toString();
+        expend = data.expendCount.toString();
+      })
+    });
   }
 
   @override
@@ -29,10 +43,10 @@ class _BudgetCardState extends State<BudgetCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Title("本月支出"),
-            Amount("1595.65"),
+            Amount(expend),
             Row(
               children: [
-                Expanded(child: Income("本月收入", "0.00")),
+                Expanded(child: Income("本月收入", income)),
                 Expanded(child: Income("本月预算", "0.00"))
               ],
             )

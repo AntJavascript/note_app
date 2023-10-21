@@ -43,11 +43,7 @@ class Login extends StatelessWidget {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('access_token', data.accessToken);
       await prefs.setString('refresh_token', data.refreshToken);
-      if (data.code === 200) {
-        Application.router.pop();
-      } else {
-        showSnackBar(context, data.msg);
-      }
+      showSnackBar(context, data.msg);
     });
   }
 

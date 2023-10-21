@@ -17,7 +17,6 @@ class Item extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("========================${dateStr}");
     // 每个item的宽高保持一致
     final double itemHeight = MediaQuery.of(context).size.width / 7;
     return Wrap(

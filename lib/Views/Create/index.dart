@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
+// 路由配置
+import 'package:note_app/router/application.dart';
 
 // 公共组件
 import 'package:note_app/Views/Component/title_cell.dart';
@@ -24,7 +25,6 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
-
   GlobalKey dateKey = GlobalKey();
   GlobalKey amountKey = GlobalKey();
   GlobalKey tagKey = GlobalKey();
@@ -47,14 +47,7 @@ class _CreateState extends State<Create> {
     data["account"] = "15817351609";
 
     // 获取列表数据
-    RecordService.add(data).then((data) => {
-      if (data.code === 200) {
-        Application.router.pop();
-      } else {
-        showSnackBar(context, data.msg);
-      }
-    });
-
+    RecordService.add(data).then((data) => {showSnackBar(context, data.msg)});
   }
 
   @override

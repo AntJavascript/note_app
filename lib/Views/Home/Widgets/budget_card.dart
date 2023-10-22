@@ -20,13 +20,7 @@ class _BudgetCardState extends State<BudgetCard> {
   String income = "0.0";
   String expend = "0.0";
 
-  @override
-  initState() {
-    super.initState();
-
-    Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期
-
-    // 获取数据
+  getDate() {
     TotalService.getTotalMonth(dateStr["year"], dateStr["month"])
         .then((data) => {
               setState(() {
@@ -34,6 +28,15 @@ class _BudgetCardState extends State<BudgetCard> {
                 expend = data.expendCount.toString();
               })
             });
+  }
+
+  @override
+  initState() {
+    super.initState();
+
+    Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期
+    // 获取数据
+    getDate()
   }
 
   @override

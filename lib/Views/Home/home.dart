@@ -7,6 +7,7 @@ import 'package:note_app/router/application.dart';
 
 // 自定义组件
 import 'package:note_app/Views/Home/Widgets/DateGrid.dart';
+import 'package:note_app/Views/Component/login_dialog.dart';
 
 // 日期数据函数
 import 'package:note_app/tools/date.dart';
@@ -32,6 +33,8 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         isLogin = true;
       });
+    } else {
+      LoginDialog();
     }
   }
 
@@ -59,13 +62,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: isLogin
           ? const DateGrid()
-          : Center(
-              child: ElevatedButton(
-                  child: const Text("去登录"),
-                  onPressed: () {
-                    Application.router.navigateTo(context, "/login");
-                  }),
-            ),
+          : null,
     );
   }
 }

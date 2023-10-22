@@ -13,21 +13,20 @@ import 'package:note_app/tools/date.dart';
 class BudgetCard extends StatefulWidget {
   const BudgetCard({Key? key}) : super(key: key);
   @override
-  State<StatefulWidget> createState() => _BudgetCardState();
+  State<StatefulWidget> createState() => BudgetCardState();
 }
 
-class _BudgetCardState extends State<BudgetCard> {
+class BudgetCardState extends State<BudgetCard> {
   String income = "0.0";
   String expend = "0.0";
 
-  getDate() {
-    TotalService.getTotalMonth(dateStr["year"], dateStr["month"])
-        .then((data) => {
-              setState(() {
-                income = data.incomeCount.toString();
-                expend = data.expendCount.toString();
-              })
-            });
+  getDate(int year, int month) {
+    TotalService.getTotalMonth(year, month).then((data) => {
+          setState(() {
+            income = data.incomeCount.toString();
+            expend = data.expendCount.toString();
+          })
+        });
   }
 
   @override
@@ -36,7 +35,7 @@ class _BudgetCardState extends State<BudgetCard> {
 
     Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期
     // 获取数据
-    getDate()
+    getDate(dateStr["year"], dateStr["month"]);
   }
 
   @override

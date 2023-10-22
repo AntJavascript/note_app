@@ -31,9 +31,6 @@ class _CreateState extends State<Create> {
   initState() {
     super.initState();
     // 获取列表数据
-    Bus.eventBus.on<UpdateTotalEvent>().listen((event) {
-      print('======================================================');
-    });
   }
 
   GlobalKey dateKey = GlobalKey();
@@ -62,8 +59,8 @@ class _CreateState extends State<Create> {
           if (data.code == 200)
             {
               Bus.eventBus.fire(const UpdateTotalEvent('record')),
-              Application.router.pop(context)
-              // Navigator.of(context).pop();
+              Application.router.pop(context),
+              showSnackBar(context, '成功')
             }
           else
             {showSnackBar(context, data.msg)}

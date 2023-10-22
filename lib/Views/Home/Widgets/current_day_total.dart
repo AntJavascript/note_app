@@ -21,10 +21,10 @@ class CurrentDayTotal extends StatefulWidget {
   const CurrentDayTotal({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _CurrentDayTotalState();
+  State<StatefulWidget> createState() => CurrentDayTotalState();
 }
 
-class _CurrentDayTotalState extends State<CurrentDayTotal> {
+class CurrentDayTotalState extends State<CurrentDayTotal> {
   String income = "0.0";
   String expend = "0.0";
 
@@ -44,8 +44,6 @@ class _CurrentDayTotalState extends State<CurrentDayTotal> {
     // 获取列表数据
     getData();
     Bus.eventBus.on<UpdateTotalEvent>().listen((event) {
-      print('======================================================');
-      print(event.type);
       getData();
     });
   }

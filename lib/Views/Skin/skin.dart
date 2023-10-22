@@ -22,8 +22,8 @@ class _SkinPageState extends State<SkinPage> {
     super.initState();
   }
 
-  void itemClick(Colors color, AppSkin appSkin) {
-    appSkin.setAppSkin(color)
+  void itemClick(MaterialColor color, AppSkin appSkin) {
+    appSkin.setAppSkin(color);
   }
 
   @override
@@ -35,13 +35,13 @@ class _SkinPageState extends State<SkinPage> {
       ),
       body: Consumer(builder: (_, AppSkin appSkin, __) {
         return ListView(
-          children: listColor.map((item) => {
+          children: listColor.map((item) {
             return InkWell(
-                child:Container(color: item),
-                onTap: () {
-                  itemClick(item, appSkin);
-                },
-              )
+              child: Container(color: item),
+              onTap: () {
+                itemClick(item, appSkin);
+              },
+            );
           }).toList(),
         );
       }),

@@ -9,7 +9,7 @@ class CommonEntity {
 
   dynamic? data;
   String? msg;
-  String? code;
+  int? code;
 
   CommonEntity({
     this.data,
@@ -19,7 +19,7 @@ class CommonEntity {
   CommonEntity.fromJson(Map<String, dynamic> json) {
     data = json['data']?.toString();
     msg = json['msg']?.toString();
-    code = json['code']?.toString();
+    code = json['code']?.toInt();
   }
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};

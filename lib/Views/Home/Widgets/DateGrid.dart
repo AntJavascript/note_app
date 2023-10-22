@@ -16,8 +16,6 @@ class DateGrid extends StatefulWidget {
 }
 
 class _DateGridState extends State<DateGrid> {
-  String dateStr = dateFn(DateTime.now())['dateStr']; // 默认当天
-
   GlobalKey budgetKey = GlobalKey();
   GlobalKey dayTotalKey = GlobalKey();
   GlobalKey recordKey = GlobalKey();
@@ -26,17 +24,21 @@ class _DateGridState extends State<DateGrid> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
         onRefresh: () async {
+          Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期
           //模拟网络请求
           await Future.delayed(Duration(milliseconds: 2000));
+
+          var budget = budgetKey.currentState as BudgetCardState;
+          budget.getDate(dateStr["year"].toInt(), dateStr["month"]);
+
+          var record = dayTotalKey.currentState as CurrentDayTotalState;
+          record.getData();
+
+          var dayTotal = recordKey.currentState as RecordListState;
+          dayTotal.getData();
+
           //结束刷新
           return Future.value(true);
-          
-          var budget = budgetKey.currentState as _BudgetCardState;
-          budget.getDate();
-
-          var dayTotal = dayTotalKey.currentState as _RecordListState;
-          dayTotal.getDate();
-
         },
         child: ListView(
           children: [

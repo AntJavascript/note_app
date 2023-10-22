@@ -20,10 +20,10 @@ class RecordList extends StatefulWidget {
   RecordList({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _RecordListState();
+  State<StatefulWidget> createState() => RecordListState();
 }
 
-class _RecordListState extends State<RecordList> {
+class RecordListState extends State<RecordList> {
   List<Data> list = [];
 
   getData() {
@@ -40,12 +40,10 @@ class _RecordListState extends State<RecordList> {
     super.initState();
     // 获取列表数据
     getData();
-    Future<void> _listen() async {
-      Bus.eventBus.on<UpdateRecordEvent>().listen((event) {
-        print(event.type);
-        getData();
-      });
-    }
+    Bus.eventBus.on<UpdateTotalEvent>().listen((event) {
+      print("=============更新列表数据");
+      getData();
+    });
   }
 
   @override

@@ -18,6 +18,10 @@ class DateGrid extends StatefulWidget {
 class _DateGridState extends State<DateGrid> {
   String dateStr = dateFn(DateTime.now())['dateStr']; // 默认当天
 
+  GlobalKey budgetKey = GlobalKey();
+  GlobalKey dayTotalKey = GlobalKey();
+  GlobalKey recordKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -26,6 +30,13 @@ class _DateGridState extends State<DateGrid> {
           await Future.delayed(Duration(milliseconds: 2000));
           //结束刷新
           return Future.value(true);
+          
+          var budget = budgetKey.currentState as _BudgetCardState;
+          budget.getDate();
+
+          var dayTotal = dayTotalKey.currentState as _RecordListState;
+          dayTotal.getDate();
+
         },
         child: ListView(
           children: [
@@ -34,11 +45,11 @@ class _DateGridState extends State<DateGrid> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BudgetCard(),
+                    BudgetCard(key: budgetKey),
                     LineSpace(),
-                    CurrentDayTotal(),
+                    CurrentDayTotal(key: dayTotalKey),
                     LineSpace(),
-                    RecordList(),
+                    RecordList(key: recordKey),
                   ],
                 ))
           ],

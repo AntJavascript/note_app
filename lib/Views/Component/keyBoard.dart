@@ -5,6 +5,10 @@ import 'package:note_app/config/appIcon.dart';
 // 全局配置
 import 'package:note_app/config/them.dart';
 
+import 'package:provider/provider.dart';
+// app主题颜色
+import 'package:note_app/provider/skin_model.dart';
+
 class KeyBoard extends StatefulWidget {
   const KeyBoard(
       {Key? key,
@@ -94,7 +98,7 @@ Widget confirmBtn(widget, double heigth) {
       widget.onConfirm();
     },
     child: Container(
-      color: Colors.blue,
+      color: Provider.of<AppSkin>(context).color,
       width: 80,
       height: heigth + 3,
       child: Center(

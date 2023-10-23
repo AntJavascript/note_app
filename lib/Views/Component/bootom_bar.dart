@@ -76,7 +76,7 @@ class _BottomBarState extends State<BottomBar> {
         child: GestureDetector(
           onTap: () {
             if (index != currentIndex) {
-              widget.onClick(index);
+              onClick(index);
             }
           },
           child: SizedBox(

@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       });
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-         showDialog(
+         showDialog<void>(
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {

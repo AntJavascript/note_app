@@ -6,8 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:note_app/router/application.dart';
 
 // 自定义组件
-import 'package:note_app/Views/Home/Widgets/DateGrid.dart';
-import 'package:note_app/Views/Component/login_dialog.dart';
+import 'package:note_app/Views/Home/Widgets/DateGrid.dart'; // 首页
+import 'package:note_app/Views/Total/total.dart'; // 统计
+import 'package:note_app/Views/Budget/budget.dart'; // 预算
+import 'package:note_app/Views/Skin/skin.dart'; // 换肤
 
 // 日期数据函数
 import 'package:note_app/tools/date.dart';
@@ -19,7 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String dateStr = dateFn(DateTime.now())['dateStr']; // 默认当天
 
   bool isLogin = false;
 // 是否登录过
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
       });
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-         showDialog<void>(
+         showDialog(
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
@@ -64,6 +65,17 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+
+  final _pageController = PageController();
+  int currentIndex = 0;
+
+  void _onItemTapped(int index) {
+    this.setState(() {
+      currentIndex = index;
+    });
+    _pageController.jumpToPage(index);
+  }
+
   @override
   initState() {
     super.initState();
@@ -72,8 +84,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期数据
-    String title = "${dateStr["year"]}年${dateStr["month"]}月${dateStr["day"]}日";
+    String title = dateFn(DateTime.now())['dateStr'];
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -86,9 +97,21 @@ class _HomePageState extends State<HomePage> {
         },
         child: TailTypo().font_size(12).Text("记一笔"),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: isLogin
-          ? const DateGrid()
+          ? PageView(
+            controller: _pageController,
+            onPageChanged: _onItemTapped,
+            children: [
+              DateGrid(),
+              TotalPage(),
+              BudgetPage(),
+              SkinPage()
+            ],
+            physics: NeverScrollableScrollPhysics(), // 禁止滑动
+          )
           : null,
+      bottomNavigationBar: BottomBar(onClick: _onItemTapped),
     );
   }
 }

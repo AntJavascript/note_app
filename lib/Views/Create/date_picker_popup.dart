@@ -21,8 +21,7 @@ class DatePickerPopup extends StatefulWidget {
 }
 
 class DatePickerPopupState extends State<DatePickerPopup> {
-  String values =
-      "${year}-${month.length == 1 ? "0${month}" : month}-${day.length == 1 ? "0${day}" : day}";
+  String values = "${year}-${month.padLeft(2, '0')}-${day.padLeft(2, '0')}";
 
   @override
   void initState() {
@@ -37,8 +36,7 @@ class DatePickerPopupState extends State<DatePickerPopup> {
     String month = val[1].toString();
     String day = val[2].toString();
     setState(() {
-      values =
-          "${year}-${month.length == 1 ? "0${month}" : month}-${day.length == 1 ? "0${day}" : day}";
+      values = "${year}-${month.padLeft(2, '0')}-${day.padLeft(2, '0')}";
     });
     Navigator.of(context).pop();
   }

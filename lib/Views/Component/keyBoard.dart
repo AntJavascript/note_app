@@ -42,7 +42,7 @@ class _KeyBoardState extends State<KeyBoard> {
               children: digitBtns(widget, btnWidght),
             ),
           ),
-          confirmBtn(widget, (btnWidght - 40) * 4),
+          confirmBtn(widget, (btnWidght - 40) * 4, context),
         ]));
   }
 }
@@ -92,7 +92,7 @@ Widget delBtn(widget, double btnWidght) {
 }
 
 // 确定按钮
-Widget confirmBtn(widget, double heigth) {
+Widget confirmBtn(widget, double heigth, BuildContext context) {
   return GestureDetector(
     onTap: () {
       widget.onConfirm();

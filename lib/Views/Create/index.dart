@@ -21,7 +21,7 @@ class _CreateState extends State<Create> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> tabs = [
+    List<Map<String, String>> tabs = [
       {
         "text": "支出",
         "type": "expend",
@@ -32,23 +32,22 @@ class _CreateState extends State<Create> {
       }
     ];
     return DefaultTabController(
-      length: tabs.length,
-      child: Scaffold(
-        appBar: AppBar(
+        length: tabs.length,
+        child: Scaffold(
+          appBar: AppBar(
             title: Text("记一笔"),
             bottom: TabBar(
-              tabs: tabs.map((e) => Tab(text: e.text)).toList(),
+              tabs: tabs.map((e) => Tab(text: e["text"])).toList(),
             ),
           ),
-        body: TabBarView(
+          body: TabBarView(
             children: tabs.map((e) {
-              if (e.["type"] == "expend") {
+              if (e["type"] == "expend") {
                 return Expendpage();
               }
               return Incomepage();
             }).toList(),
           ),
-      )
-    );
+        ));
   }
 }

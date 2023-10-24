@@ -91,7 +91,7 @@ class _BottomBarState extends State<BottomBar> {
     return BottomAppBar(
       color: Provider.of<AppSkin>(context).color, //底部工具栏的颜色。
       shape: CircularNotchedRectangle(),
-      notchMargin: 6.0,
+      notchMargin: 3.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         mainAxisSize: MainAxisSize.max,

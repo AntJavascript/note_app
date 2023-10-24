@@ -11,6 +11,7 @@ import 'package:note_app/Views/Home/Widgets/DateGrid.dart'; // 首页
 import 'package:note_app/Views/Total/total.dart'; // 统计
 import 'package:note_app/Views/Budget/budget.dart'; // 预算
 import 'package:note_app/Views/Skin/skin.dart'; // 换肤
+import 'package:note_app/Views/Component/bootom_bar.dart'; // 底部导航
 
 // 日期数据函数
 import 'package:note_app/tools/date.dart';
@@ -22,7 +23,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   bool isLogin = false;
 // 是否登录过
   void autoLogin() async {
@@ -37,24 +37,31 @@ class _HomePageState extends State<HomePage> {
       });
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-         showDialog(
+        showDialog(
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('请先登录'),
-              content:Text('检测到你还未登陆，请先登录再进行操作。'),
-              actions:<Widget>[
-                FlatButton(
-                  child: Text('去登录'),
-                  onPressed: (){
+              content: Text('检测到你还未登陆，请先登录再进行操作。'),
+              actions: <Widget>[
+                InkWell(
+                  child: Container(
+                    margin: EdgeInsets.all(25),
+                    child: Text('去登录'),
+                  ),
+                  onTap: () {
                     Application.router.navigateTo(context, "/login");
                   },
                 ),
-                FlatButton(
-                  child: Text('退出应用'),
-                  onPressed: () async{
-                    await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                InkWell(
+                  child: Container(
+                    margin: EdgeInsets.all(25),
+                    child: Text('退出应用'),
+                  ),
+                  onTap: () async {
+                    await SystemChannels.platform
+                        .invokeMethod('SystemNavigator.pop');
                   },
                 ),
               ],
@@ -62,10 +69,9 @@ class _HomePageState extends State<HomePage> {
             );
           },
         );
-      }
+      });
     }
   }
-
 
   final _pageController = PageController();
   int currentIndex = 0;
@@ -93,6 +99,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         onPressed: () {
           Application.router.navigateTo(context, "/create"); // 跳转创建界面
         },
@@ -101,16 +108,11 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: isLogin
           ? PageView(
-            controller: _pageController,
-            onPageChanged: _onItemTapped,
-            children: [
-              DateGrid(),
-              TotalPage(),
-              BudgetPage(),
-              SkinPage()
-            ],
-            physics: NeverScrollableScrollPhysics(), // 禁止滑动
-          )
+              controller: _pageController,
+              onPageChanged: _onItemTapped,
+              children: [DateGrid(), TotalPage(), BudgetPage(), SkinPage()],
+              physics: NeverScrollableScrollPhysics(), // 禁止滑动
+            )
           : null,
       bottomNavigationBar: BottomBar(onClick: _onItemTapped),
     );

@@ -29,7 +29,6 @@ class _CreateState extends State<Create> {
       {
         "text": "收入",
         "type": "income",
-        "widget": Incomepage()
       }
     ];
     return DefaultTabController(

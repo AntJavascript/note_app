@@ -10,6 +10,7 @@ class Routes {
   static String root = "/";
   static String create = "/create";
   static String login = "/login";
+  static String detail = "/detail";
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
@@ -20,5 +21,6 @@ class Routes {
     router.define(root, handler: rootHandler);
     router.define(create, handler: createRouteHandler);
     router.define(login, handler: loginRouteHandler);
+    router.define(detail, handler: detailRouteHandler);
   }
 }

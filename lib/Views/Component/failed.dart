@@ -5,7 +5,7 @@ import 'package:tailstyle/tailstyle.dart';
 import 'package:note_app/config/them.dart';
 
 class Failed extends StatelessWidget {
-  const Failed({Key? key, this.text = "加载失败，点击重试", this.height = 100, this.onClick}): super(key: key);;
+  const Failed({Key? key, this.text = "加载失败，点击重试", this.height = 100, this.onClick}): super(key: key);
 
   final String? text;
   final double? height;

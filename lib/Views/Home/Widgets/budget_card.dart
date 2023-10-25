@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tailstyle/tailstyle.dart';
 
+// EventBus
+import 'package:note_app/event/bus.dart';
+
 // 全局配置
 import 'package:note_app/config/them.dart';
 
@@ -36,6 +39,11 @@ class BudgetCardState extends State<BudgetCard> {
     Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期
     // 获取数据
     getDate(dateStr["year"], dateStr["month"]);
+
+    // 事件监听
+    Bus.eventBus.on<UpdateTotalEvent>().listen((event) {
+      getDate(dateStr["year"], dateStr["month"]);
+    });
   }
 
   @override

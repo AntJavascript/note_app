@@ -25,70 +25,65 @@ class CurrentDayTotal extends StatefulWidget {
 }
 
 class CurrentDayTotalState extends State<CurrentDayTotal> {
-  String income = "0.0";
-  String expend = "0.0";
+  String income = "0";
+  String expend = "0";
+  bool liading = true;
+  bool success = true;
 
-  getData() {
-    TotalService.getTotalDay().then((data) => {
-          print("当日统计数据"),
-          setState(() {
-            income = data.incomeCount.toString();
-            expend = data.expendCount.toString();
-          })
-        });
+ // 获取数据
+  getData() async {
+    setState(() => liading = true);
+    final data = await TotalService.getTotalDay();
+    if(data.code == 200) {
+      setState(() {
+        income = data.incomeCount.toString();
+        expend = data.expendCount.toString();
+        liading = false;
+        success = true;
+      })
+    } else {
+      setState(() {
+        income = "0";
+        expend = "0";
+        success = false;
+        liading = false;
+      })
+    }
+    return data;
   }
 
   @override
   initState() {
     super.initState();
+
     // 获取列表数据
     getData();
+
+    // 事件监听
     Bus.eventBus.on<UpdateTotalEvent>().listen((event) {
       getData();
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: [
-      TitleCell(title: "收支统计"),
-      LineSpace(
-        height: 20,
-        color: Colors.white,
-      ),
-      Row(children: [
-        Expanded(
-            child: Column(
-          children: [
-            Income("今日支出", type: "expend"),
-            LineSpace(
-              color: Colors.white,
-            ),
-            Amount(expend, type: "expend"),
-            LineSpace(
-              height: 20,
-              color: Colors.white,
-            ),
-          ],
-        )),
-        Expanded(
-            child: Column(
-          children: [
-            Income("今日收入", type: "income"),
-            LineSpace(
-              color: Colors.white,
-            ),
-            Amount(income, type: "income"),
-            LineSpace(
-              height: 20,
-              color: Colors.white,
-            ),
-          ],
-        ))
-      ]),
-    ]);
+  // 数据显示
+  Widget ShowData(String type, String title, String amount) {
+    return Expanded(
+      child: Column(
+        children: [
+          Income(title, type: type),
+          LineSpace(
+            color: Colors.white,
+          ),
+          Amount(amount, type: type),
+          LineSpace(
+            height: 20,
+            color: Colors.white,
+          ),
+        ],
+    ));
   }
 
+  // 文字显示
   Widget Income(String text, {String type = 'income'}) {
     bool isIncome = type == 'income';
     return TailTypo()
@@ -99,6 +94,7 @@ class CurrentDayTotalState extends State<CurrentDayTotal> {
         .Text(text);
   }
 
+  // 金额显示
   Widget Amount(String text, {String type = 'income'}) {
     bool isIncome = type == 'income';
     return TailTypo()
@@ -108,4 +104,49 @@ class CurrentDayTotalState extends State<CurrentDayTotal> {
             : AppColorConfig.incomeTextColor)
         .Text(isIncome ? "+${text}" : "-${text}");
   }
+
+  // 加载状态
+  Widget Loading() {
+    return Container(
+      height: 100,
+      alignment: Alignment.center,
+      child: TailTypo().font_size(14.0).text_color(AppColorConfig.labelColor).Text('数据加载中...')
+    );
+  }
+
+  // 加载失败显示
+  Widget Failed () {
+    return GestureDetector(
+      onTap: () {
+        getData();
+      },
+      child: Container(
+        height: 100,
+        alignment: Alignment.center,
+        child: TailTypo().font_size(14.0).text_color(AppColorConfig.labelColor).Text('加载失败，点击重试')
+      )
+    );
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    if (liading) {
+      return Loading();
+    } else if (!liading && !success) {
+      return Failed();
+    } else {
+      return Column(children: [
+        TitleCell(title: "收支统计"),
+        LineSpace(
+          height: 20,
+          color: Colors.white,
+        ),
+        Row(children: [
+          ShowData("expend", "今日支出", expend),
+          ShowData("income", "今日收入", income)
+        ]),
+      ]);
+    }
+  }
+  
 }

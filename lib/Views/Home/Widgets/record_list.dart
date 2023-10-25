@@ -75,7 +75,7 @@ class RecordListState extends State<RecordList> {
   Widget CusItem(item) {
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, "/detail/${item.id}");
+        Application.router.navigateTo(context, "/detail?id=${item.id}&type=${item.type}");
       },
       child: TailBox().m(10).pb(10).border_b(Color.fromARGB(255, 240, 239, 239), 1).Container(
         child: Row(

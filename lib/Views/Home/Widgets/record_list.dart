@@ -21,6 +21,10 @@ import 'package:note_app/config/appIcon.dart';
 // service
 import 'package:note_app/service/record_service.dart';
 
+import 'package:provider/provider.dart';
+// app主题颜色
+import 'package:note_app/provider/skin_model.dart';
+
 class RecordList extends StatefulWidget {
   RecordList({Key? key}) : super(key: key);
 
@@ -36,18 +40,18 @@ class RecordListState extends State<RecordList> {
   getData() async {
     setState(() => liading = true);
     final data = await RecordService.getList();
-    if(data.code == 200) {
+    if (data.code == 200) {
       setState(() {
         list = data.data;
         liading = false;
         success = true;
-      })
+      });
     } else {
       setState(() {
         list = [];
         success = false;
         liading = false;
-      })
+      });
     }
     return data;
   }
@@ -74,31 +78,37 @@ class RecordListState extends State<RecordList> {
   // item 组件
   Widget CusItem(item) {
     return InkWell(
-      onTap: () {
-        Application.router.navigateTo(context, "/detail?id=${item.id}&type=${item.type}");
-      },
-      child: TailBox().m(10).pb(10).border_b(Color.fromARGB(255, 240, 239, 239), 1).Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, 
-          children: [
-            Row(
-              children: [
-                TailBox().mr(10).Container(
-                  child: CusIcon(appIcons["${item.recordType}"]),
-                ),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Title(item.recordTypeName),
-                  Container(
-                    height: 5,
+        onTap: () {
+          Application.router
+              .navigateTo(context, "/detail?id=${item.id}&type=${item.type}");
+        },
+        child: TailBox()
+            .m(10)
+            .pb(10)
+            .border_b(Color.fromARGB(255, 240, 239, 239), 1)
+            .Container(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                  Row(
+                    children: [
+                      TailBox().mr(10).Container(
+                            child: CusIcon(appIcons["${item.recordType}"]),
+                          ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Title(item.recordTypeName),
+                            Container(
+                              height: 5,
+                            ),
+                            Remark(item.remark),
+                          ])
+                    ],
                   ),
-                  Remark(item.remark),
-                ])
-              ],
-          ),
-          Container(child: Amount(item.amount.toString(), type: item.type))
-        ])
-      )
-    );
+                  Container(
+                      child: Amount(item.amount.toString(), type: item.type))
+                ])));
   }
 
   // 显示图标
@@ -106,8 +116,9 @@ class RecordListState extends State<RecordList> {
     return TailBox()
         .p(10)
         .rounded(30)
-        .bg(AppColorConfig.iconBgColor)
-        .Container(child: Icon(icon, size: 22, color: AppColorConfig.iconColor));
+        .bg(Provider.of<AppSkin>(context).color)
+        .Container(
+            child: Icon(icon, size: 22, color: AppColorConfig.iconColor));
   }
 
   // 显示类型
@@ -147,5 +158,4 @@ class RecordListState extends State<RecordList> {
       return Column(children: ListWrapper(list));
     }
   }
-  
 }

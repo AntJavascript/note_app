@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:note_app/router/application.dart';
 
 // 自定义组件
-import 'package:note_app/Views/Create/expend/expend_page.dart';
-import 'package:note_app/Views/Create/income/income_page.dart';
+import 'package:note_app/Views/Detail/expend_edit.dart';
+import 'package:note_app/Views/Detail/income_edit.dart';
 
 class DetailPage extends StatefulWidget {
-  DetailPage({Key? key, required this.id, required this.type = ''}) : super(key: key);
+  DetailPage({Key? key, required this.id, required this.type})
+      : super(key: key);
 
   final int id;
   final String type;
@@ -24,6 +25,8 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.type == "expend" ? ExpendEdit(widget.id) : IncomeEdit(widget.id);
+    return widget.type == "expend"
+        ? ExpendEdit(id: widget.id)
+        : IncomeEdit(id: widget.id);
   }
 }

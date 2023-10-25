@@ -35,22 +35,19 @@ class _SkinPageState extends State<SkinPage> {
       ),
       body: Consumer(builder: (_, AppSkin appSkin, __) {
         return ListView(
-          children: Wrap(
-            spacing: 10,
-            runSpacing: 16,
-            children listColor.map((item) {
-              return InkWell(
-                child: Container(
-                  color: item,
-                  width: 100,
-                  height: 100
-                ),
-                onTap: () {
-                  itemClick(item, appSkin);
-                },
-              );
-            }).toList()
-          )
+          children: [
+            Wrap(
+                spacing: 10,
+                runSpacing: 16,
+                children: listColor.map((item) {
+                  return InkWell(
+                    child: Container(color: item, width: 70, height: 70),
+                    onTap: () {
+                      itemClick(item, appSkin);
+                    },
+                  );
+                }).toList())
+          ],
         );
       }),
     );

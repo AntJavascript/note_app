@@ -17,6 +17,10 @@ import 'package:note_app/tools/date.dart';
 import 'package:note_app/Views/Component/loading.dart';
 import 'package:note_app/Views/Component/failed.dart';
 
+import 'package:provider/provider.dart';
+// app主题颜色
+import 'package:note_app/provider/skin_model.dart';
+
 class BudgetCard extends StatefulWidget {
   const BudgetCard({Key? key}) : super(key: key);
   @override
@@ -34,20 +38,20 @@ class BudgetCardState extends State<BudgetCard> {
   getData(int year, int month) async {
     setState(() => liading = true);
     final data = await TotalService.getTotalMonth(year, month);
-    if(data.code == 200) {
+    if (data.code == 200) {
       setState(() {
         income = data.incomeCount.toString();
         expend = data.expendCount.toString();
         liading = false;
         success = true;
-      })
+      });
     } else {
       setState(() {
         income = "0";
         expend = "0";
         success = false;
         liading = false;
-      })
+      });
     }
     return data;
   }
@@ -102,21 +106,21 @@ class BudgetCardState extends State<BudgetCard> {
     } else if (!liading && !success) {
       return Failed();
     } else {
-      return TailBox().p(10).bg(AppColorConfig.themColor).Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Title("本月支出"),
-            Amount(expend),
-            Row(
-              children: [
-                Expanded(child: Income("本月收入", income)),
-                Expanded(child: Income("本月预算", budget))
-              ],
-            )
-          ],
-        ));
+      return TailBox().p(10).bg(Provider.of<AppSkin>(context).color).Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Title("本月支出"),
+              Amount(expend),
+              Row(
+                children: [
+                  Expanded(child: Income("本月收入", income)),
+                  Expanded(child: Income("本月预算", budget))
+                ],
+              )
+            ],
+          ));
     }
   }
 }

@@ -6,6 +6,10 @@ import 'package:note_app/config/them.dart';
 // 全局字体配置
 import 'package:note_app/config/appIcon.dart';
 
+import 'package:provider/provider.dart';
+// app主题颜色
+import 'package:note_app/provider/skin_model.dart';
+
 class Tag extends StatefulWidget {
   final String? text;
   final String? icon;
@@ -38,7 +42,7 @@ class TagState extends State<Tag> {
     Color textColor = isActive ? Colors.white : Color.fromARGB(255, 78, 78, 78);
     // 背景颜色
     Color bgColor = isActive
-        ? AppColorConfig.iconBgColor
+        ? Provider.of<AppSkin>(context).color
         : Color.fromARGB(255, 230, 229, 229);
 
     return GestureDetector(

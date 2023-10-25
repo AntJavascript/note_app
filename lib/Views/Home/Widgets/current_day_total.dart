@@ -32,24 +32,24 @@ class CurrentDayTotalState extends State<CurrentDayTotal> {
   bool liading = true;
   bool success = true;
 
- // 获取数据
+  // 获取数据
   getData() async {
     setState(() => liading = true);
     final data = await TotalService.getTotalDay();
-    if(data.code == 200) {
+    if (data.code == 200) {
       setState(() {
         income = data.incomeCount.toString();
         expend = data.expendCount.toString();
         liading = false;
         success = true;
-      })
+      });
     } else {
       setState(() {
         income = "0";
         expend = "0";
         success = false;
         liading = false;
-      })
+      });
     }
     return data;
   }
@@ -70,18 +70,18 @@ class CurrentDayTotalState extends State<CurrentDayTotal> {
   // 数据显示
   Widget ShowData(String type, String title, String amount) {
     return Expanded(
-      child: Column(
-        children: [
-          Income(title, type: type),
-          LineSpace(
-            color: Colors.white,
-          ),
-          Amount(amount, type: type),
-          LineSpace(
-            height: 20,
-            color: Colors.white,
-          ),
-        ],
+        child: Column(
+      children: [
+        Income(title, type: type),
+        LineSpace(
+          color: Colors.white,
+        ),
+        Amount(amount, type: type),
+        LineSpace(
+          height: 20,
+          color: Colors.white,
+        ),
+      ],
     ));
   }
 
@@ -106,7 +106,7 @@ class CurrentDayTotalState extends State<CurrentDayTotal> {
             : AppColorConfig.incomeTextColor)
         .Text(isIncome ? "+${text}" : "-${text}");
   }
-  
+
   @override
   Widget build(BuildContext context) {
     if (liading) {
@@ -127,5 +127,4 @@ class CurrentDayTotalState extends State<CurrentDayTotal> {
       ]);
     }
   }
-  
 }

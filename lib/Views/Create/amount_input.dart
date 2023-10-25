@@ -6,7 +6,7 @@ import 'package:note_app/Views/Component/keyBoard.dart';
 class AmountInput extends StatefulWidget {
   const AmountInput({Key? key, this.color = Colors.red}) : super(key: key);
 
-  final Colors? color;
+  final MaterialColor? color;
 
   @override
   State<StatefulWidget> createState() => AmountInputState();
@@ -79,8 +79,8 @@ class AmountInputState extends State<AmountInput> {
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
-                border:
-                    Border(bottom: BorderSide(color: widget.color, width: 0.5))),
+                border: Border(
+                    bottom: BorderSide(color: widget.color!, width: 0.5))),
             child: Text(amount,
                 style: TextStyle(fontSize: 42.0, color: widget.color))));
   }

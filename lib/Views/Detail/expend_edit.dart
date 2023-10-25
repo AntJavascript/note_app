@@ -23,7 +23,7 @@ import 'package:note_app/model/record_model.dart';
 import 'package:note_app/tools/show_snack.dart';
 
 class ExpendEdit extends StatefulWidget {
-  ExpendEdit({Key? key, required this.id}): super(key: key);
+  ExpendEdit({Key? key, required this.id}) : super(key: key);
 
   final int id;
 
@@ -32,10 +32,9 @@ class ExpendEdit extends StatefulWidget {
 }
 
 class _ExpendEditState extends State<ExpendEdit> {
-
   bool liading = true;
   bool success = true;
-  var record_model detail
+  Map<String, dynamic> detail = {};
 
   @override
   initState() {
@@ -46,18 +45,18 @@ class _ExpendEditState extends State<ExpendEdit> {
   getData() async {
     setState(() => liading = true);
     final data = await RecordService.getDetail(widget.id);
-    if(data.code == 200) {
+    if (data.code == 200) {
       setState(() {
         detail = data;
         liading = false;
         success = true;
-      })
+      });
     } else {
       setState(() {
-        detail = null;
+        detail = {};
         success = false;
         liading = false;
-      })
+      });
     }
     return data;
   }
@@ -85,73 +84,77 @@ class _ExpendEditState extends State<ExpendEdit> {
     data["account"] = "15817351609";
 
     RecordService.edit(data).then((data) => {
-      if (data.code == 200)
-        {
-          Bus.eventBus.fire(const UpdateTotalEvent('record')),
-          Application.router.pop(context),
-          showSnackBar(context, '成功')
-        }
-      else
-        {showSnackBar(context, data.msg)}
-    });
+          if (data.code == 200)
+            {
+              Bus.eventBus.fire(const UpdateTotalEvent('record')),
+              Application.router.pop(context),
+              showSnackBar(context, '成功')
+            }
+          else
+            {showSnackBar(context, data.msg)}
+        });
   }
 
   // 删除
   void del(BuildContext context) {
-    RecordService.del(data).then((data) => {
-      if (data.code == 200)
-        {
-          Bus.eventBus.fire(const UpdateTotalEvent('record')),
-          Application.router.pop(context),
-          showSnackBar(context, '删除成功')
-        }
-      else
-        {showSnackBar(context, data.msg)}
-    });
+    RecordService.del(widget.id).then((data) => {
+          if (data.code == 200)
+            {
+              Bus.eventBus.fire(const UpdateTotalEvent('record')),
+              Application.router.pop(context),
+              showSnackBar(context, '删除成功')
+            }
+          else
+            {showSnackBar(context, data.msg)}
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     const spacing = 10.0;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("编辑"),
-      ),
-      body: ListView(
-        children: [
-          Container(
-            margin: EdgeInsets.all(16),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              DatePickerPopup(key: dateKey), // 日期
-              AmountInput(key: amountKey), // 金额
-              SizedBox(height: spacing),
-              TitleCell(title: "消费类型"),
-              SizedBox(height: spacing),
-              GroupTag(key: tagKey), // 分类
-              SizedBox(height: spacing),
-              TitleCell(title: "备注"),
-              SizedBox(height: spacing),
-              RemarkInput(key: remarkKey), // 备注
-              SizedBox(height: spacing)
-            ]),
-          )
-        ],
-      ),
-      bottomNavigationBar: Container(
-          height: 44.0,
-          decoration: BoxDecoration(color: Colors.white),
-          child: Row(
-            children: <Widget>[
-              NoteButton(text: '删除', onClick: () {
-                del(context);
-              }),
-              NoteButton(text: '保存', onClick: () {
-                submit(context);
-              }),
-            ]
-          )
-      )
-    );
+        appBar: AppBar(
+          title: Text("编辑"),
+        ),
+        body: ListView(
+          children: [
+            Container(
+              margin: EdgeInsets.all(16),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DatePickerPopup(key: dateKey), // 日期
+                    AmountInput(key: amountKey), // 金额
+                    SizedBox(height: spacing),
+                    TitleCell(title: "消费类型"),
+                    SizedBox(height: spacing),
+                    GroupTag(key: tagKey), // 分类
+                    SizedBox(height: spacing),
+                    TitleCell(title: "备注"),
+                    SizedBox(height: spacing),
+                    RemarkInput(key: remarkKey), // 备注
+                    SizedBox(height: spacing)
+                  ]),
+            )
+          ],
+        ),
+        bottomNavigationBar: Container(
+            height: 44.0,
+            decoration: BoxDecoration(color: Colors.white),
+            child: Row(children: <Widget>[
+              Expanded(
+                  child: NoteButton(
+                      text: '删除',
+                      onClick: () {
+                        del(context);
+                      })),
+              Expanded(
+                child: NoteButton(
+                    text: '保存',
+                    onClick: () {
+                      submit(context);
+                    }),
+              ),
+            ])));
   }
 }

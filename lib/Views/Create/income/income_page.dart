@@ -69,30 +69,33 @@ class _IncomepageState extends State<Incomepage> {
   Widget build(BuildContext context) {
     const spacing = 10.0;
     return ListView(
-        children: [
-          Container(
-            margin: EdgeInsets.all(16),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              DatePickerPopup(key: dateKey), // 日期
-              AmountInput(key: amountKey), // 金额
-              SizedBox(height: spacing),
-              TitleCell(title: "消费类型"),
-              SizedBox(height: spacing),
-              GroupTag(key: tagKey), // 分类
-              SizedBox(height: spacing),
-              TitleCell(title: "备注"),
-              SizedBox(height: spacing),
-              RemarkInput(key: remarkKey), // 备注
-              SizedBox(height: spacing),
-              CreateButton(
-                  submit: () {
-                    submit(context);
-                  },
-                  text: "确定")
-            ]),
-          )
-        ],
-      );
+      children: [
+        Container(
+          margin: EdgeInsets.all(16),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            DatePickerPopup(key: dateKey), // 日期
+            AmountInput(
+              key: amountKey,
+              color: Colors.green,
+            ), // 金额
+            SizedBox(height: spacing),
+            TitleCell(title: "消费类型"),
+            SizedBox(height: spacing),
+            GroupTag(key: tagKey), // 分类
+            SizedBox(height: spacing),
+            TitleCell(title: "备注"),
+            SizedBox(height: spacing),
+            RemarkInput(key: remarkKey), // 备注
+            SizedBox(height: spacing),
+            CreateButton(
+                submit: () {
+                  submit(context);
+                },
+                text: "确定")
+          ]),
+        )
+      ],
+    );
   }
 }

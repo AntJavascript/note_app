@@ -3,6 +3,7 @@ import 'package:fluro/fluro.dart';
 import 'package:note_app/Views/Home/home.dart';
 import 'package:note_app/Views/Create/index.dart';
 import 'package:note_app/Views/Login/login.dart';
+import 'package:note_app/Views/Detail/detail.dart';
 
 /**
  * 路由处理函数
@@ -24,7 +25,7 @@ var loginRouteHandler = Handler(
 });
 var detailRouteHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-      final int id = params['id']?.first ?? 0;
-      final String type = params['type']?.first ?? '';
+  final dynamic id = params['id']?.first;
+  final String type = params['type']?.first ?? '';
   return DetailPage(id: int.parse(id), type: type);
 });

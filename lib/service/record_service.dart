@@ -18,7 +18,7 @@ class RecordService {
     // 开启日志打印
     DioUtil.instance?.openLog();
 
-    var response = await DioUtil().request('/record/detail${id}');
+    var response = await DioUtil().request('/record/detail/${id}');
     record_model result = record_model.fromJson(response);
     return result;
   }

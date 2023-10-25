@@ -4,7 +4,9 @@ import 'package:tailstyle/tailstyle.dart';
 import 'package:note_app/Views/Component/keyBoard.dart';
 
 class AmountInput extends StatefulWidget {
-  const AmountInput({super.key});
+  const AmountInput({Key? key, this.color = Colors.red}) : super(key: key);
+
+  final Colors? color;
 
   @override
   State<StatefulWidget> createState() => AmountInputState();
@@ -17,7 +19,7 @@ class AmountInputState extends State<AmountInput> {
 
   // 数字按钮点击
   void onKeyClick(String value) {
-    String newVal = value; // 新值
+    String newVal = value;
     if (init) {
       if (value == "." || value == "0") {
         newVal = "0.";
@@ -29,12 +31,13 @@ class AmountInputState extends State<AmountInput> {
       }
       newVal = amount + "" + newVal;
     }
-
-    // 渲染UI
-    setState(() {
-      amount = newVal;
-    });
+    setValue(newVal);
     init = false;
+  }
+
+  // 设置金额
+  void setValue(String amount) {
+    setState(() => amount = amount);
   }
 
   // 确定按钮点击
@@ -50,10 +53,7 @@ class AmountInputState extends State<AmountInput> {
       init = true;
       newVal = "0.0";
     }
-    // 渲染UI
-    setState(() {
-      amount = newVal;
-    });
+    setValue(newVal);
   }
 
   @override
@@ -80,8 +80,8 @@ class AmountInputState extends State<AmountInput> {
             margin: EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
                 border:
-                    Border(bottom: BorderSide(color: Colors.red, width: 0.5))),
+                    Border(bottom: BorderSide(color: widget.color, width: 0.5))),
             child: Text(amount,
-                style: TextStyle(fontSize: 42.0, color: Colors.red))));
+                style: TextStyle(fontSize: 42.0, color: widget.color))));
   }
 }

@@ -33,4 +33,15 @@ class RecordService {
     CommonEntity result = CommonEntity.fromJson(response);
     return result;
   }
+
+  // 编辑
+  static edit(data) async {
+    // 开启日志打印
+    DioUtil.instance?.openLog();
+
+    var response = await DioUtil()
+        .request('/record/update', method: DioMethod.post, data: data);
+    CommonEntity result = CommonEntity.fromJson(response);
+    return result;
+  }
 }

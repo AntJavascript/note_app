@@ -17,7 +17,7 @@ class NoteButton extends StatelessWidget {
     }) : super(key: key);
 
   final Function? onClick;
-  final String text;
+  final String? text;
   final double? height;
   final double? width;
   final bool? radius;

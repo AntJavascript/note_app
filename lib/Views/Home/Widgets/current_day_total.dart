@@ -10,6 +10,8 @@ import 'package:note_app/config/them.dart';
 // 自定义组件
 import 'package:note_app/Views/Component/title_cell.dart';
 import 'package:note_app/Views/Home/Widgets/line_space.dart';
+import 'package:note_app/Views/Component/loading.dart';
+import 'package:note_app/Views/Component/failed.dart';
 
 // service
 import 'package:note_app/service/total_service.dart';
@@ -103,29 +105,6 @@ class CurrentDayTotalState extends State<CurrentDayTotal> {
             ? AppColorConfig.expendTextColor
             : AppColorConfig.incomeTextColor)
         .Text(isIncome ? "+${text}" : "-${text}");
-  }
-
-  // 加载状态
-  Widget Loading() {
-    return Container(
-      height: 100,
-      alignment: Alignment.center,
-      child: TailTypo().font_size(14.0).text_color(AppColorConfig.labelColor).Text('数据加载中...')
-    );
-  }
-
-  // 加载失败显示
-  Widget Failed () {
-    return GestureDetector(
-      onTap: () {
-        getData();
-      },
-      child: Container(
-        height: 100,
-        alignment: Alignment.center,
-        child: TailTypo().font_size(14.0).text_color(AppColorConfig.labelColor).Text('加载失败，点击重试')
-      )
-    );
   }
   
   @override

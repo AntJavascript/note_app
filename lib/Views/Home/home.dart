@@ -93,11 +93,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     String title = dateFn(DateTime.now())['dateStr'];
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        centerTitle: true,
-        elevation: 0,
-      ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         onPressed: () {

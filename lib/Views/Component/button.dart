@@ -11,7 +11,7 @@ class NoteButton extends StatelessWidget {
     this.text = '确定',
     this.height = 44,
     this.width,
-    this.radius = true,
+    this.radius = 0,
     this.color = AppColorConfig.buttonBgColor,
     this.textColor = AppColorConfig.buttonTextColor
     }) : super(key: key);
@@ -20,7 +20,7 @@ class NoteButton extends StatelessWidget {
   final String? text;
   final double? height;
   final double? width;
-  final bool? radius;
+  final double? radius;
   final Color? color;
   final Color? textColor;
 
@@ -37,7 +37,7 @@ class NoteButton extends StatelessWidget {
         child: TailTypo().text_color(textColor).Text(text),
         decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.all(Radius.circular(radius ?? 20))),
+            borderRadius: BorderRadius.all(Radius.circular(radius))),
       ),
     );
   }

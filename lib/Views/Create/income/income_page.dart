@@ -47,7 +47,7 @@ class _IncomepageState extends State<Incomepage> {
 
     data["record_date"] = datePickerWidget.values;
     data["amount"] = double.parse(amountWidget.amount);
-    data["type"] = "expend";
+    data["type"] = "income";
     data["record_type"] = tagWidget.current;
     data["record_type_name"] = tagWidget.currentText;
     data["remark"] = remark.controller.text;

@@ -5,7 +5,7 @@ import 'package:tailstyle/tailstyle.dart';
 import 'package:note_app/config/them.dart';
 
 class Loading extends StatelessWidget {
-  const Loading({Key? key, this.text = "数据加载中...", this.height = 100}): super(key: key);;
+  const Loading({Key? key, this.text = "数据加载中...", this.height = 100}): super(key: key);
 
   final String? text;
   final double? height;

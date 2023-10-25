@@ -32,17 +32,15 @@ class _DateGridState extends State<DateGrid> {
       body: RefreshIndicator(
         onRefresh: () async {
           Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期
-          //模拟网络请求
-          await Future.delayed(Duration(milliseconds: 1000));
 
           var budget = budgetKey.currentState as BudgetCardState;
-          budget.getDate(dateStr["year"].toInt(), dateStr["month"]);
-
-          var record = dayTotalKey.currentState as CurrentDayTotalState;
-          record.getData();
+          await budget.getData(dateStr["year"].toInt(), dateStr["month"]);
 
           var dayTotal = recordKey.currentState as RecordListState;
-          dayTotal.getData();
+          await dayTotal.getData();
+
+          var record = dayTotalKey.currentState as CurrentDayTotalState;
+          await record.getData();
 
           //结束刷新
           return Future.value(true);

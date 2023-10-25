@@ -22,11 +22,18 @@ class _DateGridState extends State<DateGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
+    String title = dateFn(DateTime.now())['dateStr'];
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: RefreshIndicator(
         onRefresh: () async {
           Map<String, dynamic> dateStr = dateFn(DateTime.now()); // 日期
           //模拟网络请求
-          await Future.delayed(Duration(milliseconds: 2000));
+          await Future.delayed(Duration(milliseconds: 1000));
 
           var budget = budgetKey.currentState as BudgetCardState;
           budget.getDate(dateStr["year"].toInt(), dateStr["month"]);
@@ -55,6 +62,7 @@ class _DateGridState extends State<DateGrid> {
                   ],
                 ))
           ],
-        ));
+        ))
+    );
   }
 }

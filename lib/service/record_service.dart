@@ -44,4 +44,15 @@ class RecordService {
     CommonEntity result = CommonEntity.fromJson(response);
     return result;
   }
+
+  // 删除
+  static del(int id) async {
+    // 开启日志打印
+    DioUtil.instance?.openLog();
+
+    var response = await DioUtil()
+        .request('/record/delete/${id}', method: DioMethod.post, data: {});
+    CommonEntity result = CommonEntity.fromJson(response);
+    return result;
+  }
 }

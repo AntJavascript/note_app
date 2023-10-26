@@ -75,13 +75,10 @@ class AmountInputState extends State<AmountInput> {
                     onDelete: onDelete);
               });
         },
-        child: Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.symmetric(vertical: 20),
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: widget.color!, width: 0.5))),
-            child: Text(amount,
-                style: TextStyle(fontSize: 42.0, color: widget.color))));
+        child: child: TailBox().py(20).border(widget.color!, 0.5).Container(
+          width: MediaQuery.of(context).size.width,
+          child: TailTypo().font_size(42).text_color(widget.color).Text(amount)
+        )
+    );
   }
 }

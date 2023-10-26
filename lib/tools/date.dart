@@ -1,7 +1,7 @@
 // 处理日期函数
 Map<String, dynamic> dateFn(DateTime date) {
   final int year = date.year; // 年
-  final int month = date.month; // yue
+  final int month = date.month; // 月
   final int day = date.day; // 日
   final int dayCount = DateTime(year, month + 1, 0).day; // 当月最大天数
   final int firstWeekDay = DateTime(year, month, 1).weekday; // 当月第一天是周几

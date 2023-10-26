@@ -14,7 +14,9 @@ String month = DateTime.now().month.toString();
 String day = DateTime.now().day.toString();
 
 class DatePickerPopup extends StatefulWidget {
-  const DatePickerPopup({Key? key}) : super(key: key);
+  const DatePickerPopup({Key? key, this.value = []}) : super(key: key);
+
+  final List<int>? value;
 
   @override
   State<StatefulWidget> createState() => DatePickerPopupState();
@@ -23,12 +25,16 @@ class DatePickerPopup extends StatefulWidget {
 class DatePickerPopupState extends State<DatePickerPopup> {
   String values = "${year}-${month.padLeft(2, '0')}-${day.padLeft(2, '0')}";
 
+  List<int> initValue = [
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day
+  ];
+
   @override
   void initState() {
     super.initState();
   }
-
-  get getValue => values;
 
   // 确认回调
   confirm(val) {
@@ -55,11 +61,7 @@ class DatePickerPopupState extends State<DatePickerPopup> {
             builder: (BuildContext context) {
               return ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: 310),
-                child: WithModel([
-                  DateTime.now().year,
-                  DateTime.now().month,
-                  DateTime.now().day
-                ], (model) {
+                child: WithModel(widget.value.length > 0 ? widget.value : initValue, (model) {
                   return Column(children: [
                     VanDatePicker(
                       value: model.value,

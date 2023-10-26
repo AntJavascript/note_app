@@ -36,8 +36,8 @@ class AmountInputState extends State<AmountInput> {
   }
 
   // 设置金额
-  void setValue(String amount) {
-    setState(() => amount = amount);
+  void setValue(String value) {
+    setState(() => amount = value);
   }
 
   // 确定按钮点击

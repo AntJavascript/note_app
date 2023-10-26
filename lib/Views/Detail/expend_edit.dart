@@ -4,16 +4,16 @@ import 'package:note_app/router/application.dart';
 // EventBus
 import 'package:note_app/event/bus.dart';
 
-// 公共组件
-import 'package:note_app/Views/Component/title_cell.dart';
-import 'package:note_app/Views/Component/button.dart';
-
 // 自定义组件
 import 'package:note_app/Views/Create/amount_input.dart';
 import 'package:note_app/Views/Create/group_tag.dart';
 import 'package:note_app/Views/Create/remark.dart';
 import 'package:note_app/Views/Create/button.dart';
 import 'package:note_app/Views/Create/date_picker_popup.dart';
+import 'package:note_app/Views/Component/loading.dart';
+import 'package:note_app/Views/Component/failed.dart';
+import 'package:note_app/Views/Component/title_cell.dart';
+import 'package:note_app/Views/Component/button.dart';
 
 // service
 import 'package:note_app/service/record_service.dart';
@@ -36,6 +36,8 @@ class _ExpendEditState extends State<ExpendEdit> {
   bool success = true;
   Map<String, dynamic> detail = {};
 
+  List<int> recordDateUnix= [];
+
   @override
   initState() {
     super.initState();
@@ -46,8 +48,12 @@ class _ExpendEditState extends State<ExpendEdit> {
     setState(() => liading = true);
     final data = await RecordService.getDetail(widget.id);
     if (data.code == 200) {
+      DateTime date = DateTime.fromMillisecondsSinceEpoch(data.data.recordDateUnix);
+      // 设置金额
+      amountKey.setValue(data.data.amount.toString());
       setState(() {
-        detail = data;
+        detail = data.data;
+        recordDateUnix = [date.year, date.month, date.day];
         liading = false;
         success = true;
       });
@@ -98,24 +104,61 @@ class _ExpendEditState extends State<ExpendEdit> {
   // 删除
   void del(BuildContext context) {
     RecordService.del(widget.id).then((data) => {
-          if (data.code == 200)
-            {
-              Bus.eventBus.fire(const UpdateTotalEvent('record')),
-              Application.router.pop(context),
-              showSnackBar(context, '删除成功')
-            }
-          else
-            {showSnackBar(context, data.msg)}
-        });
+      if (data.code == 200)
+        {
+          Bus.eventBus.fire(const UpdateTotalEvent('record')),
+          Application.router.pop(context),
+          showSnackBar(context, '删除成功')
+        }
+      else
+        {showSnackBar(context, data.msg)}
+    });
+  }
+
+  // 底部按钮
+  Widget GropsBtns(BuildContext context) {
+    return Container(
+      height: 44.0,
+      decoration: BoxDecoration(color: Colors.white),
+      child: Row(children: <Widget>[
+        Expanded(
+            child: NoteButton(
+                text: '删除',
+                onClick: () {
+                  del(context);
+                })),
+        Expanded(
+          child: NoteButton(
+              text: '保存',
+              onClick: () {
+                submit(context);
+              }),
+        ),
+      ])
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     const spacing = 10.0;
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("编辑"),
-        ),
+    const appBar = AppBar(
+      title: Text("编辑"),
+    );
+    if (liading) {
+      return Scaffold(
+        appBar: appBar,
+        body: Loading()
+      );
+    } else if (!liading && !success) {
+       return Scaffold(
+        appBar: appBar,
+        body: Failed(onClick: () {
+          getData();
+        })
+      );
+    } else {
+      return Scaffold(
+        appBar: appBar,
         body: ListView(
           children: [
             Container(
@@ -123,7 +166,7 @@ class _ExpendEditState extends State<ExpendEdit> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    DatePickerPopup(key: dateKey), // 日期
+                    DatePickerPopup(key: dateKey, value: recordDateUnix), // 日期
                     AmountInput(key: amountKey), // 金额
                     SizedBox(height: spacing),
                     TitleCell(title: "消费类型"),
@@ -138,23 +181,8 @@ class _ExpendEditState extends State<ExpendEdit> {
             )
           ],
         ),
-        bottomNavigationBar: Container(
-            height: 44.0,
-            decoration: BoxDecoration(color: Colors.white),
-            child: Row(children: <Widget>[
-              Expanded(
-                  child: NoteButton(
-                      text: '删除',
-                      onClick: () {
-                        del(context);
-                      })),
-              Expanded(
-                child: NoteButton(
-                    text: '保存',
-                    onClick: () {
-                      submit(context);
-                    }),
-              ),
-            ])));
+        bottomNavigationBar: GropsBtns(context)
+      );
+    }
   }
 }

@@ -40,13 +40,17 @@ class _ExpendpageState extends State<Expendpage> {
   void submit(BuildContext context) {
     Map<String, dynamic> data = {};
 
+    final amount = double.parse(amountWidget.amount);
+    if (amount <= 0) {
+      return;
+    }
     var datePickerWidget = dateKey.currentState as DatePickerPopupState; // 日期
     var amountWidget = amountKey.currentState as AmountInputState; // 金额
     var tagWidget = tagKey.currentState as GroupTagState; // 消费类型
     var remark = remarkKey.currentState as RemarkInputState; // 备注
 
     data["record_date"] = datePickerWidget.values;
-    data["amount"] = double.parse(amountWidget.amount);
+    data["amount"] = amount;
     data["type"] = "expend";
     data["record_type"] = tagWidget.current;
     data["record_type_name"] = tagWidget.currentText;

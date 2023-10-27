@@ -142,7 +142,8 @@ class _ExpendEditState extends State<ExpendEdit> {
   Widget build(BuildContext context) {
     const spacing = 10.0;
     const appBar = AppBar(
-      title: Text("编辑"),
+      title: Text("编辑支出"),
+      elevation: 0,
     );
     if (liading) {
       return Scaffold(

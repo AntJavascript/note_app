@@ -40,14 +40,16 @@ class _ExpendpageState extends State<Expendpage> {
   void submit(BuildContext context) {
     Map<String, dynamic> data = {};
 
-    final amount = double.parse(amountWidget.amount);
-    if (amount <= 0) {
-      return;
-    }
     var datePickerWidget = dateKey.currentState as DatePickerPopupState; // 日期
     var amountWidget = amountKey.currentState as AmountInputState; // 金额
     var tagWidget = tagKey.currentState as GroupTagState; // 消费类型
     var remark = remarkKey.currentState as RemarkInputState; // 备注
+
+    final amount = double.parse(amountWidget.amount);
+
+    if (amount <= 0) {
+      return;
+    }
 
     data["record_date"] = datePickerWidget.values;
     data["amount"] = amount;
@@ -73,30 +75,30 @@ class _ExpendpageState extends State<Expendpage> {
   Widget build(BuildContext context) {
     const spacing = 10.0;
     return ListView(
-        children: [
-          Container(
-            margin: EdgeInsets.all(16),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              DatePickerPopup(key: dateKey), // 日期
-              AmountInput(key: amountKey), // 金额
-              SizedBox(height: spacing),
-              TitleCell(title: "消费类型"),
-              SizedBox(height: spacing),
-              GroupTag(key: tagKey), // 分类
-              SizedBox(height: spacing),
-              TitleCell(title: "备注"),
-              SizedBox(height: spacing),
-              RemarkInput(key: remarkKey), // 备注
-              SizedBox(height: spacing),
-              CreateButton(
-                  submit: () {
-                    submit(context);
-                  },
-                  text: "确定")
-            ]),
-          )
-        ],
-      );
+      children: [
+        Container(
+          margin: EdgeInsets.all(16),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            DatePickerPopup(key: dateKey), // 日期
+            AmountInput(key: amountKey), // 金额
+            SizedBox(height: spacing),
+            TitleCell(title: "消费类型"),
+            SizedBox(height: spacing),
+            GroupTag(key: tagKey), // 分类
+            SizedBox(height: spacing),
+            TitleCell(title: "备注"),
+            SizedBox(height: spacing),
+            RemarkInput(key: remarkKey), // 备注
+            SizedBox(height: spacing),
+            CreateButton(
+                submit: () {
+                  submit(context);
+                },
+                text: "确定")
+          ]),
+        )
+      ],
+    );
   }
 }

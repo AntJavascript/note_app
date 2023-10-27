@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 // 日期选择
-import 'package:note_app/Views/Home/Widgets/Detail/select_date_time.dart';
-import 'package:note_app/Views/Component/Popup.dart';
 import "package:flutter_vantui/flutter_vantui.dart";
 import 'package:note_app/Views/Component/with_value.dart';
 
@@ -14,7 +12,7 @@ String month = DateTime.now().month.toString();
 String day = DateTime.now().day.toString();
 
 class DatePickerPopup extends StatefulWidget {
-  const DatePickerPopup({Key? key, this.value = []}) : super(key: key);
+  const DatePickerPopup({Key? key, this.value}) : super(key: key);
 
   final List<int>? value;
 
@@ -61,7 +59,7 @@ class DatePickerPopupState extends State<DatePickerPopup> {
             builder: (BuildContext context) {
               return ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: 310),
-                child: WithModel(widget.value.length > 0 ? widget.value : initValue, (model) {
+                child: WithModel(widget.value ?? initValue, (model) {
                   return Column(children: [
                     VanDatePicker(
                       value: model.value,

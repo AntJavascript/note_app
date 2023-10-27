@@ -36,7 +36,7 @@ class _ExpendEditState extends State<ExpendEdit> {
   bool success = true;
   Map<String, dynamic> detail = {};
 
-  List<int> recordDateUnix= [];
+  List<int> recordDateUnix = [];
 
   @override
   initState() {
@@ -48,9 +48,8 @@ class _ExpendEditState extends State<ExpendEdit> {
     setState(() => liading = true);
     final data = await RecordService.getDetail(widget.id);
     if (data.code == 200) {
-      DateTime date = DateTime.fromMillisecondsSinceEpoch(data.data.recordDateUnix);
-      // 设置金额
-      amountKey.setValue(data.data.amount.toString());
+      DateTime date =
+          DateTime.fromMillisecondsSinceEpoch(data.data.recordDateUnix);
       setState(() {
         detail = data.data;
         recordDateUnix = [date.year, date.month, date.day];
@@ -104,85 +103,84 @@ class _ExpendEditState extends State<ExpendEdit> {
   // 删除
   void del(BuildContext context) {
     RecordService.del(widget.id).then((data) => {
-      if (data.code == 200)
-        {
-          Bus.eventBus.fire(const UpdateTotalEvent('record')),
-          Application.router.pop(context),
-          showSnackBar(context, '删除成功')
-        }
-      else
-        {showSnackBar(context, data.msg)}
-    });
+          if (data.code == 200)
+            {
+              Bus.eventBus.fire(const UpdateTotalEvent('record')),
+              Application.router.pop(context),
+              showSnackBar(context, '删除成功')
+            }
+          else
+            {showSnackBar(context, data.msg)}
+        });
   }
 
   // 底部按钮
   Widget GropsBtns(BuildContext context) {
     return Container(
-      height: 44.0,
-      decoration: BoxDecoration(color: Colors.white),
-      child: Row(children: <Widget>[
-        Expanded(
+        height: 44.0,
+        decoration: BoxDecoration(color: Colors.white),
+        child: Row(children: <Widget>[
+          Expanded(
+              child: NoteButton(
+                  text: '删除',
+                  onClick: () {
+                    del(context);
+                  })),
+          Expanded(
             child: NoteButton(
-                text: '删除',
+                text: '保存',
                 onClick: () {
-                  del(context);
-                })),
-        Expanded(
-          child: NoteButton(
-              text: '保存',
-              onClick: () {
-                submit(context);
-              }),
-        ),
-      ])
+                  submit(context);
+                }),
+          ),
+        ]));
+  }
+
+  AppBar AppBarTitle() {
+    return AppBar(
+      title: Text("编辑"),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     const spacing = 10.0;
-    const appBar = AppBar(
-      title: Text("编辑"),
-    );
+
     if (liading) {
-      return Scaffold(
-        appBar: appBar,
-        body: Loading()
-      );
+      return Scaffold(appBar: AppBarTitle(), body: Loading());
     } else if (!liading && !success) {
-       return Scaffold(
-        appBar: appBar,
-        body: Failed(onClick: () {
-          getData();
-        })
-      );
+      return Scaffold(
+          appBar: AppBarTitle(),
+          body: Failed(onClick: () {
+            getData();
+          }));
     } else {
       return Scaffold(
-        appBar: appBar,
-        body: ListView(
-          children: [
-            Container(
-              margin: EdgeInsets.all(16),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DatePickerPopup(key: dateKey, value: recordDateUnix), // 日期
-                    AmountInput(key: amountKey), // 金额
-                    SizedBox(height: spacing),
-                    TitleCell(title: "消费类型"),
-                    SizedBox(height: spacing),
-                    GroupTag(key: tagKey), // 分类
-                    SizedBox(height: spacing),
-                    TitleCell(title: "备注"),
-                    SizedBox(height: spacing),
-                    RemarkInput(key: remarkKey), // 备注
-                    SizedBox(height: spacing)
-                  ]),
-            )
-          ],
-        ),
-        bottomNavigationBar: GropsBtns(context)
-      );
+          appBar: AppBarTitle(),
+          body: ListView(
+            children: [
+              Container(
+                margin: EdgeInsets.all(16),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DatePickerPopup(
+                          key: dateKey, value: recordDateUnix), // 日期
+                      AmountInput(key: amountKey), // 金额
+                      SizedBox(height: spacing),
+                      TitleCell(title: "消费类型"),
+                      SizedBox(height: spacing),
+                      GroupTag(key: tagKey), // 分类
+                      SizedBox(height: spacing),
+                      TitleCell(title: "备注"),
+                      SizedBox(height: spacing),
+                      RemarkInput(key: remarkKey), // 备注
+                      SizedBox(height: spacing)
+                    ]),
+              )
+            ],
+          ),
+          bottomNavigationBar: GropsBtns(context));
     }
   }
 }

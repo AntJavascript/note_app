@@ -8,7 +8,6 @@ import 'package:note_app/event/bus.dart';
 import 'package:note_app/Views/Create/amount_input.dart';
 import 'package:note_app/Views/Create/group_tag.dart';
 import 'package:note_app/Views/Create/remark.dart';
-import 'package:note_app/Views/Create/button.dart';
 import 'package:note_app/Views/Create/date_picker_popup.dart';
 import 'package:note_app/Views/Component/loading.dart';
 import 'package:note_app/Views/Component/failed.dart';
@@ -17,7 +16,7 @@ import 'package:note_app/Views/Component/button.dart';
 
 // service
 import 'package:note_app/service/record_service.dart';
-import 'package:note_app/model/record_model.dart';
+import 'package:note_app/model/redod_detail.dart';
 
 // 工具类
 import 'package:note_app/tools/show_snack.dart';
@@ -34,7 +33,13 @@ class ExpendEdit extends StatefulWidget {
 class _ExpendEditState extends State<ExpendEdit> {
   bool liading = true;
   bool success = true;
-  Map<String, dynamic> detail = {};
+  late redod_detail detail;
+
+  GlobalKey dateKey = GlobalKey();
+  // GlobalKey amountKey = GlobalKey();
+  GlobalKey<AmountInputState> amountInputState = GlobalKey<AmountInputState>();
+  GlobalKey tagKey = GlobalKey();
+  GlobalKey remarkKey = GlobalKey();
 
   List<int> recordDateUnix = [];
 
@@ -49,16 +54,17 @@ class _ExpendEditState extends State<ExpendEdit> {
     final data = await RecordService.getDetail(widget.id);
     if (data.code == 200) {
       DateTime date =
-          DateTime.fromMillisecondsSinceEpoch(data.data.recordDateUnix);
+          DateTime.fromMillisecondsSinceEpoch(data.data.recordDateUnix * 1000);
+      amountInputState.currentState?.setValue(data.data.amount);
       setState(() {
-        detail = data.data;
+        detail = data;
         recordDateUnix = [date.year, date.month, date.day];
         liading = false;
         success = true;
       });
     } else {
       setState(() {
-        detail = {};
+        detail = {} as redod_detail;
         success = false;
         liading = false;
       });
@@ -66,38 +72,33 @@ class _ExpendEditState extends State<ExpendEdit> {
     return data;
   }
 
-  GlobalKey dateKey = GlobalKey();
-  GlobalKey amountKey = GlobalKey();
-  GlobalKey tagKey = GlobalKey();
-  GlobalKey remarkKey = GlobalKey();
-
   // 保存
   void submit(BuildContext context) {
     Map<String, dynamic> data = {};
 
     var datePickerWidget = dateKey.currentState as DatePickerPopupState; // 日期
-    var amountWidget = amountKey.currentState as AmountInputState; // 金额
     var tagWidget = tagKey.currentState as GroupTagState; // 消费类型
     var remark = remarkKey.currentState as RemarkInputState; // 备注
-
     data["record_date"] = datePickerWidget.values;
-    data["amount"] = double.parse(amountWidget.amount);
+    data["amount"] = double.parse(amountInputState.currentState?.amount ?? '');
     data["type"] = "expend";
     data["record_type"] = tagWidget.current;
     data["record_type_name"] = tagWidget.currentText;
     data["remark"] = remark.controller.text;
     data["account"] = "15817351609";
 
-    RecordService.edit(data).then((data) => {
-          if (data.code == 200)
-            {
-              Bus.eventBus.fire(const UpdateTotalEvent('record')),
-              Application.router.pop(context),
-              showSnackBar(context, '成功')
-            }
-          else
-            {showSnackBar(context, data.msg)}
-        });
+    print(amountInputState.currentState?.amount);
+
+    // RecordService.edit(data).then((data) => {
+    //       if (data.code == 200)
+    //         {
+    //           Bus.eventBus.fire(const UpdateTotalEvent('record')),
+    //           Application.router.pop(context),
+    //           showSnackBar(context, '成功')
+    //         }
+    //       else
+    //         {showSnackBar(context, data.msg)}
+    //     });
   }
 
   // 删除
@@ -166,7 +167,9 @@ class _ExpendEditState extends State<ExpendEdit> {
                     children: [
                       DatePickerPopup(
                           key: dateKey, value: recordDateUnix), // 日期
-                      AmountInput(key: amountKey), // 金额
+                      AmountInput(
+                        key: amountInputState,
+                      ), // 金额
                       SizedBox(height: spacing),
                       TitleCell(title: "消费类型"),
                       SizedBox(height: spacing),

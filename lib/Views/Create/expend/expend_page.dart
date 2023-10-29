@@ -81,7 +81,9 @@ class _ExpendpageState extends State<Expendpage> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             DatePickerPopup(key: dateKey), // 日期
-            AmountInput(key: amountKey), // 金额
+            AmountInput(
+              key: amountKey,
+            ), // 金额
             SizedBox(height: spacing),
             TitleCell(title: "消费类型"),
             SizedBox(height: spacing),

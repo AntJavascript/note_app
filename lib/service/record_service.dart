@@ -1,5 +1,6 @@
 import 'package:note_app/http.dart';
 import 'package:note_app/model/record_model.dart';
+import 'package:note_app/model/redod_detail.dart';
 import 'package:note_app/model/common.dart';
 
 class RecordService {
@@ -19,7 +20,7 @@ class RecordService {
     DioUtil.instance?.openLog();
 
     var response = await DioUtil().request('/record/detail/${id}');
-    record_model result = record_model.fromJson(response);
+    redod_detail result = redod_detail.fromJson(response);
     return result;
   }
 

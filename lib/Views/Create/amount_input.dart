@@ -4,7 +4,7 @@ import 'package:tailstyle/tailstyle.dart';
 import 'package:note_app/Views/Component/keyBoard.dart';
 
 class AmountInput extends StatefulWidget {
-  const AmountInput({Key? key, this.color = Colors.red}) : super(key: key);
+  const AmountInput({super.key, this.color = Colors.red});
 
   final MaterialColor? color;
 
@@ -13,7 +13,7 @@ class AmountInput extends StatefulWidget {
 }
 
 class AmountInputState extends State<AmountInput> {
-  String amount = "0.0"; // 最终确认金额
+  late String amount = "0.0"; // 最终确认金额
 
   bool init = true; // 是否第一次点击
 
@@ -75,7 +75,7 @@ class AmountInputState extends State<AmountInput> {
                     onDelete: onDelete);
               });
         },
-        child: TailBox().py(20).border(widget.color!, 0.5).Container(
+        child: TailBox().py(20).border_b(widget.color!, 0.5).Container(
             width: MediaQuery.of(context).size.width,
             child: TailTypo()
                 .font_size(42)

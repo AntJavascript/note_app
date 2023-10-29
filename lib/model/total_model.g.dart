@@ -12,8 +12,8 @@ total_model _$total_modelFromJson(Map<String, dynamic> json) => total_model(
       json['expendCount'] as num,
       json['incomeCount'] as num,
       json['msg'] as String,
-      json['access_token'] as dynamic,
-      json['refresh_token'] as dynamic,
+      json['access_token'],
+      json['refresh_token'],
     );
 
 Map<String, dynamic> _$total_modelToJson(total_model instance) =>

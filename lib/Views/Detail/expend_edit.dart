@@ -55,7 +55,10 @@ class _ExpendEditState extends State<ExpendEdit> {
     if (data.code == 200) {
       DateTime date =
           DateTime.fromMillisecondsSinceEpoch(data.data.recordDateUnix * 1000);
-      amountInputState.currentState?.setValue(data.data.amount);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        amountInputState.currentState?.setValue(data.data.amount.toString());
+      });
+
       setState(() {
         detail = data;
         recordDateUnix = [date.year, date.month, date.day];

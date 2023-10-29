@@ -5,13 +5,10 @@ part 'redod_detail.g.dart';
 @JsonSerializable()
 class redod_detail extends Object {
   @JsonKey(name: 'access_token')
-  dynamic accessToken;
+  String accessToken;
 
   @JsonKey(name: 'code')
   int code;
-
-  @JsonKey(name: 'count')
-  int count;
 
   @JsonKey(name: 'data')
   Data data;
@@ -20,12 +17,11 @@ class redod_detail extends Object {
   String msg;
 
   @JsonKey(name: 'refresh_token')
-  dynamic refreshToken;
+  String refreshToken;
 
   redod_detail(
     this.accessToken,
     this.code,
-    this.count,
     this.data,
     this.msg,
     this.refreshToken,

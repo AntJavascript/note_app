@@ -35,13 +35,11 @@ class _ExpendEditState extends State<ExpendEdit> {
   bool success = true;
   late redod_detail detail;
 
-  GlobalKey dateKey = GlobalKey();
-  // GlobalKey amountKey = GlobalKey();
+  GlobalKey<DatePickerPopupState> datePickerState =
+      GlobalKey<DatePickerPopupState>();
   GlobalKey<AmountInputState> amountInputState = GlobalKey<AmountInputState>();
   GlobalKey tagKey = GlobalKey();
   GlobalKey remarkKey = GlobalKey();
-
-  List<int> recordDateUnix = [];
 
   @override
   initState() {
@@ -53,15 +51,14 @@ class _ExpendEditState extends State<ExpendEdit> {
     setState(() => liading = true);
     final data = await RecordService.getDetail(widget.id);
     if (data.code == 200) {
-      DateTime date =
-          DateTime.fromMillisecondsSinceEpoch(data.data.recordDateUnix * 1000);
+      // 设置默认值
       WidgetsBinding.instance.addPostFrameCallback((_) {
         amountInputState.currentState?.setValue(data.data.amount.toString());
+        datePickerState.currentState?.setValue(data.data.record_date);
       });
 
       setState(() {
         detail = data;
-        recordDateUnix = [date.year, date.month, date.day];
         liading = false;
         success = true;
       });
@@ -79,29 +76,27 @@ class _ExpendEditState extends State<ExpendEdit> {
   void submit(BuildContext context) {
     Map<String, dynamic> data = {};
 
-    var datePickerWidget = dateKey.currentState as DatePickerPopupState; // 日期
     var tagWidget = tagKey.currentState as GroupTagState; // 消费类型
     var remark = remarkKey.currentState as RemarkInputState; // 备注
-    data["record_date"] = datePickerWidget.values;
+    data["record_date"] = datePickerState.currentState?.values ?? '';
     data["amount"] = double.parse(amountInputState.currentState?.amount ?? '');
     data["type"] = "expend";
     data["record_type"] = tagWidget.current;
     data["record_type_name"] = tagWidget.currentText;
     data["remark"] = remark.controller.text;
     data["account"] = "15817351609";
+    data["id"] = widget.id;
 
-    print(amountInputState.currentState?.amount);
-
-    // RecordService.edit(data).then((data) => {
-    //       if (data.code == 200)
-    //         {
-    //           Bus.eventBus.fire(const UpdateTotalEvent('record')),
-    //           Application.router.pop(context),
-    //           showSnackBar(context, '成功')
-    //         }
-    //       else
-    //         {showSnackBar(context, data.msg)}
-    //     });
+    RecordService.edit(data).then((data) => {
+          if (data.code == 200)
+            {
+              Bus.eventBus.fire(const UpdateTotalEvent('record')),
+              Application.router.pop(context),
+              showSnackBar(context, '成功')
+            }
+          else
+            {showSnackBar(context, data.msg)}
+        });
   }
 
   // 删除
@@ -168,8 +163,7 @@ class _ExpendEditState extends State<ExpendEdit> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      DatePickerPopup(
-                          key: dateKey, value: recordDateUnix), // 日期
+                      DatePickerPopup(key: datePickerState), // 日期
                       AmountInput(
                         key: amountInputState,
                       ), // 金额

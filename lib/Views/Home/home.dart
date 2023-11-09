@@ -8,7 +8,7 @@ import 'package:note_app/router/application.dart';
 
 // 自定义组件
 import 'package:note_app/Views/Home/Widgets/DateGrid.dart'; // 首页
-import 'package:note_app/Views/Total/total.dart'; // 统计
+import 'package:note_app/Views/Total/index.dart'; // 统计
 import 'package:note_app/Views/Budget/budget.dart'; // 预算
 import 'package:note_app/Views/Skin/skin.dart'; // 换肤
 import 'package:note_app/Views/Component/bootom_bar.dart'; // 底部导航

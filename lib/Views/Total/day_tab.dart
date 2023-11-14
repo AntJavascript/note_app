@@ -7,7 +7,6 @@ class TotalDayTab extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _TotalDayTabState();
-
 }
 
 class _TotalDayTabState extends State<TotalDayTab> {
@@ -18,6 +17,6 @@ class _TotalDayTabState extends State<TotalDayTab> {
 
   @override
   Widget build(BuildContext context) {
-    
+    return Text("data");
   }
 }

@@ -23,40 +23,40 @@ class _TotalPageState extends State<TotalPage> {
   initState() {
     super.initState();
   }
+
   List<Map<String, String>> tabs = [
-      {
-        "text": "按日",
-        "type": "day",
-      },
-      {
-        "text": "按月",
-        "type": "month",
-      },
-      {
-        "text": "按年",
-        "type": "year",
-      },
-      {
-        "text": "总计",
-        "type": "total",
-      }
-    ];
+    {
+      "text": "按日",
+      "type": "day",
+    },
+    {
+      "text": "按月",
+      "type": "month",
+    },
+    {
+      "text": "按年",
+      "type": "year",
+    },
+    {
+      "text": "总计",
+      "type": "total",
+    }
+  ];
   void itemClick(Colors color) {}
 
   @override
   Widget build(BuildContext context) {
-    
-    return  DefaultTabController(
+    return DefaultTabController(
         length: tabs.length,
         child: Scaffold(
-      appBar: AppBar(
-        title: const Text('统计'),
-        elevation: 0,
-      ),
-      body: TabBarView(
-        children: tabs.map((e) {
+          appBar: AppBar(
+            title: const Text('统计'),
+            elevation: 0,
+          ),
+          body: TabBarView(
+            children: tabs.map((e) {
               if (e["type"] == "day") {
-                return Expendpage();
+                return TotalDayTab();
               } else if (e["type"] == "month") {
                 return TotalMonthTab();
               } else if (e["type"] == "year") {
@@ -64,7 +64,7 @@ class _TotalPageState extends State<TotalPage> {
               }
               return TotalTab();
             }).toList(),
-      ),
-    ));
+          ),
+        ));
   }
 }

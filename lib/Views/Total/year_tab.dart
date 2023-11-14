@@ -7,7 +7,6 @@ class TotalYaerTab extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _TotalYaerTabState();
-
 }
 
 class _TotalYaerTabState extends State<TotalYaerTab> {
@@ -18,6 +17,6 @@ class _TotalYaerTabState extends State<TotalYaerTab> {
 
   @override
   Widget build(BuildContext context) {
-    
+    return Text("data");
   }
 }

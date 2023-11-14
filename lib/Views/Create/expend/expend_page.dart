@@ -63,8 +63,7 @@ class _ExpendpageState extends State<Expendpage> {
           if (data.code == 200)
             {
               Bus.eventBus.fire(const UpdateTotalEvent('record')),
-              Application.router.pop(context),
-              showSnackBar(context, '成功')
+              Application.router.pop(context)
             }
           else
             {showSnackBar(context, data.msg)}

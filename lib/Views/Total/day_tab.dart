@@ -6,6 +6,11 @@ import 'package:note_app/Views/Home/Widgets/item.dart';
 // service
 import 'package:note_app/service/record_service.dart';
 
+// 全局配置
+import 'package:note_app/config/them.dart';
+// 路由相关
+import 'package:note_app/router/application.dart';
+
 class TotalDayTab extends StatefulWidget {
   const TotalDayTab({
     Key? key,

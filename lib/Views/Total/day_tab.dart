@@ -26,7 +26,9 @@ class _TotalDayTabState extends State<TotalDayTab> {
   }
 
   void onClick(String value) {
-     dateStr = value;
+    setState(() {
+      dateStr = value;
+    })
      getData(value);
   }
   getData() async {

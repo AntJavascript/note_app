@@ -11,12 +11,13 @@ class Week extends StatelessWidget {
     return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: _list.map((s) {
-          return Container(
-              width: MediaQuery.of(context).size.width / 7,
+          return Expanded(
+            child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.only(bottom: 20.0),
               child: TailTypo().font_size(16).Text(s),
-          );
+          )
+        );
         }).toList());
   }
 }

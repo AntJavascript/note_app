@@ -10,6 +10,8 @@ import 'package:note_app/service/record_service.dart';
 import 'package:note_app/config/them.dart';
 // 路由相关
 import 'package:note_app/router/application.dart';
+// app主题颜色
+import 'package:note_app/provider/skin_model.dart';
 
 class TotalDayTab extends StatefulWidget {
   const TotalDayTab({

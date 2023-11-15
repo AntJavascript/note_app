@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:note_app/provider/skin_model.dart';
 
 class Progress extends StatelessWidget {
-  final double value;
+  final num value;
 
   const Progress({Key? key, required this.value}) : super(key: key);
 

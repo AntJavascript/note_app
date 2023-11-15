@@ -12,8 +12,8 @@ import 'Detail/Income_or_expenditure.dart';
 
 class Item extends StatelessWidget {
   final Function? onClick;
-  final String dateStr;
-  const Item({Key? key, this.onClick, required this.dateStr}) : super(key: key);
+  final String? dateStr;
+  const Item({Key? key, this.onClick, this.dateStr}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class Item extends StatelessWidget {
       bool isActivity = (!isEmpty && dateStr == e['str']);
       return GestureDetector(
         onTap: () {
-          onClick!(e['str']); // 传值父组件
+          onClick!(e); // 传值父组件
         },
         child: Container(
           alignment: Alignment.center,

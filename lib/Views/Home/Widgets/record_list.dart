@@ -39,7 +39,7 @@ class RecordListState extends State<RecordList> {
 
   getData() async {
     setState(() => liading = true);
-    final data = await RecordService.getList();
+    final data = await RecordService.getList('');
     if (data.code == 200) {
       setState(() {
         list = data.data;

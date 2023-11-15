@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:tailstyle/tailstyle.dart';
+import 'package:provider/provider.dart';
 
 import 'package:note_app/Views/Home/Widgets/week.dart';
 import 'package:note_app/Views/Home/Widgets/item.dart';
 
 // service
 import 'package:note_app/service/record_service.dart';
+import 'package:note_app/model/record_model.dart';
+
+import 'package:note_app/Views/Component/title_cell.dart';
+import 'package:note_app/Views/Home/Widgets/line_space.dart';
 
 // 全局配置
 import 'package:note_app/config/them.dart';
+// 全局字体配置
+import 'package:note_app/config/appIcon.dart';
 // 路由相关
 import 'package:note_app/router/application.dart';
 // app主题颜色
@@ -23,23 +31,30 @@ class TotalDayTab extends StatefulWidget {
 }
 
 class _TotalDayTabState extends State<TotalDayTab> {
-
   String dateStr = "";
   List<Data> list = [];
-  
+
   @override
   initState() {
     super.initState();
   }
 
-  void onClick(String value) {
+  void onClick(Map<String, dynamic> value) {
+    print(value);
+    String year = value['year'].toString().padLeft(2, '0');
+    String month = value['month'].toString().padLeft(2, '0');
+    String day = value['day'].toString().padLeft(2, '0');
+
+    String str = "${year}-${month}-${day}";
+
     setState(() {
-      dateStr = value;
-    })
-     getData(value);
+      dateStr = str;
+    });
+    getData(str);
   }
-  getData() async {
-    final data = await RecordService.getList();
+
+  getData(String date) async {
+    final data = await RecordService.getList(date);
     if (data.code == 200) {
       setState(() {
         list = data.data;
@@ -54,7 +69,8 @@ class _TotalDayTabState extends State<TotalDayTab> {
 
   List<Widget> ListWrapper(List<Data> list) {
     List<Widget> arr = [];
-    arr.add(TitleCell(title: "收支明细"));
+    arr.add(LineSpace());
+    arr.add(TitleCell(title: "${dateStr} 收支明细"));
     arr.addAll(list.map((item) {
       return CusItem(item);
     }).toList());
@@ -136,19 +152,17 @@ class _TotalDayTabState extends State<TotalDayTab> {
 
   @override
   Widget build(BuildContext context) {
-    return return ListView(
-      children: [
-        Container(
-            color: Colors.white,
-            margin: const EdgeInsets.only(top: 10),
-            child: Column(
-              children: [
-                Week(),
-                Item(onClick: onClick),
-                Column(children: ListWrapper(list))
-              ],
-            ))
-        ]
-        );
+    return ListView(children: [
+      Container(
+          color: Colors.white,
+          margin: const EdgeInsets.only(top: 10),
+          child: Column(
+            children: [
+              Week(),
+              Item(onClick: onClick),
+              Column(children: ListWrapper(list))
+            ],
+          ))
+    ]);
   }
 }

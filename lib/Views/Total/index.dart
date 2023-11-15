@@ -24,33 +24,35 @@ class _TotalPageState extends State<TotalPage> {
     super.initState();
   }
 
-  List<Map<String, String>> tabs = [
-    {
-      "text": "按日",
-      "type": "day",
-    },
-    {
-      "text": "按月",
-      "type": "month",
-    },
-    {
-      "text": "按年",
-      "type": "year",
-    },
-    {
-      "text": "总计",
-      "type": "total",
-    }
-  ];
   void itemClick(Colors color) {}
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, String>> tabs = [
+      {
+        "text": "按日",
+        "type": "day",
+      },
+      {
+        "text": "按月",
+        "type": "month",
+      },
+      {
+        "text": "按年",
+        "type": "year",
+      },
+      {
+        "text": "总计",
+        "type": "total",
+      }
+    ];
     return DefaultTabController(
         length: tabs.length,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('统计'),
+            bottom: TabBar(
+              tabs: tabs.map((e) => Tab(text: e["text"])).toList(),
+            ),
             elevation: 0,
           ),
           body: TabBarView(

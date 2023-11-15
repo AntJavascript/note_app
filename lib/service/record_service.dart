@@ -5,11 +5,11 @@ import 'package:note_app/model/common.dart';
 
 class RecordService {
   // 根据日期查询列表
-  static getList() async {
+  static getList(String date) async {
     // 开启日志打印
     DioUtil.instance?.openLog();
 
-    var response = await DioUtil().request('/record/list');
+    var response = await DioUtil().request('/record/list?date=${date}');
     record_model result = record_model.fromJson(response);
     return result;
   }

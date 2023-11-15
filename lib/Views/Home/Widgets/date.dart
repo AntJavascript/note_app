@@ -52,7 +52,12 @@ List<Map<String, dynamic>> renderEmpty(int mun) {
 List<Map<String, dynamic>> renderValidData(int mun, Map<String, dynamic> date) {
   List<Map<String, dynamic>> list = [];
   for (var i = 1; i <= mun; i++) {
-    list.add({'str': '${date['year']}-${date['month']}-$i', 'day': i});
+    list.add({
+      'str': '${date['year']}-${date['month']}-$i',
+      'year': date['year'],
+      'month': date['month'],
+      'day': i
+    });
   }
   return list;
 }

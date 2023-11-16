@@ -55,6 +55,7 @@ class _TotalTabState extends State<TotalTab> {
       Column(
           children: percentages.map((item) {
         return Column(children: [
+          crossAxisAlignment: CrossAxisAlignment.start,
           Container(child: Text(item["text"])),
           Progress(value: item["value"])
         ]);

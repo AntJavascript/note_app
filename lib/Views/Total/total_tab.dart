@@ -53,12 +53,19 @@ class _TotalTabState extends State<TotalTab> {
       TotalCard(),
       TitleCell(title: "消费分类占比"),
       Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: percentages.map((item) {
-        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(child: Text(item["text"])),
-          Progress(value: item["value"])
-        ]);
-      }).toList()),
+            return Container(
+              margin: EdgeInsets.all(10),
+              child:
+                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                Container(
+                    margin: EdgeInsets.only(right: 10),
+                    child: Text(item["text"])),
+                Progress(value: item["value"])
+              ]),
+            );
+          }).toList()),
     ]);
   }
 }

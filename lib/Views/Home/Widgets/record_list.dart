@@ -107,7 +107,11 @@ class RecordListState extends State<RecordList> {
                     ],
                   ),
                   Container(
-                      child: Amount(item.amount.toString(), type: item.type))
+                      child: Column(
+                    children: [
+                      Amount(item.amount.toString(), type: item.type),
+                    ],
+                  ))
                 ])));
   }
 

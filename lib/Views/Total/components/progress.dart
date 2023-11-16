@@ -15,12 +15,17 @@ class Progress extends StatelessWidget {
     return Container(
         child: Stack(children: [
       Container(
-          height: 6.0,
+          height: 16.0,
           width: MediaQuery.of(context).size.width * value / 100,
           decoration: BoxDecoration(
               color: Provider.of<AppSkin>(context).color,
               borderRadius: BorderRadius.all(Radius.circular(radius)))),
-      Positioned(child: Text("${value.toString()}%"))
+      Positioned(
+          right: 0,
+          child: Text(
+            style: TextStyle(fontSize: 12),
+            "${value.toString()}%",
+          ))
     ]));
   }
 }

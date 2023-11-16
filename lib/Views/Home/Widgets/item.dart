@@ -32,7 +32,9 @@ class Item extends StatelessWidget {
           width: itemHeight,
           height: 50,
           decoration: BoxDecoration(
-            color: isActivity ? AppColorConfig.themColor : Colors.white,
+            color: isActivity
+                ? AppColorConfig.themColor
+                : const Color.fromARGB(255, 221, 221, 221),
           ),
           child: Center(
               child: TailTypo()

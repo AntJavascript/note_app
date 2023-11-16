@@ -30,6 +30,10 @@ class _TotalPageState extends State<TotalPage> {
   Widget build(BuildContext context) {
     List<Map<String, String>> tabs = [
       {
+        "text": "总计",
+        "type": "total",
+      },
+      {
         "text": "按日",
         "type": "day",
       },
@@ -40,10 +44,6 @@ class _TotalPageState extends State<TotalPage> {
       {
         "text": "按年",
         "type": "year",
-      },
-      {
-        "text": "总计",
-        "type": "total",
       }
     ];
     return DefaultTabController(

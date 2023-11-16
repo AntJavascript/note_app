@@ -161,7 +161,7 @@ class _TotalDayTabState extends State<TotalDayTab> {
           child: Column(
             children: [
               Week(),
-              Item(onClick: onClick),
+              Item(onClick: onClick, dateStr: orgStr),
               Column(children: ListWrapper(list))
             ],
           ))

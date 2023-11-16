@@ -54,8 +54,7 @@ class _TotalTabState extends State<TotalTab> {
       TitleCell(title: "消费分类占比"),
       Column(
           children: percentages.map((item) {
-        return Column(children: [
-          crossAxisAlignment: CrossAxisAlignment.start,
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(child: Text(item["text"])),
           Progress(value: item["value"])
         ]);

@@ -13,7 +13,7 @@ class TotalYaerTab extends StatefulWidget {
 }
 
 class _TotalYaerTabState extends State<TotalYaerTab> {
- List<Map<String, String>> list = [
+  List<Map<String, String>> list = [
     {
       "title": "2023年",
       "income": "0.0",
@@ -29,8 +29,8 @@ class _TotalYaerTabState extends State<TotalYaerTab> {
       "income": "0.0",
       "expend": "0.0",
     }
-  ]
-     
+  ];
+
   @override
   initState() {
     super.initState();
@@ -39,9 +39,8 @@ class _TotalYaerTabState extends State<TotalYaerTab> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: tabs.map((e) {
-        return Cell(title: e["title"], income: e["income"], expend: e["expend"]);
-      }).toList()
-    )
+        children: list.map((e) {
+      return Cell(title: e["title"], income: e["income"], expend: e["expend"]);
+    }).toList());
   }
 }

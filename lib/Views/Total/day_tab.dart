@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tailstyle/tailstyle.dart';
-import 'package:provider/provider.dart';
 
 import 'package:note_app/Views/Home/Widgets/week.dart';
 import 'package:note_app/Views/Home/Widgets/item.dart';
@@ -51,7 +49,7 @@ class _TotalDayTabState extends State<TotalDayTab> {
 
     setState(() {
       dateStr = str;
-      orgStr = value['str']
+      orgStr = value['str'];
     });
     getData(str);
   }
@@ -80,7 +78,7 @@ class _TotalDayTabState extends State<TotalDayTab> {
             children: [
               Week(),
               Item(onClick: onClick, dateStr: orgStr),
-              Column(children: ListWrapper(list))
+              ListWrapper(list: list, dateStr: orgStr)
             ],
           ))
     ]);

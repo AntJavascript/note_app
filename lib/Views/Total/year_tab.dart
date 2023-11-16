@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// 自定义组件
+import 'package:note_app/Views/Total/components/cell.dart';
+
 class TotalYaerTab extends StatefulWidget {
   const TotalYaerTab({
     Key? key,
@@ -10,6 +13,24 @@ class TotalYaerTab extends StatefulWidget {
 }
 
 class _TotalYaerTabState extends State<TotalYaerTab> {
+ List<Map<String, String>> list = [
+    {
+      "title": "2023年",
+      "income": "0.0",
+      "expend": "0.0",
+    },
+    {
+      "title": "2022年",
+      "income": "0.0",
+      "expend": "0.0",
+    },
+    {
+      "title": "2021年",
+      "income": "0.0",
+      "expend": "0.0",
+    }
+  ]
+     
   @override
   initState() {
     super.initState();
@@ -17,6 +38,10 @@ class _TotalYaerTabState extends State<TotalYaerTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Text("data");
+    return ListView(
+      children: tabs.map((e) {
+        return Cell(title: e["title"], income: e["income"], expend: e["expend"]);
+      }).toList()
+    )
   }
 }

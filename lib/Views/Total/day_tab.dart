@@ -32,6 +32,7 @@ class TotalDayTab extends StatefulWidget {
 
 class _TotalDayTabState extends State<TotalDayTab> {
   String dateStr = "";
+  String orgStr = ""; // 原始数据
   List<Data> list = [];
 
   @override
@@ -49,6 +50,7 @@ class _TotalDayTabState extends State<TotalDayTab> {
 
     setState(() {
       dateStr = str;
+      orgStr = value['str']
     });
     getData(str);
   }

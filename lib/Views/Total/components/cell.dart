@@ -16,14 +16,16 @@ class Cell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TailBox().p(10).m(12).rounded(6).bg(Colors.white).Container(
-            child: Row(children: [
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
           TailTypo().font_size(16.0).Text(title!),
           Column(children: [
             Container(
               child: Row(children: [
-                TailTypo().font_size(14.0).text_color(Colors.grey).Text("支出"),
+                TailTypo().font_size(12.0).text_color(Colors.grey).Text("支出"),
                 TailTypo()
-                    .font_size(14.0)
+                    .font_size(16.0)
                     .text_color(AppColorConfig.expendTextColor)
                     .Text(expend!),
               ]),
@@ -31,9 +33,9 @@ class Cell extends StatelessWidget {
             Container(
               child: Row(
                 children: [
-                  TailTypo().font_size(14.0).text_color(Colors.grey).Text("收入"),
+                  TailTypo().font_size(12.0).text_color(Colors.grey).Text("收入"),
                   TailTypo()
-                      .font_size(14.0)
+                      .font_size(16.0)
                       .text_color(AppColorConfig.incomeTextColor)
                       .Text(income!),
                 ],

@@ -15,7 +15,7 @@ class Cell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TailBox().p(10).m(12).rounded(6).bg(Colors.white).Container(
+    return TailBox().p(10).m_b(12).rounded(6).bg(Colors.white).Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

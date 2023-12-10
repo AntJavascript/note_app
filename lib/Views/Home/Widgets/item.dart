@@ -18,7 +18,7 @@ class Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 每个item的宽高保持一致
-    final double itemHeight = MediaQuery.of(context).size.width / 7;
+    final double itemHeight = MediaQuery.of(context).size.width / 7 - 1;
     return Wrap(
         children: renderData(DateTime.now()).map((e) {
       bool isEmpty = e['day'] == null;
@@ -32,9 +32,7 @@ class Item extends StatelessWidget {
           width: itemHeight,
           height: 50,
           decoration: BoxDecoration(
-            color: isActivity
-                ? AppColorConfig.themColor
-                : const Color.fromARGB(255, 221, 221, 221),
+            color: isActivity ? AppColorConfig.themColor : Colors.white,
           ),
           child: Center(
               child: TailTypo()

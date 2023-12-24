@@ -4,16 +4,42 @@ import 'package:tailstyle/tailstyle.dart';
 // 全局配置
 import 'package:note_app/config/them.dart';
 
+// service
+import 'package:note_app/service/total_service.dart';
+
 // 日期数据函数
 import 'date.dart';
 
 // 支出、收入显示组件
 import 'Detail/Income_or_expenditure.dart';
 
-class Item extends StatelessWidget {
+class Item extends StatefulWidget {
+  const Item({Key? key, this.onClick, this.dateStr}) : super(key: key);
+
   final Function? onClick;
   final String? dateStr;
-  const Item({Key? key, this.onClick, this.dateStr}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _ItemState();
+}
+
+class _ItemState extends State<Item> {
+  List<Map<String, dynamic>> list = [];
+  int year = DateTime.now().year;
+  int month = DateTime.now().month;
+
+  getData() async {
+    final data = await TotalService.totalMonthDetail(year, month);
+    if (data.code == 200) {
+      setState(() {
+        list = data.data;
+      });
+    } else {
+      setState(() {
+        list = [];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +48,10 @@ class Item extends StatelessWidget {
     return Wrap(
         children: renderData(DateTime.now()).map((e) {
       bool isEmpty = e['day'] == null;
-      bool isActivity = (!isEmpty && dateStr == e['str']);
+      bool isActivity = (!isEmpty && widget.dateStr == e['str']);
       return GestureDetector(
         onTap: () {
-          onClick!(e); // 传值父组件
+          widget.onClick!(e); // 传值父组件
         },
         child: Container(
           alignment: Alignment.center,
